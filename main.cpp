@@ -1,0 +1,184 @@
+#include "Librerias\Listas.h"
+
+int main ( ){
+	lista * p=NULL;
+	lista * s=NULL;
+	int a = 0,x = 0, op=-1, m=0;
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+	insertarCabeza (&p, ++m);
+
+	while (op!=0){
+		printf (" \n\n\t\tMENU DE LISTAS \n\n");
+		printf ("\t1. AGREGA dato por cabeza lista\n");
+		printf ("\t2. MUESTRA lista \n");
+		printf ("\t3. AGREGA dato por cola lista\n");
+		printf ("\t4. BUSCA elemento\n");
+		printf ("\t5. CUENTA sus elementos\n");
+		printf ("\t6. ORDENA por BURBUJA\n");
+		printf ("\t7. ORDENA por INSERCION\n");
+		printf ("\t8. ELIMINA dato en lista\n");
+		printf ("\t9. ELIMINA elementos repetidos\n");
+		printf ("\t10. VOLTEAR lista\n");
+		printf ("\t11. SEPARE CADA NUMERO MAYOR A 9 EN DIGITOS SEPARADOS\n");
+		printf ("\t12. ELIMINA elementos en posicion PAR \n");
+		printf ("\t13. CUENTA cuantas veces se repite el elemento\n");
+		printf ("\t14. ELIMINA ultima ocurrencia de un numero\n");
+		printf ("\t15. AGREGAR dato exacto\n");
+		printf ("\t0. Salir\n\n");
+		printf ("\tIndique su opcion (0-5)\t-> ");
+		scanf ("%d", &op);
+		system("cls");
+		printf("\n Opcion %i ",op);
+		switch (op){
+			case 1: 
+				printf("\n Agregar dato por cabeza de lista\n\n\n");
+				printf("\t\tIndique numero a insertar por la Cabeza = ");
+				scanf("%d",&x);
+				insertarCabeza(&p,x);
+				printf("\n\t EL ELEMENTO FUE AGREGADO EXITOSAMENTE\n\n");
+				muestra(p);
+				break;
+			case 2: printf ("\n Mostrar lista \n\n\n");muestra(p);
+				break;
+     		case 3: printf ("\n AGREGA dato por cola lista\n");
+				printf("\t\tIndique numero a insertar por la Cola = ");
+				scanf("%d",&x);
+				insertarfinal(&p,x);
+				printf("\n\t EL ELEMENTO FUE AGREGADO EXITOSAMENTE\n\n");
+				muestra(p);
+				break;
+			case 4: printf ("\n BUSCA elemento\n");
+					printf("\n\tIndique numero a buscar en la lista = ");
+					scanf("%d",&x);
+					busca(p, x);
+					if (busca(p, x) == 1){
+						printf("\n\tEL ELEMENTO FUE ENCONTRADO\n");
+
+					}else
+						printf("\n\tEL ELEMENTO NO FUE ENCONTRADO\n");
+				break;
+			case 5: printf ("\n CUENTA sus elementos\n");
+					printf ("\n\t LA LISTA TIENE %i ELEMENTOS\n", cuenta(p));	
+				break;
+			case 6: printf ("\n ORDENAR por BURBUJA \n");
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					burbuja(&p);
+					printf("\n\n\t ORDENADO POR BURBUJA EXITOSAMENTE");
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break;
+			case 7: printf ("\n ORDENAR POR INSERCION \n");
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					insercion(&p);
+					printf("\n\n\t ORDENADO POR INSERCION EXITOSAMENTE");
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break;
+			case 8: printf ("\n ELIMINA dato en lista\n");
+					printf("\n\tIndique numero a eliminar en la lista = ");
+					scanf("%d",&x);
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					elimina(&p, x);
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break;
+			case 9: printf ("\n ELIMINA elementos repetidos\n");
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					elimrep(p);
+					printf("\n\n\t REPETIDOS ELIMINADOS EXITOSAMENTE");
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break;
+			case 10: printf ("\n VOLTEAR lista\n");
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					voltear2(&p);
+					printf("\n\n\t\t LISTA VOLTEADA EXITOSAMENTE \n");
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break; 
+			case 11: printf ("\n SEPARE CADA NUMERO MAYOR A 9 EN DIGITOS SEPARADOS\n");
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					separadig(p);
+					printf("\n\n\t\t LISTA VOLTEADA EXITOSAMENTE \n");
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break;
+			case 12: printf ("\n ELIMINA elementos en posicion PAR \n");
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					pospar(&p);
+					printf("\n\n\t\t LISTA MODIFICADA EXITOSAMENTE \n");
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+				break;
+			case 13: printf ("\nCONTAR CUANTAS VECES SE ENCUENTRA UN ELEMENTO\n");
+					printf("\n\t Indique numero a buscar en la lista = ");
+					scanf("%d",&x);
+					if (cuentarep(p, x)){
+						printf ("\n\t EL ELEMENTO SI SE ENCUENTRA Y SE REPITE %i VEZ(CES)", cuentarep(p, x));
+						}
+					else{
+						printf ("\n\t EL ELEMENTO NO SE ENCUENTRA");
+					}
+					break;
+			case 14: printf("\n ELIMINA LA ULTIMA OCURRENCIA DE UN NUMERO");
+					printf("\n\t Indique numero a buscar y eliminar en la lista = ");
+					scanf("%d",&x);
+					printf("\n\t ANTES: \n");
+					muestra(p);
+					elimult(&p, x);
+					printf("\n\n\t\t ULTIMA OCURRENCIA DEL NUMERO %i FUE ELIMINADO EXITOSAMENTE \n", x);
+					printf("\n\n\t RESULTADO:");
+					muestra(p);
+			case 15: printf ("\n AGREGA dato exacto \n");
+				printf("\t\tIndique numero a insertar = ");
+				scanf("%d",&x);
+				muestra(p);
+				printf("\t\tIndique numero a buscar de la lista = ");
+				scanf("%d",&a);
+				insertarPreciso(&p,x,a);
+				printf("\n\t EL ELEMENTO FUE AGREGADO EXITOSAMENTE\n\n");
+				muestra(p);
+				break;  
+			case 16: {
+				printf ("\n ELIMINA elementos primos\n");
+					printf("\n\t ANTES: \n");
+				muestra(p);
+				primos(&p);
+				printf("\n\n\t PRIMOS ELIMINADOS EXITOSAMENTE");
+					printf("\n\n\t RESULTADO:");
+				muestra(p);
+				break;
+				}
+		};
+	printf("\n\n");
+	if (op) system("pause");
+	system("cls");
+	};
+	return 0;
+}
