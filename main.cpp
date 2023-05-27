@@ -121,6 +121,8 @@ agregarVehiculo(&p, nombreEsp , nombregringo , piloto , bomba , piedra , liquido
 cout<<"\n\n";
 if (opcion) system("pause");
 system("cls");
+//eliminar lista
+eliminarLista(&p);
 return 0;
 
 }
