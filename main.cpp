@@ -298,8 +298,8 @@ if (contador == 1) {
         }
         t = t->prox;
     }
-     cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
-      cout << "opcion: ";
+	cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+	cout << "opcion: ";
     int seleccion;
     cin >> seleccion;
     t = *p;
