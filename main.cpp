@@ -80,8 +80,8 @@ while (opcion!=0){
 	system("cls");
 	cout<<"\n la opcion fue"<<opcion;
 if (opcion == 1){
-     cout << "\nIngrese el nombre del vehiculo en español: ";
- getline(cin, nombreEsp);
+	cout << "\nIngrese el nombre del vehiculo en español: ";
+getline(cin, nombreEsp);
 cout << "\nIngrese el nombre del vehiculo en ingles: ";
 getline(cin, nombregringo);
 cout << "\nIngrese el nombre del conductor: ";
@@ -97,10 +97,10 @@ cout << "Ingrese la resistencia a los liquidos del vehiculo: ";
 cin >>liquido;
 agregarVehiculo(&p, nombreEsp , nombregringo , piloto , bomba , piedra , liquido);
 } else if (opcion == 2){
-             modificarVehiculo(&p);
+			modificarVehiculo(&p);
       //  modificarVehiculo(vehiculos);
 } else if (opcion == 3){
-          eliminarVehiculo(&p);
+		eliminarVehiculo(&p);
        //  eliminarVehiculo(vehiculos);
 } else if (opcion == 4){
         consultarVehiculo(p);
@@ -108,14 +108,14 @@ agregarVehiculo(&p, nombreEsp , nombregringo , piloto , bomba , piedra , liquido
 }else if (opcion == 5){
       //  generarCarriles(vehiculos);
 }else if (opcion == 6){
-       
+
       //  simularCarrera(vehiculos);
 }else if (opcion == 7){
       //  mostrarTabla(vehiculos);
 }else if (opcion == 9){
-       muestra(p);
-     } else {
-     cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
+	muestra(p);
+	} else {
+	cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
 }
 }
 cout<<"\n\n";
@@ -197,7 +197,7 @@ if (contador == 1) {
     cout << "Nombre en inglés: " << encontrado->nombre_en << endl;
     cout << "Conductor: " << encontrado->conductor << endl;
     cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
-   cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+	cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
     cout << "Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
     cout << endl;
 } else {
@@ -212,8 +212,8 @@ if (contador == 1) {
         }
         t = t->prox;
     }
-     cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
-      cout << "opcion: ";
+    cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+	cout << "opcion: ";
     int seleccion;
     cin >> seleccion;
     t = p;
@@ -238,7 +238,7 @@ if (contador == 1) {
     cout << "Nombre en inglés: " << encontrado->nombre_en << endl;
     cout << "Conductor: " << encontrado->conductor << endl;
     cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
-   cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+	cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
     cout << "Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
     cout << endl;
 }
@@ -339,7 +339,17 @@ if (contador == 1) {
 }
 system("pause");
 }
-
+//eliminar lista
+void eliminarLista(lista **p){
+	lista *t = *p;
+	while (t) {
+		*p = (*p)->prox;
+		delete t;
+		t = *p;
+	}
+	cout<<"la lista fue eliminada exitosamente\n";
+	system("pause");
+}
 
 void modificarVehiculo(lista **p){
     string nombreEsp , nombregringo , piloto;
@@ -482,17 +492,17 @@ if (contador == 1) {
         cout<<"escribe nuevo valor de la resistencia contra bombas: ";
         cin>>bomba;
         encontrado->resistencia_bomba = bomba;
-       }else if (datoVehiculoModificar == 5){
-         cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
-         cout<<"escribe nuevo valor de la resistencia contra piedras: ";
-         cin>>piedra;
-         encontrado->resistencia_piedra = piedra;
-       }else if(datoVehiculoModificar ==6){
+	}else if (datoVehiculoModificar == 5){
+		cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+		cout<<"escribe nuevo valor de la resistencia contra piedras: ";
+		cin>>piedra;
+		encontrado->resistencia_piedra = piedra;
+	}else if(datoVehiculoModificar ==6){
         cout<<"Resistencia a los liquidos:"<<encontrado->resistencia_liquido<<endl;
         cout<<"escribe nuevo valor de la resistencia contra liquidos: ";
         cin>>liquido;
         encontrado->resistencia_liquido = liquido;
-       }
+	}
 }
 system("pause");
 }
