@@ -385,45 +385,45 @@ if (contador == 1) {
     cout <<4<< ". Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
     cout <<5<< ". Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
     cout <<6<< ". Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
-     cout<<"\n\n  ninguno \n\n";
-     cout<<"\n\n que elementos deseas modificar\n\n";
+	cout<<"\n\n  ninguno \n\n";
+	cout<<"\n\n que elementos deseas modificar\n\n";
     do{
-         cout<<"eliga su opcion: ";
-     cin>>datoVehiculoModificar;
+		cout<<"eliga su opcion: ";
+	cin>>datoVehiculoModificar;
     }while( !( (datoVehiculoModificar >= 0)&& (datoVehiculoModificar < 7)));
     
-       if (datoVehiculoModificar == 1){
-         cout <<"Nombre en español: " << encontrado->nombre_es << endl;
-         cout <<"Escribe nuevo nombre:";
-         cin>>nombreEsp;
-         fflush(stdin);
-         encontrado->nombre_es = nombreEsp;
-       }else if(datoVehiculoModificar == 2){
-         cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
-         cout <<"Escribe nuevo nombre:";
-         cin>>nombregringo;
-         fflush(stdin);
-         encontrado->nombre_en = nombregringo;
-       }else if(datoVehiculoModificar == 3){
+	if (datoVehiculoModificar == 1){
+		cout <<"Nombre en español: " << encontrado->nombre_es << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombreEsp;
+		fflush(stdin);
+		encontrado->nombre_es = nombreEsp;
+	}else if(datoVehiculoModificar == 2){
+		cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombregringo;
+		fflush(stdin);
+		encontrado->nombre_en = nombregringo;
+	}else if(datoVehiculoModificar == 3){
         cout << "Conductor: " << encontrado->conductor << endl;
         cout<<"escribe nuevo nombre de conductor";
         cin>>piloto;
         fflush(stdin);
         encontrado->conductor = piloto;
-       }else if (datoVehiculoModificar == 4){
+	}else if (datoVehiculoModificar == 4){
         cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
         cout<<"escribe nuevo valor de la resistencia contra bombas: ";
         cin>>bomba;
         encontrado->resistencia_bomba = bomba;
-       }else if (datoVehiculoModificar == 5){
-         cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
-         cout<<"escribe nuevo valor de la resistencia contra piedras: ";
-         cin>>piedra;
-       }else if(datoVehiculoModificar ==6){
+	}else if (datoVehiculoModificar == 5){
+		cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+		cout<<"escribe nuevo valor de la resistencia contra piedras: ";
+		cin>>piedra;
+	}else if(datoVehiculoModificar ==6){
         cout<<"Resistencia a los liquidos:"<<encontrado->resistencia_liquido<<endl;
         cout<<"escribe nuevo valor de la resistencia contra liquidos: ";
         cin>>liquido;
-       }
+	}
 
 } else {
     // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
@@ -437,8 +437,8 @@ if (contador == 1) {
         }
         t = t->prox;
     }
-     cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
-      cout << "opcion: ";
+	cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+	cout << "opcion: ";
     int seleccion;
     cin >> seleccion;
     t = *p;
@@ -459,36 +459,36 @@ if (contador == 1) {
         return;
     }
 
-     cout<<"\n\ndatos del vehiculo\n\n";
+	cout<<"\n\ndatos del vehiculo\n\n";
     cout <<1<< ". Nombre en español: " << encontrado->nombre_es << endl;
     cout <<2<< ". Nombre en inglés: " << encontrado->nombre_en << endl;
     cout <<3<< ". Conductor: " << encontrado->conductor << endl;
     cout <<4<< ". Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
     cout <<5<< ". Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
     cout <<6<< ". Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
-     cout<<"\n\n  ninguno \n\n";
-     cout<<"\n\n que elementos deseas modificar\n\n";
+	cout<<"\n\n  ninguno \n\n";
+	cout<<"\n\n que elementos deseas modificar\n\n";
     do{
-         cout<<"eliga su opcion: ";
-     cin>>datoVehiculoModificar;
+		cout<<"eliga su opcion: ";
+	cin>>datoVehiculoModificar;
     }while(!( (datoVehiculoModificar >= 0)&& (datoVehiculoModificar < 7)));
     
-       if (datoVehiculoModificar == 1){
-         cout <<"Nombre en español: " << encontrado->nombre_es << endl;
-         cout <<"Escribe nuevo nombre:";
-         cin>>nombreEsp;
-         encontrado->nombre_es = nombreEsp;
-       }else if(datoVehiculoModificar == 2){
-         cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
-         cout <<"Escribe nuevo nombre:";
-         cin>>nombregringo;
-         encontrado->nombre_en = nombregringo;
-       }else if(datoVehiculoModificar == 3){
+	if (datoVehiculoModificar == 1){
+		cout <<"Nombre en español: " << encontrado->nombre_es << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombreEsp;
+		encontrado->nombre_es = nombreEsp;
+	}else if(datoVehiculoModificar == 2){
+		cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombregringo;
+		encontrado->nombre_en = nombregringo;
+	}else if(datoVehiculoModificar == 3){
         cout << "Conductor: " << encontrado->conductor << endl;
         cout<<"escribe nuevo nombre de conductor:";
         cin>>piloto;
         encontrado->conductor = piloto;
-       }else if (datoVehiculoModificar == 4){
+	}else if (datoVehiculoModificar == 4){
         cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
         cout<<"escribe nuevo valor de la resistencia contra bombas: ";
         cin>>bomba;
