@@ -350,7 +350,6 @@ void eliminarLista(lista **p){
 	cout<<"la lista fue eliminada exitosamente\n";
 	system("pause");
 }
-
 void modificarVehiculo(lista **p){
     string nombreEsp , nombregringo , piloto;
 int bomba =0, piedra=0 , liquido=0;
