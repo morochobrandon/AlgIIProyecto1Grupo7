@@ -46,6 +46,7 @@ void mostrarOpciones();
 void consultarVehiculo(lista *p);
 void eliminarVehiculo(lista **p);
 void modificarVehiculo(lista **p);
+void eliminarLista(lista **p);
 
 int main(){
 lista * p=nullptr;
@@ -61,11 +62,13 @@ agregarVehiculo(&p, "Super Ferrari" , "Army Surplus Special" , "Soldado Meekly" 
 agregarVehiculo(&p, "Antiguomovil" , "Bulletproof Bomb" , "Hermanos Anticuados" , 3 , 1 , 2);
 agregarVehiculo(&p, "Alambique Veloz" , "Roaring Plenty" , "Lucas el Loco" , 2 , 1 , 3);
 agregarVehiculo(&p, "Alambique Veloz" , "Roaring Plenty" , "Osvaldo el Oso" , 2 , 1 , 3);
+
 agregarVehiculo(&p, "Superheterodino" , "Turbo Terrific" , "Peter Perfecto" , 1 , 1 , 4);
 agregarVehiculo(&p, "Troncoswagen " , " Arkansas Chugabug" , " Tio Tomas" , 1 , 4 , 1);
 agregarVehiculo(&p, "Troncoswagen" , "Arkansas Chugabug" , "Oso Miedoso" , 2 , 2 , 2);
 agregarVehiculo(&p, "Super Convertible" , "Mean Machine" , "Pierre Nodoyuna" , 3 , 3 , 0);
 agregarVehiculo(&p, "Super Convertible" , "Mean Machine" , " Patan" , 3 , 2 , 1);
+
 agregarVehiculo(&p, "Rocomovil" , "Bouldermobile" , "Hermanos Macana, Piedro y Roco" , 4 , 0 , 2);
 agregarVehiculo(&p, "El Espantomovil" , "Creepy Coupe" , " Los Tenebrosos" , 2 , 3 , 1);
 agregarVehiculo(&p, " Auto_Convertible" , "Convert-a-car" , " profesor Locovich" , 3 , 0 , 3);
