@@ -1,112 +1,4 @@
-/*Características del juego:
 
-El juego se ejecuta en la consola del sistema operativo del usuario, al inicio del programa se indica cuántos vehículos van a participar, que formarán parte de una lista. Cada vehículo corre en su propio carril, cada carril es una línea horizontal en la pantalla que va desde el extremo izquierdo al derecho.
-
-Los vehículos son representados en la pantalla por un símbolo que puede ser: #,$,%,&,*. Además cuenta con los siguientes atributos: Velocidad y resistencia.
-
-Una vez que se indica la cantidad de carriles, se colocan las características de cada vehículo.
-
-En un archivo están las configuraciones de los vehículos, estas son:
-
-● Velocidad: perezoso, crucero, el super ferrari, Delorean.
-
-● Resistencia: es un valor que determina la capacidad de resistir a obstáculos que se pueden encontrar en el camino, los cuales puede ser: bombas, piedras, líquido resbaladizo, cada atributo tiene una valor que determina el nivel de resistencia para cada tipo de obstáculo, pero eso depende de las características del carro como tipos de cauchos y tamaño.
-
-● Tipos de cauchos:
-
-◦ Normales
-
-◦ Anti coleo (permiten rodar sobre líquidos que pueden ocasionar pérdida de la dirección sino cuenta con esta característica)
-
-◦ Todo terreno (tiene mayor resistencia a los obstáculos, esta va en una escala de 1 a 5, mientras mayor el número podrá evitar mejor los obstáculos) pero no tienen propiedad de anti coleo.
-
-● Tamaño de los cauchos:
-
-◦ Pegado al piso (son los carros más rápidos, su velocidad puede ser El súper Ferrari, Delorean),
-
-◦ Normales (su velocidad puede ser : perezoso , crucero),
-
-◦ MonsterTruck (son los más altos pero también son muy lentos, su velocidad es perezoso)
-
-● En cada carril puede aparecer MÁXIMO un obstáculo solamente de cada tipo.
-
-● De acuerdo a las características anteriores, se pueden configurar muchos tipos de vehículos, cada vehículo debe tener un nombre, seleccionado de la siguiente lista: ◦ El Rocomóvil (The Bouldermobile) conducido por los Hermanos Macana, Piedro y Roco (The Slag Brothers, Rock and Gravel)2. ◦ El Espantomóvil (The Creepy Coupe) pilotado por Los Tenebrosos (The Gruesome Twosome). ◦ El Auto/Súper Convertible (Convert-a-car) al volante el profesor Locovich (Pat Pending).
-
-◦ El Stuka Rakuda (The Crimson Haybailer) conducido por el Barón Hans Fritz (The Red Max).
-
-◦ El Compact Pussycat conducido por Penélope Glamour (Penelope Pitstop).
-
-◦ El Súper Ferrari (The Army Surplus Special) conducido por el Sargento Blast y el Soldado Meekly.
-
-◦ El Antiguomóvil (The Bulletproof Bomb) conducido por los Hermanos Anticuados (The Ant Hill Mob).
-
-◦ El Alambique Veloz (The Roaring Plenty) conducido por Lucas el Loco (Lazy Luke) y Osvaldo el Oso (Blubber Bear).
-
-◦ El Superheterodino (The Turbo Terrific) conducido por Peter Perfecto (Peter Perfect).
-
-◦ El Troncoswagen (The Arkansas Chugabug) conducido por Tío Tomás (Rufus Ruffcut) y Oso Miedoso (Sawtooth).
-
-◦ El Super Convertible (The Mean Machine) conducido por Pierre Nodoyuna (Dick Dastardly) y Patán (Muttley).
-
-En esta versión, cada vehículo tiene asignado los atributos por defecto.
-
-Debe considerar una lista de vehículos. Cada vehículo tiene los siguientes atributos:
-
-● Nombre en español
-
-● Nombre el inglés
-
-● Nombre del o los conductores
-
-● Tipo de caucho
-
-● Tamaño de caucho
-
-● Velocidad
-
-● Tiempo de disminución de velocidad
-
-FALTA LOS VALORES PARA LOS ATRIBUTOS: Resistencia, velocidad, tipo caucho, tamaño caucho, tiempo de disminución, factor, el cual será representado por una tabla que se enviará posteriormente en la versión 2.
-
-Aplicación de gestión de vehículos.
-
-Se debe crear una aplicación por separado que permite:
-
-● Agregar: permite agregar un vehículo nuevo con la información de los atributos. Al registrar la nueva información se debe indicar al usuario con un mensaje indicando que fue realizado satisfactoriamente el registro y mostrar la información completa del mismo.
-
-● Modificar: permite modificar la información de un vehículo que es previamente seleccionado por consola. EL flujo debe ser el siguiente:
-
-o Se muestra la lista de vehículos con un número de opción que lo identifique.
-
-o El usuario selecciona la opción del vehículo que desea modificar.
-
-o Se muestra toda la información del vehículo acompañado con un número de opción que identifica el atributo.
-
-o El usuario selecciona la opción del atributo que desea modificar.
-
-o Modificar el valor del atributo.
-
-o Se realiza la modificación.
-
-o Se muestra al usuario un mensaje si la modificación se hizo exitosamente o si no se pudo hacer indicando por qué.
-
-o Si fue exitosa la modificación se muestra toda la información del vehículo.
-
-● Eliminar: permite eliminar la información de un vehículo que es previamente seleccionado mediante un número de opción asociado a cada vehículo.
-
-● Una vez eliminado el vehículo, se muestra el mensaje que se eliminó exitosamente y se muestra al usuario el vehículo eliminado junto con la información de los atributos.
-
-● Lista: muestra todos los vehículos con sus atributos.
-
-● Consultar: permite consultar la información de un vehículo. Se muestra un listado de vehículos, el usuario selecciona el vehículo que desea consultar y la aplicación muestra toda la información.
-
-● Consultar: permite seleccionar un vehículo mediante un número de opción y muestra los valores de los atributos.
-
-● Regresar: regresa siempre a la pantalla anterior.
-
-● Salir: sale del sistema.
-
-Cada vez que se agrega, modifica o elimina, debe realizar la acción en la lista de vehículos y en el archivo de texto que mantiene la información.*/
 #ifndef GestionVehiculos_H
 #define GestionVehiculos_H
 #include <iostream>
@@ -117,5 +9,436 @@ Cada vez que se agrega, modifica o elimina, debe realizar la acción en la lista
 
 using namespace std;
 
+#include <iostream>
+
+using namespace std;
+
+struct lista{
+string nombre_es;
+string nombre_en;
+string conductor;
+//string tipo_caucho;
+//string tamano_caucho;
+//string velocidad;
+int resistencia_bomba;
+int resistencia_piedra;
+int resistencia_liquido;
+lista* prox;
+};
+
+/*
+struct Carril{
+int numerosDeCarriles;
+Vehiculos vehiculos;
+};
+*/
+
+/*
+struct Carrera{
+lista* inicio;
+int dimension;
+};
+/
+/
+typedef struct {
+char* tipo; // tipo de obstaculo
+int tiempo; // tiempo que afecta al vehiculo
+} Obstaculo;
+
+typedef struct {
+lista* carriles;
+lista* obstaculos;
+lista* vehiculos;
+} Juego;
+*/
+
+void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido);
+void muestra(lista *p);
+void mostrarOpciones();
+void consultarVehiculo(lista *p);
+void eliminarVehiculo(lista **p);
+void modificarVehiculo(lista **p);
+void eliminarLista(lista **p);
+
+void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido){
+// inserta x por cabeza de la lista
+lista *t = new lista;
+t->nombre_es = nombreEsp;
+t->nombre_en = nombregringo;
+t->conductor = piloto;
+t->resistencia_bomba = bomba;
+t->resistencia_piedra = piedra;
+t->resistencia_liquido = liquido;
+t->prox = *p;
+*p= t;
+cout <<"\n todo se agrego correctamente \n";
+}
+
+void muestra(lista *p){
+// muestra la lista por pantalla
+lista *t = p;
+cout<<"\n\n\n\t\t";
+while (t){
+cout<<"["<<t->nombre_es<<"]\n";
+cout<<"["<<t->nombre_en<<"]\n";
+cout<<"["<<t->conductor<<"]\n";
+cout<<"["<<t->resistencia_bomba<<"]\n";
+cout<<"["<<t->resistencia_piedra<<"]\n";
+cout<<"["<<t->resistencia_liquido<<"]\n";
+cout<<"\n\n\n\t\t";
+t = t->prox;
+};
+printf("NULL\n\n");
+};
+
+void mostrarOpciones(){
+cout << "1. Agregar vehiculo" << endl;
+cout << "2. Modificar vehiculo" << endl;
+cout << "3. Eliminar vehiculo" << endl;
+cout << "4. Consultar vehiculo" << endl;
+cout << "5. Generar carriles de la carrera" << endl;
+cout << "6. Simular carrera" << endl;
+cout << "7. Mostrar tabla de posiciones" << endl;
+cout << "8. Salir" << endl;
+cout << "9. Mostrar todos los vehiculos" << endl;
+}
+
+void consultarVehiculo(lista *p) {
+string busqueda;
+cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
+getline(cin, busqueda);
+cin.ignore();
+
+lista *encontrado = nullptr;
+lista *t = p;
+int contador = 0;
+
+// buscar el primer vehículo que coincida con el nombre dado
+while (t) {
+    if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        encontrado = t;
+        contador++;
+    }
+    t = t->prox;
+}
+
+if (!encontrado) {
+    cout << "No se encontró ningún vehículo que coincida con la búsqueda." << endl;
+    return;
+}
+
+if (contador == 1) {
+    cout << "Nombre en español: " << encontrado->nombre_es << endl;
+    cout << "Nombre en inglés: " << encontrado->nombre_en << endl;
+    cout << "Conductor: " << encontrado->conductor << endl;
+    cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
+	cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+    cout << "Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
+    cout << endl;
+} else {
+    // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
+    cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
+    t = p;
+    contador = 0;
+    while (t) {
+        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+            contador++;
+            cout << contador << ". " << t->conductor << endl;
+        }
+        t = t->prox;
+    }
+    cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+	cout << "opcion: ";
+    int seleccion;
+    cin >> seleccion;
+    t = p;
+    contador = 0;
+    while (t) {
+        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+            contador++;
+            if (contador == seleccion) {
+                encontrado = t;
+                break;
+            }
+        }
+        t = t->prox;
+    }
+
+    if (!encontrado) {
+        cout << "Selección inválida." << endl;
+        return;
+    }
+
+    cout << "Nombre en español: " << encontrado->nombre_es << endl;
+    cout << "Nombre en inglés: " << encontrado->nombre_en << endl;
+    cout << "Conductor: " << encontrado->conductor << endl;
+    cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
+	cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+    cout << "Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
+    cout << endl;
+}
+system("pause");
+}
+
+
+void eliminarVehiculo(lista **p){
+string busqueda;
+cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
+getline(cin, busqueda);
+
+lista *encontrado = nullptr;
+lista *t = *p ;
+int contador = 0;
+
+// buscar el primer vehículo que coincida con el nombre dado  , se parara en el ultimo que cumpla las caracteristicas dadas por el usuario
+while (t) {
+    if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        encontrado = t;
+        contador++;
+    }
+    t = t->prox;
+}
+
+if (!encontrado) {
+    cout << "No se encontró ningún vehículo que coincida con la búsqueda." << endl;
+    return;
+}
+
+if (contador == 1) {
+        if(*p == encontrado){ // lo que hace es eliminar el nodo con la estructura a eliminar si esta en la cabeza
+          *p = (*p)->prox;
+            delete encontrado;
+            encontrado = *p; 
+            cout<<"el elemento a eliminar estaba en la primera casilla\n";
+            cout<<"el elemento fue eliminado exitosamente\n";   
+        }else{
+            t = *p;
+            while (t->prox != encontrado) t = t->prox;
+            t->prox = encontrado->prox;
+            delete encontrado;
+            cout<<"el elemento a eliminar estaba por la lista\n";
+            cout<<"el elemento fue eliminado exitosamente\n";  
+        }
+} else {
+    // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
+    cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
+    t = *p;
+    contador = 0;
+    while (t) {
+        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+            contador++;
+            cout << contador << ". " << t->conductor << endl;
+        }
+        t = t->prox;
+    }
+	cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+	cout << "opcion: ";
+    int seleccion;
+    cin >> seleccion;
+    t = *p;
+    contador = 0;
+    while (t) {
+        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+            contador++;
+            if (contador == seleccion) {
+                encontrado = t;
+                break;
+            }
+        }
+        t = t->prox;
+    }
+
+    if (!encontrado) {
+        cout << "Selección inválida." << endl;
+        return;
+    }
+
+// donde se elimina el nodo
+
+   if(*p == encontrado){ // lo que hace es eliminar el nodo con la estructura a eliminar si esta en la cabeza
+          *p = (*p)->prox;
+            delete encontrado;
+            encontrado = *p; 
+            cout<<"el elemento a eliminar estaba en la primera casilla\n";
+            cout<<"el elemento fue eliminado exitosamente\n";   
+        }else{
+            t = *p;
+            while (t->prox != encontrado) t = t->prox;
+            t->prox = encontrado->prox;
+            delete encontrado;
+            cout<<"el elemento a eliminar estaba por la lista\n";
+            cout<<"el elemento fue eliminado exitosamente\n";  
+        }
+
+    
+}
+system("pause");
+}
+//eliminar lista
+void eliminarLista(lista **p){
+	lista *t = *p;
+	while (t) {
+		*p = (*p)->prox;
+		delete t;
+		t = *p;
+	}
+	cout<<"la lista fue eliminada exitosamente\n";
+	system("pause");
+}
+void modificarVehiculo(lista **p){
+    string nombreEsp , nombregringo , piloto;
+int bomba =0, piedra=0 , liquido=0;
+string busqueda;
+cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
+getline(cin, busqueda);
+lista *encontrado = nullptr;
+lista *t = *p;
+int contador = 0 , datoVehiculoModificar =0;
+
+// buscar el primer vehículo que coincida con el nombre dado
+while (t) {
+    if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        encontrado = t;
+        contador++;
+    }
+    t = t->prox;
+}
+
+if (!encontrado) {
+    cout << "No se encontró ningún vehículo que coincida con la búsqueda." << endl;
+    return;
+}
+
+if (contador == 1) {
+
+    cout<<"\n\ndatos del vehiculo\n\n";
+    cout <<1<< ". Nombre en español: " << encontrado->nombre_es << endl;
+    cout <<2<< ". Nombre en inglés: " << encontrado->nombre_en << endl;
+    cout <<3<< ". Conductor: " << encontrado->conductor << endl;
+    cout <<4<< ". Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
+    cout <<5<< ". Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+    cout <<6<< ". Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
+	cout<<"\n\n  ninguno \n\n";
+	cout<<"\n\n que elementos deseas modificar\n\n";
+    do{
+		cout<<"eliga su opcion: ";
+	cin>>datoVehiculoModificar;
+    }while( !( (datoVehiculoModificar >= 0)&& (datoVehiculoModificar < 7)));
+    
+	if (datoVehiculoModificar == 1){
+		cout <<"Nombre en español: " << encontrado->nombre_es << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombreEsp;
+		fflush(stdin);
+		encontrado->nombre_es = nombreEsp;
+	}else if(datoVehiculoModificar == 2){
+		cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombregringo;
+		fflush(stdin);
+		encontrado->nombre_en = nombregringo;
+	}else if(datoVehiculoModificar == 3){
+        cout << "Conductor: " << encontrado->conductor << endl;
+        cout<<"escribe nuevo nombre de conductor";
+        cin>>piloto;
+        fflush(stdin);
+        encontrado->conductor = piloto;
+	}else if (datoVehiculoModificar == 4){
+        cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
+        cout<<"escribe nuevo valor de la resistencia contra bombas: ";
+        cin>>bomba;
+        encontrado->resistencia_bomba = bomba;
+	}else if (datoVehiculoModificar == 5){
+		cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+		cout<<"escribe nuevo valor de la resistencia contra piedras: ";
+		cin>>piedra;
+	}else if(datoVehiculoModificar ==6){
+        cout<<"Resistencia a los liquidos:"<<encontrado->resistencia_liquido<<endl;
+        cout<<"escribe nuevo valor de la resistencia contra liquidos: ";
+        cin>>liquido;
+	}
+
+} else {
+    // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
+    cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
+    t = *p;
+    contador = 0;
+    while (t) {
+        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+            contador++;
+            cout << contador << ". " << t->conductor << endl;
+        }
+        t = t->prox;
+    }
+	cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+	cout << "opcion: ";
+    int seleccion;
+    cin >> seleccion;
+    t = *p;
+    contador = 0;
+    while (t) {
+        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+            contador++;
+            if (contador == seleccion) {
+                encontrado = t;
+                break;
+            }
+        }
+        t = t->prox;
+    }
+
+    if (!encontrado) {
+        cout << "Selección inválida." << endl;
+        return;
+    }
+
+	cout<<"\n\ndatos del vehiculo\n\n";
+    cout <<1<< ". Nombre en español: " << encontrado->nombre_es << endl;
+    cout <<2<< ". Nombre en inglés: " << encontrado->nombre_en << endl;
+    cout <<3<< ". Conductor: " << encontrado->conductor << endl;
+    cout <<4<< ". Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
+    cout <<5<< ". Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+    cout <<6<< ". Resistencia a los líquidos: " << encontrado->resistencia_liquido << endl;
+	cout<<"\n\n  ninguno \n\n";
+	cout<<"\n\n que elementos deseas modificar\n\n";
+    do{
+		cout<<"eliga su opcion: ";
+	cin>>datoVehiculoModificar;
+    }while(!( (datoVehiculoModificar >= 0)&& (datoVehiculoModificar < 7)));
+    
+	if (datoVehiculoModificar == 1){
+		cout <<"Nombre en español: " << encontrado->nombre_es << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombreEsp;
+		encontrado->nombre_es = nombreEsp;
+	}else if(datoVehiculoModificar == 2){
+		cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
+		cout <<"Escribe nuevo nombre:";
+		cin>>nombregringo;
+		encontrado->nombre_en = nombregringo;
+	}else if(datoVehiculoModificar == 3){
+        cout << "Conductor: " << encontrado->conductor << endl;
+        cout<<"escribe nuevo nombre de conductor:";
+        cin>>piloto;
+        encontrado->conductor = piloto;
+	}else if (datoVehiculoModificar == 4){
+        cout << "Resistencia a labomba: " << encontrado->resistencia_bomba << endl;
+        cout<<"escribe nuevo valor de la resistencia contra bombas: ";
+        cin>>bomba;
+        encontrado->resistencia_bomba = bomba;
+	}else if (datoVehiculoModificar == 5){
+		cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+		cout<<"escribe nuevo valor de la resistencia contra piedras: ";
+		cin>>piedra;
+		encontrado->resistencia_piedra = piedra;
+	}else if(datoVehiculoModificar ==6){
+        cout<<"Resistencia a los liquidos:"<<encontrado->resistencia_liquido<<endl;
+        cout<<"escribe nuevo valor de la resistencia contra liquidos: ";
+        cin>>liquido;
+        encontrado->resistencia_liquido = liquido;
+	}
+}
+system("pause");
+}
 
 #endif // GestionVehiculos_H
