@@ -17,14 +17,18 @@ typedef struct tVehiculo
     string nombreEspanol;
     string nombreIngles;
     string conductores;
-    string tipoCaucho[3]={"Normales","Anti coleo","Todo terreno"};
-    string tamanoCaucho[3]={"Pegado al piso","Normales","Monster truck"};
-    string velocidad[4]= {"Lento","Normal","Rapido","Ultra rapido"};
+    string tipoCaucho ;
+    //{"Normales","Anti coleo","Todo terreno"};
+    string tamanoCaucho;
+    //{"Pegado al piso","Normales","Monster truck"};
+    string velocidad;
+    // {"Lento","Normal","Rapido","Ultra rapido"};
    // string tiempoDisminucion;
-    tResistencia resistencia;
+   tResistencia resistencia; 
     clock_t cronometro;
     int PosicionDeLlegada;
-    char vehiculoEnPantalla[11] = {'¥','@', '©', '£', 'Ç','$','Ø', 'æ', 'þ', '§', '®'}; // @ = Vehiculo, O = Vehiculo con daño, X = Vehiculo destruido
+    char vehiculoEnPantalla;
+    //{'¥','@', '©', '£', 'Ç','$','Ø', 'æ', 'þ', '§', '®'}; // @ = Vehiculo, O = Vehiculo con daño, X = Vehiculo destruido
 };
 typedef struct tObstaculo
 {
@@ -37,18 +41,20 @@ typedef struct tObstaculo
 };
 typedef struct tKilometro
 {
-    int numeroDeKilometro;
-    tObstaculo obstaculo;
+    int numeroDeKilometroQueEsta;
+    tObstaculo obstaculo;  // porque esta aqui
     bool obstaculoEncontrado;
     bool vehiculoPresente;
     tKilometro *prox;
 };
 typedef struct tCarril
 {
-    tKilometro *inicio;
-    tCarril *prox;
-    tKilometro *ubicacionVehiculo;
-    int numeroKilometros;
+    tKilometro *primerKilometro;
+    tKilometro *ultimoKilometro;
+    tKilometro *ubicacionVehiculo;  // aqui seria tvehiculo
+    tVehiculo tVehiculo;
+    int numeroDeKilometros;
+      tCarril *prox;
 };
 typedef struct tPista
 {

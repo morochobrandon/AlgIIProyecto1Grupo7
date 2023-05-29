@@ -5,10 +5,7 @@
 #include <windows.h>
 #include <fstream>
 #include <ctime>
-
-using namespace std;
-
-#include <iostream>
+#include "Estructuras.h"
 
 using namespace std;
 
@@ -25,33 +22,9 @@ int resistencia_liquido;
 lista* prox;
 };
 
-/*
-struct Carril{
-int numerosDeCarriles;
-Vehiculos vehiculos;
-};
-*/
-
-/*
-struct Carrera{
-lista* inicio;
-int dimension;
-};
-/
-/
-typedef struct {
-char* tipo; // tipo de obstaculo
-int tiempo; // tiempo que afecta al vehiculo
-} Obstaculo;
-
-typedef struct {
-lista* carriles;
-lista* obstaculos;
-lista* vehiculos;
-} Juego;
-*/
-
-void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido);
+void llenarDatosVehiculo(tVehiculo &p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
+//crear nodo tKILOMETRO y llenarlo con la funci'on llenar datos vehiculo
+void crearKilometro();
 void muestra(lista *p);
 void mostrarOpciones();
 void consultarVehiculo(lista *p);

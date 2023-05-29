@@ -1,16 +1,75 @@
 #include "GestionVehículos.h"
 
-void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido){
+void llenarDatosVehiculo(tVehiculo &p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo ){
 // inserta x por cabeza de la lista
-lista *t = new lista;
-t->nombre_es = nombreEsp;
-t->nombre_en = nombregringo;
-t->conductor = piloto;
-t->resistencia_bomba = bomba;
-t->resistencia_piedra = piedra;
-t->resistencia_liquido = liquido;
-t->prox = *p;
-*p= t;
+tVehiculo *p = new tVehiculo;
+p.nombreEspanol = nombreEsp;
+p.nombreIngles = nombregringo;
+p.conductores = piloto;
+if (tipoDeCaucho == 1){
+    p.tipoCaucho = "Normales";
+}else if (tipoDeCaucho == 2){
+    p.tipoCaucho = "Anti coleo";
+}else if (tipoDeCaucho == 3){
+    p.tipoCaucho = "Todo terreno";
+}
+
+if (tamanoDeCaucho == 1){
+    p.tamanoCaucho = "Pegado al piso";
+}else if (tamanoDeCaucho == 2){
+    p.tamanoCaucho = "Normales";
+}else if (tamanoDeCaucho == 3){
+    p.tamanoCaucho = "Monster truck";
+}
+
+if (tamanoDeCaucho == 1){
+    p.tamanoCaucho = "Pegado al piso";
+}else if (tamanoDeCaucho == 2){
+    p.tamanoCaucho = "Normales";
+}else if (tamanoDeCaucho == 3){
+    p.tamanoCaucho = "Monster truck";
+}
+
+if (velocidadDelCarro == 1){
+    p.velocidad = "Lento";
+}else if (velocidadDelCarro == 2){
+    p.velocidad = "Normal";
+}else if (velocidadDelCarro == 3){
+    p.velocidad = "Rapido";
+}else if (velocidadDelCarro == 4){
+    p.velocidad = "Ultra rapido";
+}
+
+p.resistencia.resistenciaBombas = bombas;
+p.resistencia.resistenciaPiedras = piedras;
+p.resistencia.resistenciaLiquidos = liquidos;
+p.PosicionDeLlegada = 0;
+
+if (comoSeVeElVehiculo == 1){
+    p.vehiculoEnPantalla = '¥';
+}else if ( comoSeVeElVehiculo == 2){
+   p.vehiculoEnPantalla = '@';
+}else if ( comoSeVeElVehiculo == 3){
+    p.vehiculoEnPantalla = '©';
+}else if ( comoSeVeElVehiculo == 4){
+    p.vehiculoEnPantalla = '£';
+}else if ( comoSeVeElVehiculo == 5){
+    p.vehiculoEnPantalla = 'Ç';
+}else if ( comoSeVeElVehiculo == 6){
+    p.vehiculoEnPantalla = '$';
+}else if ( comoSeVeElVehiculo == 7){
+    p.vehiculoEnPantalla = 'Ø';
+}else if ( comoSeVeElVehiculo == 8){
+    p.vehiculoEnPantalla = 'æ';
+}else if ( comoSeVeElVehiculo == 9){
+    p.vehiculoEnPantalla = 'þ';
+}else if ( comoSeVeElVehiculo == 10){
+    p.vehiculoEnPantalla = '§';
+}else if ( comoSeVeElVehiculo == 11){
+    p.vehiculoEnPantalla = '®';
+} 
+
+
 cout <<"\n todo se agrego correctamente \n";
 }
 

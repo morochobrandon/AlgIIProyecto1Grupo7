@@ -1,13 +1,14 @@
 #include "Librerias\GestionVehículos.h"
 int main(){
-lista * p=nullptr;
+lista * s=nullptr;
+tVehiculo *p=nullptr;
 int opcion=-1;
 
 //fflush(stdin);  //por si las variables se ponen graciosas jajajajaj
 
 string nombreEsp , nombregringo , piloto;
-int bomba , piedra , liquido;
-
+int bomba , piedra , liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
+/*
 agregarVehiculo(&p, "Super Ferrari" , "Army Surplus Special" , "Sargento Blast" , 4 , 1 , 1);
 agregarVehiculo(&p, "Super Ferrari" , "Army Surplus Special" , "Soldado Meekly" , 4 , 1 , 1); 
 agregarVehiculo(&p, "Antiguomovil" , "Bulletproof Bomb" , "Hermanos Anticuados" , 3 , 1 , 2);
@@ -25,7 +26,7 @@ agregarVehiculo(&p, "El Espantomovil" , "Creepy Coupe" , " Los Tenebrosos" , 2 ,
 agregarVehiculo(&p, " Auto_Convertible" , "Convert-a-car" , " profesor Locovich" , 3 , 0 , 3);
 agregarVehiculo(&p, " Stuka Rakuda" , "Crimson Haybailer" , "Baron Hans Fritz" , 1 , 3 , 2);
 agregarVehiculo(&p, " Compact Pussycat" , "  Compact Pussycat " , "Penelope Glamour" , 0, 3 , 3);
-
+*/
 while (opcion!=0){
 	mostrarOpciones();
     cout<<"\n Opcion  :";
@@ -40,24 +41,59 @@ cout << "\nIngrese el nombre del vehiculo en ingles: ";
 getline(cin, nombregringo);
 cout << "\nIngrese el nombre del conductor: ";
 getline(cin, piloto);
-/* cout << "Ingrese el tipo de caucho utilizado: ";
-cout << "Ingrese el tamaño del caucho utilizado: ";
-cout << "Ingrese la velocidad maxima del vehiculo: "; */
+
+//zona de trabajo
+do {
+    cout << "\n\n Ingrese el tipo de caucho \n\n";
+cout << "\n 1.Normarles";
+cout << "\n 2.Anti coleo";
+cout << "\n 3.Todo terreno";
+cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+cout << "\n Ingrese la opcion eleginda: ";
+cin>>tipoDeCaucho;
+}while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+
+do {
+    cout << "\n\n Ingrese el tamano de caucho: \n\n";
+cout << "\n 1.Pegado al piso";
+cout << "\n 2.Normales";
+cout << "\n 3.Monster truck";
+cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+cout << "\n Ingrese la opcion eleginda: ";
+cin>>tipoDeCaucho;
+}while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+
+do {
+    cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
+cout << "\n 1.Pegado al piso";
+cout << "\n 2.Normales";
+cout << "\n 3.Monster truck";
+cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+cout << "\n Ingrese la opcion eleginda: ";
+cin>>tipoDeCaucho;
+}while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+
+cout << "Ingrese la velocidad maxima del vehiculo: "; 
+
+
+
+// zona de trabajo
 cout << "Ingrese la resistencia de la bomba del vehiculo: ";
 cin >>bomba;
 cout << "Ingrese la resistencia a las piedras del vehiculo: ";
 cin >>piedra;
 cout << "Ingrese la resistencia a los liquidos del vehiculo: ";
 cin >>liquido;
-agregarVehiculo(&p, nombreEsp , nombregringo , piloto , bomba , piedra , liquido);
+//agregarVehiculo(&p, nombreEsp , nombregringo , piloto , bomba , piedra , liquido);
+ llenarDatosVehiculo(*p, nombreEsp , nombregringo , piloto ,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro , bomba ,  piedra , liquido ,comoSeVeElVehiculo );
 } else if (opcion == 2){
-			modificarVehiculo(&p);
+			//modificarVehiculo(&p);
       //  modificarVehiculo(vehiculos);
 } else if (opcion == 3){
-		eliminarVehiculo(&p);
+		//eliminarVehiculo(&p);
        //  eliminarVehiculo(vehiculos);
 } else if (opcion == 4){
-        consultarVehiculo(p);
+       // consultarVehiculo(p);
       //  consultarVehiculo(vehiculos);
 }else if (opcion == 5){
       //  generarCarriles(vehiculos);
@@ -67,7 +103,7 @@ agregarVehiculo(&p, nombreEsp , nombregringo , piloto , bomba , piedra , liquido
 }else if (opcion == 7){
       //  mostrarTabla(vehiculos);
 }else if (opcion == 9){
-	muestra(p);
+	//muestra(p);
 	} else {
 	cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
 }
@@ -76,7 +112,7 @@ cout<<"\n\n";
 if (opcion) system("pause");
 system("cls");
 //eliminar lista
-eliminarLista(&p);
+//eliminarLista(&p);
 return 0;
 
 }
