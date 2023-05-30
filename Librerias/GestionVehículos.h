@@ -22,7 +22,11 @@ int resistencia_liquido;
 lista* prox;
 };
 
+
+
 void llenarDatosVehiculo(tVehiculo &p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
+
+void muestraVehiculoEspecifico(tVehiculo &p);
 //crear nodo tKILOMETRO y llenarlo con la funci'on llenar datos vehiculo
 void crearKilometro();
 void muestra(lista *p);

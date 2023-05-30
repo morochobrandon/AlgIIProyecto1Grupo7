@@ -73,6 +73,93 @@ if (comoSeVeElVehiculo == 1){
 cout <<"\n todo se agrego correctamente \n";
 }
 
+
+
+void pedirDatosVehiculo(tVehiculo &p){
+
+string nombreEsp , nombregringo , piloto;
+int bomba , piedra , liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
+
+
+    //zona de trabajo
+	cout << "\nIngrese el nombre del vehiculo en español: ";
+getline(cin, nombreEsp);
+cout << "\nIngrese el nombre del vehiculo en ingles: ";
+getline(cin, nombregringo);
+cout << "\nIngrese el nombre del conductor: ";
+getline(cin, piloto);
+
+do {
+    cout << "\n\n Ingrese el tipo de caucho \n\n";
+cout << "\n 1.Normarles";
+cout << "\n 2.Anti coleo";
+cout << "\n 3.Todo terreno";
+cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+cout << "\n Ingrese la opcion eleginda: ";
+cin>>tipoDeCaucho;
+}while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+
+do {
+    cout << "\n\n Ingrese el tamano de caucho: \n\n";
+cout << "\n 1.Pegado al piso";
+cout << "\n 2.Normales";
+cout << "\n 3.Monster truck";
+cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+cout << "\n Ingrese la opcion eleginda: ";
+cin>>tipoDeCaucho;
+}while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+
+do {
+    cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
+cout << "\n 1.Pegado al piso";
+cout << "\n 2.Normales";
+cout << "\n 3.Monster truck";
+cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+cout << "\n Ingrese la opcion eleginda: ";
+cin>>tipoDeCaucho;
+}while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+
+cout << "Ingrese la velocidad maxima del vehiculo: "; 
+
+
+// zona de trabajo
+cout << "Ingrese la resistencia de la bomba del vehiculo: ";
+cin >>bomba;
+cout << "Ingrese la resistencia a las piedras del vehiculo: ";
+cin >>piedra;
+cout << "Ingrese la resistencia a los liquidos del vehiculo: ";
+cin >>liquido;
+
+
+ llenarDatosVehiculo(p, nombreEsp , nombregringo , piloto ,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro , bomba ,  piedra , liquido ,comoSeVeElVehiculo );
+
+}
+
+
+
+
+
+
+
+void muestraVehiculoEspecifico(tVehiculo *p){
+// muestra la lista por pantalla
+tVehiculo *t = p;
+cout<<"\n\n\n\t\t";
+
+cout<<"["<<t->nombreEspanol<<"]\n";
+cout<<"["<<t->nombreIngles<<"]\n";
+cout<<"["<<t->conductores<<"]\n";
+cout<<"["<<t->tipoCaucho<<"]\n";
+cout<<"["<<t->tamanoCaucho<<"]\n";
+cout<<"["<<t->velocidad<<"]\n";
+cout<<"["<<t->resistencia.resistenciaBombas<<"]\n";
+cout<<"["<<t->resistencia.resistenciaPiedras<<"]\n";
+cout<<"["<<t->resistencia.resistenciaLiquidos<<"]\n";
+
+cout<<"\n\n\n\t\t";
+};
+
+
 void muestra(lista *p){
 // muestra la lista por pantalla
 lista *t = p;
