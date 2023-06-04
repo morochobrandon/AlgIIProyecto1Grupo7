@@ -3,63 +3,68 @@
 
 #include <iostream>
 #include <string>
-#include <ctime>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
-typedef struct tResistencia{
-    int resistenciaBombas;
-    int resistenciaPiedras;
-    int resistenciaLiquidos;
+struct lista{
+string nombre_es;
+string nombre_en;
+string conductor;
+string tipo_caucho;
+string tamano_caucho;
+string velocidad;
+string vehiculo_en_pantalla;
+
+int resistencia_bomba;
+int resistencia_piedra;
+int resistencia_liquido;
+
+
+
+lista* prox;
 };
-typedef struct tVehiculo
-{
-    string nombreEspanol;
-    string nombreIngles;
-    string conductores;
-    string tipoCaucho ;
-    //{"Normales","Anti coleo","Todo terreno"};
-    string tamanoCaucho;
-    //{"Pegado al piso","Normales","Monster truck"};
-    string velocidad;
-    // {"Lento","Normal","Rapido","Ultra rapido"};
-   // string tiempoDisminucion;
-   tResistencia resistencia; 
-    clock_t cronometro;
-    int PosicionDeLlegada;
-    char vehiculoEnPantalla;
-    //{'¥','@', '©', '£', 'Ç','$','Ø', 'æ', 'þ', '§', '®'}; // @ = Vehiculo, O = Vehiculo con daño, X = Vehiculo destruido
-};
-typedef struct tObstaculo
+
+
+struct tObstaculo
 {
     string nombre;
-    tResistencia resistencia;
-    char display[3] = {'¤', '¶', '#'};
-    // int tipo;
-    // int velocidad;
-    // int tiempoDisminucion;
+    int resistencia_bomba;
+    int resistencia_piedra;
+    int resistencia_liquido;
+    string obstaculo_en_pantalla;
+  
+     int tipo;
+    
+     int tiempoDisminucion;
 };
-typedef struct tKilometro
+struct tKilometro
 {
     int numeroDeKilometroQueEsta;
-    tObstaculo obstaculo;  // porque esta aqui
     bool obstaculoEncontrado;
     bool vehiculoPresente;
     tKilometro *prox;
 };
-typedef struct tCarril
+struct tCarril
 {
     tKilometro *primerKilometro;
     tKilometro *ultimoKilometro;
-    tKilometro *ubicacionVehiculo;  // aqui seria tvehiculo
-    tVehiculo tVehiculo;
+    tKilometro *ubicacionVehiculo; // para saber donde esta el vehiculo
+    string conductor;
     int numeroDeKilometros;
-      tCarril *prox;
+    string velocidad;
+    tCarril *prox;
 };
-typedef struct tPista
+struct tPista
 {
     tCarril *inicio;
     tCarril *fin;
     int numeroCarriles;
 };
+
+lista *primero , *ultimo , *actual , *nuevo;
+//  char display[3] = {'¤', '¶', '#'};
+
+
 #endif // Estructuras_H

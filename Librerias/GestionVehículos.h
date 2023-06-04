@@ -9,32 +9,26 @@
 
 using namespace std;
 
-struct lista{
-string nombre_es;
-string nombre_en;
-string conductor;
-//string tipo_caucho;
-//string tamano_caucho;
-//string velocidad;
-int resistencia_bomba;
-int resistencia_piedra;
-int resistencia_liquido;
-lista* prox;
-};
 
 
 
-void llenarDatosVehiculo(tVehiculo &p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
-
-void muestraVehiculoEspecifico(tVehiculo &p);
-//crear nodo tKILOMETRO y llenarlo con la funci'on llenar datos vehiculo
-void crearKilometro();
+void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido);
 void muestra(lista *p);
 void mostrarOpciones();
 void consultarVehiculo(lista *p);
 void eliminarVehiculo(lista **p);
 void modificarVehiculo(lista **p);
+void modificarDatosDelVehiculoAux(lista **p);
+void llenarDatosVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
+void pedirDatosVehiculo(lista **p);
+void muestraVehiculoEspecifico(lista *p);
 void eliminarLista(lista **p);
+
+void cargar_archivo3(lista **p); 
+void cargar_archivo2(lista **p);
+void descargar_archivo3(lista* primero) ;
+
+
 
 #include "GestionVehículos.cpp"
 #endif // GestionVehiculos_H
