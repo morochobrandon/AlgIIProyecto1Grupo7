@@ -21,9 +21,7 @@ void muestra(lista *p){
 lista *t = p;
 cout<<"\n\n\n\t\t";
     while (t){
-
     muestraVehiculoEspecifico(t);
-
     cout<<"\n\n\n\t\t";
     t = t->prox;
     };
@@ -70,7 +68,7 @@ if (!encontrado) {
 
 if (contador == 1) {
     muestraVehiculoEspecifico(encontrado);
-   cout << endl;
+    cout << endl;
 } else {
     // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
     cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
@@ -83,8 +81,8 @@ if (contador == 1) {
         }
         t = t->prox;
     }
-     cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
-      cout << "opcion: ";
+    cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+    cout << "opcion: ";
     int seleccion;
     cin >> seleccion;
     t = p;
@@ -104,7 +102,7 @@ if (contador == 1) {
         cout << "Selección inválida." << endl;
         return;
     }
-   muestraVehiculoEspecifico(encontrado);
+    muestraVehiculoEspecifico(encontrado);
     cout << endl;
 }
 system("pause");
@@ -161,8 +159,8 @@ if (contador == 1) {
         }
         t = t->prox;
     }
-     cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
-      cout << "opcion: ";
+    cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+    cout << "opcion: ";
     int seleccion;
     cin >> seleccion;
     t = *p;
@@ -232,7 +230,7 @@ if (!encontrado) {
 }
 
 if (contador == 1) {
-             modificarDatosDelVehiculoAux(&encontrado);
+    modificarDatosDelVehiculoAux(&encontrado);
 } else {
     // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
     cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
@@ -245,8 +243,8 @@ if (contador == 1) {
         }
         t = t->prox;
     }
-     cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
-      cout << "opcion: ";
+    cout << "Coloque el numero que acompana al piloto que desea ver la informacion de su vehiculo" << endl;
+    cout << "opcion: ";
     int seleccion;
     cin >> seleccion;
     t = *p;
@@ -312,7 +310,7 @@ t->resistencia_liquido = liquidos;
 if (comoSeVeElVehiculo == 1){
     t->vehiculo_en_pantalla = "¥";
 }else if ( comoSeVeElVehiculo == 2){
-   t->vehiculo_en_pantalla = "@";
+    t->vehiculo_en_pantalla = "@";
 }else if ( comoSeVeElVehiculo == 3){
     t->vehiculo_en_pantalla = "©";
 }else if ( comoSeVeElVehiculo == 4){
@@ -353,8 +351,8 @@ string nombreEsp , nombregringo , piloto;
 int bomba , piedra , liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
 
 
-    //zona de trabajo
-	cout << "\nIngrese el nombre del vehiculo en español: ";
+//zona de trabajo
+cout << "\nIngrese el nombre del vehiculo en español: ";
 getline(cin, nombreEsp);
 cout << "\nIngrese el nombre del vehiculo en ingles: ";
 getline(cin, nombregringo);
@@ -363,33 +361,33 @@ getline(cin, piloto);
 
 do {
     cout << "\n\n Ingrese el tipo de caucho \n\n";
-cout << "\n 1.Normarles";
-cout << "\n 2.Anti coleo";
-cout << "\n 3.Todo terreno";
-cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-cout << "\n Ingrese la opcion eleginda: ";
-cin>>tipoDeCaucho;
+    cout << "\n 1.Normarles";
+    cout << "\n 2.Anti coleo";
+    cout << "\n 3.Todo terreno";
+    cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+    cout << "\n Ingrese la opcion eleginda: ";
+    cin>>tipoDeCaucho;
 }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
 
 do {
     cout << "\n\n Ingrese el tamano de caucho: \n\n";
-cout << "\n 1.Pegado al piso";
-cout << "\n 2.Normales";
-cout << "\n 3.Monster truck";
-cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-cout << "\n Ingrese la opcion eleginda: ";
-cin>>tamanoDeCaucho;
+    cout << "\n 1.Pegado al piso";
+    cout << "\n 2.Normales";
+    cout << "\n 3.Monster truck";
+    cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+    cout << "\n Ingrese la opcion eleginda: ";
+    cin>>tamanoDeCaucho;
 }while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
 fflush(stdin);
 do {
     cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
-cout << "\n 1. Lento";
-cout << "\n 2.Normal";
-cout << "\n 3.Rapido";
-cout << "\n 3.Super Rapido";
-cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-cout << "\n Ingrese la opcion eleginda: ";
-cin>>velocidadDelCarro;
+    cout << "\n 1. Lento";
+    cout << "\n 2.Normal";
+    cout << "\n 3.Rapido";
+    cout << "\n 3.Super Rapido";
+    cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+    cout << "\n Ingrese la opcion eleginda: ";
+    cin>>velocidadDelCarro;
 }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
 fflush(stdin);
 
@@ -404,30 +402,29 @@ cin >>liquido;
 
 
 do{
-cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
-cout<<"1  = ¥\n"; 
-cout<<"2  = @\n";
-cout<<"3  =  ©\n";
-cout<<"4  =  £\n";
-cout<<"5  =  Ç\n";
-cout<<"6  =  $\n";
-cout<<"7  =  Ø\n";
-cout<<"8  =  æ\n";
-cout<<"9  =  þ\n";
-cout<<"10 =  §\n";
-cout<<"11 =  ®\n";
-cout<<"12 =  ª\n";
-cout<<"13 =  º\n";
-cout<<"14 =  Æ\n";
-cout<<"15 =  Ð\n";
-cout<<"opcion : ";
+    cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
+    cout<<"1  = ¥\n"; 
+    cout<<"2  = @\n";
+    cout<<"3  =  ©\n";
+    cout<<"4  =  £\n";
+    cout<<"5  =  Ç\n";
+    cout<<"6  =  $\n";
+    cout<<"7  =  Ø\n";
+    cout<<"8  =  æ\n";
+    cout<<"9  =  þ\n";
+    cout<<"10 =  §\n";
+    cout<<"11 =  ®\n";
+    cout<<"12 =  ª\n";
+    cout<<"13 =  º\n";
+    cout<<"14 =  Æ\n";
+    cout<<"15 =  Ð\n";
+    cout<<"opcion : ";
 
-cin>>comoSeVeElVehiculo;
-
+    cin>>comoSeVeElVehiculo;
 }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
 
 
- llenarDatosVehiculo(p, nombreEsp , nombregringo , piloto ,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro , bomba ,  piedra , liquido ,comoSeVeElVehiculo );
+llenarDatosVehiculo(p, nombreEsp , nombregringo , piloto ,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro , bomba ,  piedra , liquido ,comoSeVeElVehiculo );
 }
 
 
@@ -454,12 +451,10 @@ cout<<"\n\n\n\t\t";
 void modificarDatosDelVehiculoAux(lista **p){
 lista *encontrado = *p;
 
- string nombreEsp , nombregringo , piloto;
+string nombreEsp , nombregringo , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo , datoVehiculoModificar;
 
-
-    cout<<"\n\ndatos del vehiculo\n\n";
-    
+cout<<"\n\ndatos del vehiculo\n\n";
 cout<<1<<".  nombre en espanol:"<<"["<<encontrado->nombre_es<<"]\n";
 cout<<2<<".  nombre en ingles:"<<"["<<encontrado->nombre_en<<"]\n";
 cout<<3<<".  nombre del conductor:"<<"["<<encontrado->conductor<<"]\n";
@@ -470,120 +465,115 @@ cout<<7<<".  resistencia contra bombas:"<<"["<<encontrado->resistencia_bomba<<"]
 cout<<8<<".  resistencia contra piedras:"<<"["<<encontrado->resistencia_piedra<<"]\n";
 cout<<9<<".  resistencia contra liquidos:"<<"["<<encontrado->resistencia_liquido<<"]\n";
 
-    
-     cout<<"\n\n  ninguno \n\n";
-     cout<<"\n\n que elementos deseas modificar\n\n";
-    do{
-         cout<<"eliga su opcion: ";
-     cin>>datoVehiculoModificar;
-    }while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=9)));
-    
-       if (datoVehiculoModificar == 1){
-         cout <<"Nombre en español: " << encontrado->nombre_es << endl;
-         cout <<"Escribe nuevo nombre:";
-         cin>>nombreEsp;
-         fflush(stdin);
-         encontrado->nombre_es = nombreEsp;
-       }else if(datoVehiculoModificar == 2){
-         cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
-         cout <<"Escribe nuevo nombre:";
-         cin>>nombregringo;
-         fflush(stdin);
-         encontrado->nombre_en = nombregringo;
-       }else if(datoVehiculoModificar == 3){
-        cout << "Conductor: " << encontrado->conductor << endl;
-        cout<<"escribe nuevo nombre de conductor";
-        cin>>piloto;
+
+cout<<"\n\n  ninguno \n\n";
+cout<<"\n\n que elementos deseas modificar\n\n";
+do{
+    cout<<"eliga su opcion: ";
+    cin>>datoVehiculoModificar;
+}while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=9)));
+
+if (datoVehiculoModificar == 1){
+    cout <<"Nombre en español: " << encontrado->nombre_es << endl;
+    cout <<"Escribe nuevo nombre:";
+    cin>>nombreEsp;
+    fflush(stdin);
+    encontrado->nombre_es = nombreEsp;
+    }else if(datoVehiculoModificar == 2){
+        cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
+        cout <<"Escribe nuevo nombre:";
+        cin>>nombregringo;
         fflush(stdin);
-        encontrado->conductor = piloto;
-       }else if(datoVehiculoModificar == 4){
-        cout << "tipo de caucho: " << encontrado->tipo_caucho << endl;
-                do {
-                cout << "\n\n escribe nuevo tipo de caucho de estas opciones:\n\n";
-                cout << "\n 1.Normarles";
-                cout << "\n 2.Anti coleo";
-                cout << "\n 3.Todo terreno";
-                cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-                cout << "\n Ingrese la opcion eleginda: ";
-                cin>>tipoDeCaucho;
-                }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));  
-
-                if (tipoDeCaucho == 1){
-                    encontrado->tipo_caucho = "Normales";
-                }else if (tipoDeCaucho == 2){
-                    encontrado->tipo_caucho = "Anti coleo";
-                }else if (tipoDeCaucho == 3){
-                    encontrado->tipo_caucho = "Todo terreno";
-                }
-                        fflush(stdin);
-
-       }else if(datoVehiculoModificar == 5){  
-                    cout << "tamano de caucho: " << encontrado->tamano_caucho << endl;  
-                    do {
-                    cout << "\n\n Ingrese el tamano de nuevo caucho: \n\n";
-                    cout << "\n 1.Pegado al piso";
-                    cout << "\n 2.Normales";
-                    cout << "\n 3.Monster truck";
+        encontrado->nombre_en = nombregringo;
+        }else if(datoVehiculoModificar == 3){
+            cout << "Conductor: " << encontrado->conductor << endl;
+            cout<<"escribe nuevo nombre de conductor";
+            cin>>piloto;
+            fflush(stdin);
+            encontrado->conductor = piloto;
+            }else if(datoVehiculoModificar == 4){
+                cout << "tipo de caucho: " << encontrado->tipo_caucho << endl;
+                do
+                {
+                    cout << "\n\n escribe nuevo tipo de caucho de estas opciones:\n\n";
+                    cout << "\n 1.Normarles";
+                    cout << "\n 2.Anti coleo";
+                    cout << "\n 3.Todo terreno";
                     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
                     cout << "\n Ingrese la opcion eleginda: ";
-                    cin>>tamanoDeCaucho;
-                    }while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
-
-                    if (tamanoDeCaucho == 1){
-                        encontrado->tamano_caucho = "Pegado al piso";
-                    }else if (tamanoDeCaucho == 2){
-                        encontrado->tamano_caucho = "Normales";
-                    }else if (tamanoDeCaucho == 3){
-                        encontrado->tamano_caucho = "Monster truck";
-                    }
-
-                  fflush(stdin);
-       }else if(datoVehiculoModificar == 6){
-
-
-
-                                cout << "velocidad del vehiculo: " << encontrado->velocidad << endl;
-                            do {
-                             cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
-                             cout << "\n 1. Lento";
-                             cout << "\n 2.Normal";
-                             cout << "\n 3.Rapido";
-                             cout << "\n 4.Ultra Rapido";
-                             cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-                             cout << "\n Ingrese la opcion eleginda: ";
-                        cin>>velocidadDelCarro;
-                        }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
-                        
-                        if (velocidadDelCarro == 1){
-                            encontrado->velocidad = "Lento";
-                        }else if (velocidadDelCarro == 2){
-                            encontrado->velocidad = "Normal";
-                        }else if (velocidadDelCarro == 3){
-                            encontrado->velocidad = "Rapido";
-                        }else if (velocidadDelCarro == 4){
-                            encontrado->velocidad = "Ultra rapido";
-                        }
-        fflush(stdin);
-       }else if (datoVehiculoModificar == 7){
-        cout << "Resistencia a la bomba: " << encontrado->resistencia_bomba << endl;
-        cout<<"escribe nuevo valor de la resistencia contra bombas: ";
-        cin>>bomba;
-        encontrado->resistencia_bomba = bomba;
-        fflush(stdin);
-       }else if (datoVehiculoModificar == 8){
-         cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
-         cout<<"escribe nuevo valor de la resistencia contra piedras: ";
-         cin>>piedra;
-         encontrado->resistencia_piedra = piedra;
-         fflush(stdin);
-       }else if(datoVehiculoModificar == 9){
-        cout<<"Resistencia a los liquidos:"<<encontrado->resistencia_liquido<<endl;
-        cout<<"escribe nuevo valor de la resistencia contra liquidos: ";
-        cin>>liquido;
-        encontrado->resistencia_liquido = liquido;
-        fflush(stdin);
-       }
-}
+                    cin>>tipoDeCaucho;
+                    }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
+                    if (tipoDeCaucho == 1){
+                        encontrado->tipo_caucho = "Normales";
+                        }else if (tipoDeCaucho == 2){
+                            encontrado->tipo_caucho = "Anti coleo";
+                            }else if (tipoDeCaucho == 3){
+                                encontrado->tipo_caucho = "Todo terreno";
+                                }
+                                fflush(stdin);
+                                }else if(datoVehiculoModificar == 5){
+                                    cout << "tamano de caucho: " << encontrado->tamano_caucho << endl;  
+                                    do
+                                    {
+                                        cout << "\n\n Ingrese el tamano de nuevo caucho: \n\n";
+                                        cout << "\n 1.Pegado al piso";
+                                        cout << "\n 2.Normales";
+                                        cout << "\n 3.Monster truck";
+                                        cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+                                        cout << "\n Ingrese la opcion eleginda: ";
+                                        cin>>tamanoDeCaucho;
+                                        }while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
+                                        if (tamanoDeCaucho == 1){
+                                            encontrado->tamano_caucho = "Pegado al piso";
+                                        }else if (tamanoDeCaucho == 2){
+                                            encontrado->tamano_caucho = "Normales";
+                                        }else if (tamanoDeCaucho == 3){
+                                            encontrado->tamano_caucho = "Monster truck";
+                                        }
+                                        fflush(stdin);
+                                        }else if(datoVehiculoModificar == 6){
+                                            cout << "velocidad del vehiculo: " << encontrado->velocidad << endl;
+                                            do
+                                            {
+                                                cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
+                                            cout << "\n 1. Lento";
+                                            cout << "\n 2.Normal";
+                                            cout << "\n 3.Rapido";
+                                            cout << "\n 4.Ultra Rapido";
+                                            cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+                                            cout << "\n Ingrese la opcion eleginda: ";
+                                            cin>>velocidadDelCarro;
+                                            }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
+                                            if (velocidadDelCarro == 1){
+                                                encontrado->velocidad = "Lento";
+                                                }else if (velocidadDelCarro == 2){
+                                                    encontrado->velocidad = "Normal";
+                                                }else if (velocidadDelCarro == 3){
+                                                    encontrado->velocidad = "Rapido";
+                                                }else if (velocidadDelCarro == 4){
+                                                    encontrado->velocidad = "Ultra rapido";
+                                                }
+                                                fflush(stdin);
+                                                }else if (datoVehiculoModificar == 7){
+                                                    cout << "Resistencia a la bomba: " << encontrado->resistencia_bomba << endl;
+                                                cout<<"escribe nuevo valor de la resistencia contra bombas: ";
+                                                cin>>bomba;
+                                                encontrado->resistencia_bomba = bomba;
+                                                fflush(stdin);
+                                                }else if (datoVehiculoModificar == 8){
+                                                    cout << "Resistencia a las piedras: " << encontrado->resistencia_piedra << endl;
+                                                cout<<"escribe nuevo valor de la resistencia contra piedras: ";
+                                                cin>>piedra;
+                                                encontrado->resistencia_piedra = piedra;
+                                                fflush(stdin);
+                                                }else if(datoVehiculoModificar == 9){
+                                                    cout<<"Resistencia a los liquidos:"<<encontrado->resistencia_liquido<<endl;
+                                                cout<<"escribe nuevo valor de la resistencia contra liquidos: ";
+                                                cin>>liquido;
+                                                encontrado->resistencia_liquido = liquido;
+                                                fflush(stdin);
+                                                }
+                                                }
 
 
 void cargar_archivo2(lista **p) {
