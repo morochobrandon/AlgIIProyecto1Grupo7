@@ -12,45 +12,43 @@ struct tVehiculo{
     string nombre_es;
     string nombre_en;
     string conductor;
-    string tipo_caucho;
-    string tamano_caucho;
-    string velocidad;
+    int tipo_caucho;
+    string Atipo_caucho[3]={ "Anticoleo", "Normal" , "Todoterreno"};
+    int tamano_caucho;
+    string Atamano_caucho[3]={ "Pegado al piso", "Normal" , "Monstertruck"};
+    int Monstertruck;
+    int velocidad;
+    string Avelocidad[4]={ "Perezoso", "Crucero", "SuperFerrari","Delorean"};
     string vehiculo_en_pantalla;
-    int resistencia_bomba;
-    int resistencia_piedra;
-    int resistencia_liquido;
 };
 
 struct tListaConductores{
-    tVehiculo vehiculo;
-    string nombre_es;
-    string nombre_en;
+    string nombreEs;
+    string nombreEn;
     string conductor;
-    string tipo_caucho;
-    string tamano_caucho;
-    string velocidad;
-    string vehiculo_en_pantalla;
-    int resistencia_bomba;
-    int resistencia_piedra;
-    int resistencia_liquido;
+    int tipoCaucho;
+    string aTipoCaucho[3]={ "Anticoleo", "Normal" , "Todoterreno"};
+    int tamanoCaucho;
+    string aTamanoCaucho[3]={ "Pegado al piso", "Normal" , "Monstertruck"};
+    int monsterTruck;
+    int velocidad;
+    string aVelocidad[4]={ "Perezoso", "Crucero", "SuperFerrari","Delorean"};
+    string vehiculoEnPantalla;
     tListaConductores* prox;
 };
 
 struct tObstaculo
 {
-    string nombre;
-    int resistencia_bomba;
-    int resistencia_piedra;
-    int resistencia_liquido;
-    string obstaculo_en_pantalla;
-    int tipo;
-    int tiempoDisminucion;
+    bool bomba;
+    bool piedra;
+    bool liquido;
 };
 struct tKilometro
 {
     int ordinalKilometro; // para saber que kilometro es
     bool obstaculoEncontrado;
     bool vehiculoPresente;
+    tObstaculo obstaculo;
     tKilometro *prox;
 };
 struct tCarril
@@ -61,8 +59,8 @@ struct tCarril
     int numeroDeKilometros;
     tVehiculo *vehiculo;
     tCarril *prox;
+    tObstaculo presentes;
 
-    
 };
 struct tPista
 {

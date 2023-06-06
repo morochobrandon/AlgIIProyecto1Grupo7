@@ -1,24 +1,25 @@
 #include "GestionVehículos.h"
 
 
-void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido){
+void agregarVehiculo(tListaConductores *p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho , int velocidad, int mT){
 // inserta x por cabeza de la tListaConductores
 tListaConductores *t = new tListaConductores;
-t->nombre_es = nombreEsp;
-t->nombre_en = nombregringo;
+t->nombreEs = nombreEsp;
+t->nombreEn = nombreEn;
 t->conductor = piloto;
-t->resistencia_bomba = bomba;
-t->resistencia_piedra = piedra;
-t->resistencia_liquido = liquido;
-t->prox = *p;
-*p= t;
+t->tipoCaucho = tipoCaucho;
+t->tamanoCaucho = tamCaucho;
+t->monsterTruck = mT;
+t->velocidad = velocidad;
+t->prox = p;
+p= t;
 cout <<"\n todo se agrego correctamente \n";
 }
 
 
-void muestra(tListaConductores *p){
+void muestra(tListaConductores p){
 // muestra la tListaConductores por pantalla
-tListaConductores *t = p;
+tListaConductores *t = &p;
 cout<<"\n\n\n\t\t";
     while (t){
     muestraVehiculoEspecifico(t);
@@ -54,7 +55,7 @@ int contador = 0;
 
 // buscar el primer vehículo que coincida con el nombre dado
 while (t) {
-    if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+    if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
         encontrado = t;
         contador++;
     }
@@ -75,7 +76,7 @@ if (contador == 1) {
     t = p;
     contador = 0;
     while (t) {
-        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
             contador++;
             cout << contador << ". " << t->conductor << endl;
         }
@@ -88,7 +89,7 @@ if (contador == 1) {
     t = p;
     contador = 0;
     while (t) {
-        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
             contador++;
             if (contador == seleccion) {
                 encontrado = t;
@@ -120,7 +121,7 @@ int contador = 0;
 
 // buscar el primer vehículo que coincida con el nombre dado  , se parara en el ultimo que cumpla las caracteristicas dadas por el usuario
 while (t) {
-    if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+    if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
         encontrado = t;
         contador++;
     }
@@ -153,7 +154,7 @@ if (contador == 1) {
     t = *p;
     contador = 0;
     while (t) {
-        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
             contador++;
             cout << contador << ". " << t->conductor << endl;
         }
@@ -166,7 +167,7 @@ if (contador == 1) {
     t = *p;
     contador = 0;
     while (t) {
-        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
             contador++;
             if (contador == seleccion) {
                 encontrado = t;
@@ -205,7 +206,7 @@ system("pause");
 
 
 void modificarVehiculo(tListaConductores **p){
-    string nombreEsp , nombregringo , piloto;
+    string nombreEsp , nombreEn , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
 string busqueda;
 
@@ -217,7 +218,7 @@ int contador = 0 , datoVehiculoModificar =0;
 
 // buscar el primer vehículo que coincida con el nombre dado
 while (t) {
-    if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+    if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
         encontrado = t;
         contador++;
     }
@@ -237,7 +238,7 @@ if (contador == 1) {
     t = *p;
     contador = 0;
     while (t) {
-        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
             contador++;
             cout << contador << ". " << t->conductor << endl;
         }
@@ -250,7 +251,7 @@ if (contador == 1) {
     t = *p;
     contador = 0;
     while (t) {
-        if (t->nombre_es.find(busqueda) != string::npos || t->nombre_en.find(busqueda) != string::npos) {
+        if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
             contador++;
             if (contador == seleccion) {
                 encontrado = t;
@@ -271,26 +272,26 @@ system("pause");
 }
 
 
-void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo ){
+void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo ){
 // inserta x por cabeza de la tListaConductores
 tListaConductores *t = new tListaConductores;
-t->nombre_es = nombreEsp;
-t->nombre_en = nombregringo;
+t->nombreEs = nombreEsp;
+t->nombreEn = nombreEn;
 t->conductor = piloto;
 if (tipoDeCaucho == 1){
-    t->tipo_caucho = "Normales";
+    t->tipoCaucho = "Normales";
 }else if (tipoDeCaucho == 2){
-    t->tipo_caucho = "Anti coleo";
+    t->tipoCaucho = "Anti coleo";
 }else if (tipoDeCaucho == 3){
-    t->tipo_caucho = "Todo terreno";
+    t->tipoCaucho = "Todo terreno";
 }
 
 if (tamanoDeCaucho == 1){
-    t->tamano_caucho = "Pegado al piso";
+    t->tamanoCaucho = "Pegado al piso";
 }else if (tamanoDeCaucho == 2){
-    t->tamano_caucho = "Normales";
+    t->tamanoCaucho = "Normales";
 }else if (tamanoDeCaucho == 3){
-    t->tamano_caucho = "Monster truck";
+    t->tamanoCaucho = "Monster truck";
 }
 
 if (velocidadDelCarro == 1){
@@ -308,35 +309,35 @@ t->resistencia_piedra = piedras;
 t->resistencia_liquido = liquidos;
 
 if (comoSeVeElVehiculo == 1){
-    t->vehiculo_en_pantalla = "¥";
+    t->vehiculoEnPantalla = "¥";
 }else if ( comoSeVeElVehiculo == 2){
-    t->vehiculo_en_pantalla = "@";
+    t->vehiculoEnPantalla = "@";
 }else if ( comoSeVeElVehiculo == 3){
-    t->vehiculo_en_pantalla = "©";
+    t->vehiculoEnPantalla = "©";
 }else if ( comoSeVeElVehiculo == 4){
-    t->vehiculo_en_pantalla = "£";
+    t->vehiculoEnPantalla = "£";
 }else if ( comoSeVeElVehiculo == 5){
-    t->vehiculo_en_pantalla = "Ç";
+    t->vehiculoEnPantalla = "Ç";
 }else if ( comoSeVeElVehiculo == 6){
-    t->vehiculo_en_pantalla = "$";
+    t->vehiculoEnPantalla = "$";
 }else if ( comoSeVeElVehiculo == 7){
-    t->vehiculo_en_pantalla = "Ø";
+    t->vehiculoEnPantalla = "Ø";
 }else if ( comoSeVeElVehiculo == 8){
-    t->vehiculo_en_pantalla = "æ";
+    t->vehiculoEnPantalla = "æ";
 }else if ( comoSeVeElVehiculo == 9){
-    t->vehiculo_en_pantalla = "þ";
+    t->vehiculoEnPantalla = "þ";
 }else if ( comoSeVeElVehiculo == 10){
-    t->vehiculo_en_pantalla = "§";
+    t->vehiculoEnPantalla = "§";
 }else if ( comoSeVeElVehiculo == 11){
-    t->vehiculo_en_pantalla = "®";
+    t->vehiculoEnPantalla = "®";
 }else if ( comoSeVeElVehiculo == 12){
-    t->vehiculo_en_pantalla = "ª";
+    t->vehiculoEnPantalla = "ª";
 }else if ( comoSeVeElVehiculo == 13){
-    t->vehiculo_en_pantalla = "º";
+    t->vehiculoEnPantalla = "º";
 }else if ( comoSeVeElVehiculo == 14){
-    t->vehiculo_en_pantalla = "Æ";
+    t->vehiculoEnPantalla = "Æ";
 }else if ( comoSeVeElVehiculo == 15){
-    t->vehiculo_en_pantalla = "Ð";
+    t->vehiculoEnPantalla = "Ð";
 } 
 
 t->prox = *p;
@@ -347,15 +348,14 @@ cout <<"\n todo se agrego correctamente \n";
 
 void pedirDatosVehiculo(tListaConductores **p){
 
-string nombreEsp , nombregringo , piloto;
+string nombreEsp , nombreIngles , piloto;
 int bomba , piedra , liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
-
 
 //zona de trabajo
 cout << "\nIngrese el nombre del vehiculo en español: ";
 getline(cin, nombreEsp);
 cout << "\nIngrese el nombre del vehiculo en ingles: ";
-getline(cin, nombregringo);
+getline(cin, nombreIngles);
 cout << "\nIngrese el nombre del conductor: ";
 getline(cin, piloto);
 
@@ -399,8 +399,6 @@ cin >>piedra;
 cout << "Ingrese la resistencia a los liquidos del vehiculo: ";
 cin >>liquido;
 
-
-
 do{
     cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
     cout<<"1  = ¥\n"; 
@@ -413,36 +411,30 @@ do{
     cout<<"8  =  æ\n";
     cout<<"9  =  þ\n";
     cout<<"10 =  §\n";
-    cout<<"11 =  ®\n";
-    cout<<"12 =  ª\n";
-    cout<<"13 =  º\n";
-    cout<<"14 =  Æ\n";
     cout<<"15 =  Ð\n";
     cout<<"opcion : ";
 
     cin>>comoSeVeElVehiculo;
 }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
 
-
-llenarDatosVehiculo(p, nombreEsp , nombregringo , piloto ,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro , bomba ,  piedra , liquido ,comoSeVeElVehiculo );
+llenarDatosVehiculo(p, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro , bomba ,  piedra , liquido ,comoSeVeElVehiculo );
 }
-
 
 void muestraVehiculoEspecifico(tListaConductores *p){
 // muestra la tListaConductores por pantalla
 tListaConductores *t = p;
 cout<<"\n\n\n\t\t";
 
-cout<<"nombre en espanol:"<<"["<<t->nombre_es<<"]\n";
-cout<<"nombre en ingles:"<<"["<<t->nombre_en<<"]\n";
+cout<<"nombre en espanol:"<<"["<<t->nombreEs<<"]\n";
+cout<<"nombre en ingles:"<<"["<<t->nombreEn<<"]\n";
 cout<<"nombre del conductor:"<<"["<<t->conductor<<"]\n";
-cout<<"tipo de caucho:"<<"["<<t->tipo_caucho<<"]\n";
-cout<<"tamano de caucho:"<<"["<<t->tamano_caucho<<"]\n";
-cout<<"velocidad del vehiculo:"<<"["<<t->velocidad<<"]\n";
-cout<<"resistencia contra bombas:"<<"["<<t->resistencia_bomba<<"]\n";
-cout<<"resistencia contra piedras:"<<"["<<t->resistencia_piedra<<"]\n";
-cout<<"resistencia contra liquidos:"<<"["<<t->resistencia_liquido<<"]\n";
-cout<<"como se ve el vehiculo:"<<"["<<t->vehiculo_en_pantalla<<"]\n";
+cout<<"tipo de caucho:"<<"["<<t->aTipoCaucho[t->tipoCaucho]<<"]\n";
+cout<<"tamano de caucho:"<<"["<<t->aTamanoCaucho[t->tamanoCaucho];
+if (t->monsterTruck != 0){
+    cout<<t->monsterTruck;}
+cout<<"]\n";
+cout<<"velocidad del vehiculo:"<<"["<<t->aVelocidad[t->velocidad]<<"]\n";
+cout<<"como se ve el vehiculo:"<<"["<<t->vehiculoEnPantalla<<"]\n";
 
 cout<<"\n\n\n\t\t";
 };
@@ -451,15 +443,15 @@ cout<<"\n\n\n\t\t";
 void modificarDatosDelVehiculoAux(tListaConductores **p){
 tListaConductores *encontrado = *p;
 
-string nombreEsp , nombregringo , piloto;
+string nombreEsp , nombreEn , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo , datoVehiculoModificar;
 
 cout<<"\n\ndatos del vehiculo\n\n";
-cout<<1<<".  nombre en espanol:"<<"["<<encontrado->nombre_es<<"]\n";
-cout<<2<<".  nombre en ingles:"<<"["<<encontrado->nombre_en<<"]\n";
+cout<<1<<".  nombre en espanol:"<<"["<<encontrado->nombreEs<<"]\n";
+cout<<2<<".  nombre en ingles:"<<"["<<encontrado->nombreEn<<"]\n";
 cout<<3<<".  nombre del conductor:"<<"["<<encontrado->conductor<<"]\n";
-cout<<4<<".  tipo de caucho:"<<"["<<encontrado->tipo_caucho<<"]\n";
-cout<<5<<".  tamano de caucho:"<<"["<<encontrado->tamano_caucho<<"]\n";
+cout<<4<<".  tipo de caucho:"<<"["<<encontrado->tipoCaucho<<"]\n";
+cout<<5<<".  tamano de caucho:"<<"["<<encontrado->tamanoCaucho<<"]\n";
 cout<<6<<".  velocidad del vehiculo:"<<"["<<encontrado->velocidad<<"]\n";
 cout<<7<<".  resistencia contra bombas:"<<"["<<encontrado->resistencia_bomba<<"]\n";
 cout<<8<<".  resistencia contra piedras:"<<"["<<encontrado->resistencia_piedra<<"]\n";
@@ -470,22 +462,22 @@ cout<<"\n\n que elementos deseas modificar\n\n";
 do{
     cout<<"eliga su opcion: ";
     cin>>datoVehiculoModificar;
-}while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=9)));
+} while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=9)));
 
 if (datoVehiculoModificar == 1)
 {
-    cout <<"Nombre en español: " << encontrado->nombre_es << endl;
+    cout <<"Nombre en español: " << encontrado->nombreEs << endl;
     cout <<"Escribe nuevo nombre:";
     cin>>nombreEsp;
     fflush(stdin);
-    encontrado->nombre_es = nombreEsp;
-}else if(datoVehiculoModificar == 2){
-    cout <<"Nombre en ingles: " << encontrado->nombre_en << endl;
+    encontrado->nombreEs = nombreEsp;
+} else if(datoVehiculoModificar == 2){
+    cout <<"Nombre en ingles: " << encontrado->nombreEn << endl;
     cout <<"Escribe nuevo nombre:";
-    cin>>nombregringo;
+    cin>>nombreEn;
     fflush(stdin);
-    encontrado->nombre_en = nombregringo;
-    }else if(datoVehiculoModificar == 3)
+    encontrado->nombreEn = nombreEn;
+    } else if(datoVehiculoModificar == 3)
     {
         cout << "Conductor: " << encontrado->conductor << endl;
         cout<<"escribe nuevo nombre de conductor";
@@ -494,7 +486,7 @@ if (datoVehiculoModificar == 1)
         encontrado->conductor = piloto;
     }else if(datoVehiculoModificar == 4)
     {
-        cout << "tipo de caucho: " << encontrado->tipo_caucho << endl;
+        cout << "tipo de caucho: " << encontrado->tipoCaucho << endl;
         do
         {
             cout << "\n\n escribe nuevo tipo de caucho de estas opciones:\n\n";
@@ -507,18 +499,18 @@ if (datoVehiculoModificar == 1)
         } while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
         if (tipoDeCaucho == 1)
         {
-            encontrado->tipo_caucho = "Normales";
+            encontrado->tipoCaucho = "Normales";
         }else if (tipoDeCaucho == 2)
         {
-            encontrado->tipo_caucho = "Anti coleo";
+            encontrado->tipoCaucho = "Anti coleo";
         }else if (tipoDeCaucho == 3)
         {
-            encontrado->tipo_caucho = "Todo terreno";
+            encontrado->tipoCaucho = "Todo terreno";
         }
         fflush(stdin);
     } else if(datoVehiculoModificar == 5)
     {
-        cout << "tamano de caucho: " << encontrado->tamano_caucho << endl;  
+        cout << "tamano de caucho: " << encontrado->tamanoCaucho << endl;  
         do
         {
             cout << "\n\n Ingrese el tamano de nuevo caucho: \n\n";
@@ -530,11 +522,11 @@ if (datoVehiculoModificar == 1)
             cin>>tamanoDeCaucho;
         } while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
         if (tamanoDeCaucho == 1){
-            encontrado->tamano_caucho = "Pegado al piso";
+            encontrado->tamanoCaucho = "Pegado al piso";
         }else if (tamanoDeCaucho == 2){
-            encontrado->tamano_caucho = "Normales";
+            encontrado->tamanoCaucho = "Normales";
         }else if (tamanoDeCaucho == 3){
-            encontrado->tamano_caucho = "Monster truck";
+            encontrado->tamanoCaucho = "Monster truck";
         }
         fflush(stdin);
     } else if(datoVehiculoModificar == 6)
@@ -586,22 +578,22 @@ if (datoVehiculoModificar == 1)
 }
 
 void cargar_archivo2(tListaConductores **p) {
-    string nombre_es, nombre_en, conductor, tipo_caucho, tamano_caucho, velocidad,comoSeVeElVehiculo;
+    string nombreEs, nombreEn, conductor, tipoCaucho, tamanoCaucho, velocidad,comoSeVeElVehiculo;
     int resistencia_bomba, resistencia_piedra, resistencia_liquido;
 
     ifstream arch;
     arch.open("Librerias/archivos/vehiculos.txt", ios::in);
     while(!arch.eof()){
-        arch >> nombre_es >> nombre_en >> conductor >> tipo_caucho >> tamano_caucho >> velocidad >>comoSeVeElVehiculo>> resistencia_bomba >> resistencia_piedra >> resistencia_liquido;
+        arch >> nombreEs >> nombreEn >> conductor >> tipoCaucho >> tamanoCaucho >> velocidad >>comoSeVeElVehiculo>> resistencia_bomba >> resistencia_piedra >> resistencia_liquido;
         if (!arch.eof()){
             nuevo = new tListaConductores;
-            nuevo->nombre_es = nombre_es;
-            nuevo->nombre_en = nombre_en;
+            nuevo->nombreEs = nombreEs;
+            nuevo->nombreEn = nombreEn;
             nuevo->conductor = conductor;
-            nuevo->tipo_caucho = tipo_caucho;
-            nuevo->tamano_caucho = tamano_caucho;
+            nuevo->tipoCaucho = tipoCaucho;
+            nuevo->tamanoCaucho = tamanoCaucho;
             nuevo->velocidad = velocidad;
-            nuevo->vehiculo_en_pantalla = comoSeVeElVehiculo;
+            nuevo->vehiculoEnPantalla = comoSeVeElVehiculo;
             nuevo->resistencia_bomba = resistencia_bomba;
             nuevo->resistencia_piedra = resistencia_piedra;
             nuevo->resistencia_liquido = resistencia_liquido;
@@ -631,13 +623,13 @@ void cargar_archivo3(tListaConductores **p) {
         stringstream ss(linea);
         nuevo = new tListaConductores;
 
-        getline(ss, nuevo->nombre_es, '/');
-        getline(ss, nuevo->nombre_en, '/');
+        getline(ss, nuevo->nombreEs, '/');
+        getline(ss, nuevo->nombreEn, '/');
         getline(ss, nuevo->conductor, '/');
-        getline(ss, nuevo->tipo_caucho, '/');
-        getline(ss, nuevo->tamano_caucho, '/');
+        getline(ss, nuevo->tipoCaucho, '/');
+        getline(ss, nuevo->tamanoCaucho, '/');
         getline(ss, nuevo->velocidad, '/');
-        getline(ss, nuevo->vehiculo_en_pantalla, '/');
+        getline(ss, nuevo->vehiculoEnPantalla, '/');
         ss >> nuevo->resistencia_bomba;
         ss.ignore(1, '/');
         ss >> nuevo->resistencia_piedra;
@@ -667,7 +659,7 @@ void descargar_archivo3(tListaConductores* primero) {
     tListaConductores* actual = primero;
 
     while (actual != NULL) {
-        arch << actual->nombre_es << "/" << actual->nombre_en << "/" << actual->conductor << "/" << actual->tipo_caucho << "/" << actual->tamano_caucho << "/" << actual->velocidad << "/" <<actual->vehiculo_en_pantalla<< "/" << actual->resistencia_bomba << "/" << actual->resistencia_piedra << "/" << actual->resistencia_liquido  << endl;
+        arch << actual->nombreEs << "/" << actual->nombreEn << "/" << actual->conductor << "/" << actual->tipoCaucho << "/" << actual->tamanoCaucho << "/" << actual->velocidad << "/" <<actual->vehiculoEnPantalla<< "/" << actual->resistencia_bomba << "/" << actual->resistencia_piedra << "/" << actual->resistencia_liquido  << endl;
         actual = actual->prox;
     }
 
