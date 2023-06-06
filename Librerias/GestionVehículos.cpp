@@ -1,9 +1,9 @@
 #include "GestionVehículos.h"
 
 
-void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido){
-// inserta x por cabeza de la lista
-lista *t = new lista;
+void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido){
+// inserta x por cabeza de la tListaConductores
+tListaConductores *t = new tListaConductores;
 t->nombre_es = nombreEsp;
 t->nombre_en = nombregringo;
 t->conductor = piloto;
@@ -16,9 +16,9 @@ cout <<"\n todo se agrego correctamente \n";
 }
 
 
-void muestra(lista *p){
-// muestra la lista por pantalla
-lista *t = p;
+void muestra(tListaConductores *p){
+// muestra la tListaConductores por pantalla
+tListaConductores *t = p;
 cout<<"\n\n\n\t\t";
     while (t){
     muestraVehiculoEspecifico(t);
@@ -42,14 +42,14 @@ cout << "9. Mostrar todos los vehiculos" << endl;
 }
 
 
-void consultarVehiculo(lista *p) {
+void consultarVehiculo(tListaConductores *p) {
 string busqueda;
 cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
 getline(cin, busqueda);
 cin.ignore();
 
-lista *encontrado = nullptr;
-lista *t = p;
+tListaConductores *encontrado = nullptr;
+tListaConductores *t = p;
 int contador = 0;
 
 // buscar el primer vehículo que coincida con el nombre dado
@@ -109,13 +109,13 @@ system("pause");
 }
 
 
-void eliminarVehiculo(lista **p){
+void eliminarVehiculo(tListaConductores **p){
 string busqueda;
 cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
 getline(cin, busqueda);
 
-lista *encontrado = nullptr;
-lista *t = *p ;
+tListaConductores *encontrado = nullptr;
+tListaConductores *t = *p ;
 int contador = 0;
 
 // buscar el primer vehículo que coincida con el nombre dado  , se parara en el ultimo que cumpla las caracteristicas dadas por el usuario
@@ -144,7 +144,7 @@ if (contador == 1) {
             while (t->prox != encontrado) t = t->prox;
             t->prox = encontrado->prox;
             delete encontrado;
-            cout<<"el elemento a eliminar estaba por la lista\n";
+            cout<<"el elemento a eliminar estaba por la tListaConductores\n";
             cout<<"el elemento fue eliminado exitosamente\n";  
         }
 } else {
@@ -194,7 +194,7 @@ if (contador == 1) {
             while (t->prox != encontrado) t = t->prox;
             t->prox = encontrado->prox;
             delete encontrado;
-            cout<<"el elemento a eliminar estaba por la lista\n";
+            cout<<"el elemento a eliminar estaba por la tListaConductores\n";
             cout<<"el elemento fue eliminado exitosamente\n";  
         }
 
@@ -204,15 +204,15 @@ system("pause");
 }
 
 
-void modificarVehiculo(lista **p){
+void modificarVehiculo(tListaConductores **p){
     string nombreEsp , nombregringo , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
 string busqueda;
 
 cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
 getline(cin, busqueda);
-lista *encontrado = nullptr;
-lista *t = *p;
+tListaConductores *encontrado = nullptr;
+tListaConductores *t = *p;
 int contador = 0 , datoVehiculoModificar =0;
 
 // buscar el primer vehículo que coincida con el nombre dado
@@ -271,9 +271,9 @@ system("pause");
 }
 
 
-void llenarDatosVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo ){
-// inserta x por cabeza de la lista
-lista *t = new lista;
+void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo ){
+// inserta x por cabeza de la tListaConductores
+tListaConductores *t = new tListaConductores;
 t->nombre_es = nombreEsp;
 t->nombre_en = nombregringo;
 t->conductor = piloto;
@@ -345,7 +345,7 @@ cout <<"\n todo se agrego correctamente \n";
 }
 
 
-void pedirDatosVehiculo(lista **p){
+void pedirDatosVehiculo(tListaConductores **p){
 
 string nombreEsp , nombregringo , piloto;
 int bomba , piedra , liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
@@ -428,9 +428,9 @@ llenarDatosVehiculo(p, nombreEsp , nombregringo , piloto ,tipoDeCaucho ,tamanoDe
 }
 
 
-void muestraVehiculoEspecifico(lista *p){
-// muestra la lista por pantalla
-lista *t = p;
+void muestraVehiculoEspecifico(tListaConductores *p){
+// muestra la tListaConductores por pantalla
+tListaConductores *t = p;
 cout<<"\n\n\n\t\t";
 
 cout<<"nombre en espanol:"<<"["<<t->nombre_es<<"]\n";
@@ -448,8 +448,8 @@ cout<<"\n\n\n\t\t";
 };
 
 
-void modificarDatosDelVehiculoAux(lista **p){
-lista *encontrado = *p;
+void modificarDatosDelVehiculoAux(tListaConductores **p){
+tListaConductores *encontrado = *p;
 
 string nombreEsp , nombregringo , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo , datoVehiculoModificar;
@@ -585,7 +585,7 @@ if (datoVehiculoModificar == 1)
     }
 }
 
-void cargar_archivo2(lista **p) {
+void cargar_archivo2(tListaConductores **p) {
     string nombre_es, nombre_en, conductor, tipo_caucho, tamano_caucho, velocidad,comoSeVeElVehiculo;
     int resistencia_bomba, resistencia_piedra, resistencia_liquido;
 
@@ -594,7 +594,7 @@ void cargar_archivo2(lista **p) {
     while(!arch.eof()){
         arch >> nombre_es >> nombre_en >> conductor >> tipo_caucho >> tamano_caucho >> velocidad >>comoSeVeElVehiculo>> resistencia_bomba >> resistencia_piedra >> resistencia_liquido;
         if (!arch.eof()){
-            nuevo = new lista;
+            nuevo = new tListaConductores;
             nuevo->nombre_es = nombre_es;
             nuevo->nombre_en = nombre_en;
             nuevo->conductor = conductor;
@@ -619,17 +619,17 @@ void cargar_archivo2(lista **p) {
     *p = primero;
 }
 
-void cargar_archivo3(lista **p) {
+void cargar_archivo3(tListaConductores **p) {
     ifstream arch("Librerias/archivos/vehiculos.txt");
 
-    lista* primero = NULL;
-    lista* ultimo = NULL;
-    lista* nuevo;
+    tListaConductores* primero = NULL;
+    tListaConductores* ultimo = NULL;
+    tListaConductores* nuevo;
 
     string linea;
     while (getline(arch, linea)) {
         stringstream ss(linea);
-        nuevo = new lista;
+        nuevo = new tListaConductores;
 
         getline(ss, nuevo->nombre_es, '/');
         getline(ss, nuevo->nombre_en, '/');
@@ -661,10 +661,10 @@ void cargar_archivo3(lista **p) {
     *p = primero;
 }
 
-void descargar_archivo3(lista* primero) {
+void descargar_archivo3(tListaConductores* primero) {
     ofstream arch("Librerias/archivos/vehiculos.txt");
 
-    lista* actual = primero;
+    tListaConductores* actual = primero;
 
     while (actual != NULL) {
         arch << actual->nombre_es << "/" << actual->nombre_en << "/" << actual->conductor << "/" << actual->tipo_caucho << "/" << actual->tamano_caucho << "/" << actual->velocidad << "/" <<actual->vehiculo_en_pantalla<< "/" << actual->resistencia_bomba << "/" << actual->resistencia_piedra << "/" << actual->resistencia_liquido  << endl;
@@ -678,13 +678,13 @@ void descargar_archivo3(lista* primero) {
 
 
 
-void eliminarLista(lista **p){
-	lista *t = *p;
+void eliminartListaConductores(tListaConductores **p){
+	tListaConductores *t = *p;
 	while (t) {
 		*p = (*p)->prox;
 		delete t;
 		t = *p;
 	}
-	cout<<"la lista fue eliminada exitosamente\n";
+	cout<<"la tListaConductores fue eliminada exitosamente\n";
 	system("pause");
 }

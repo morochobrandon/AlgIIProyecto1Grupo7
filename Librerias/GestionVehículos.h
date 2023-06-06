@@ -12,21 +12,21 @@ using namespace std;
 
 
 
-void agregarVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido);
-void muestra(lista *p);
+void agregarVehiculo(tListaConductores *p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido);
+void muestra(tListaConductores p);
 void mostrarOpciones();
-void consultarVehiculo(lista *p);
-void eliminarVehiculo(lista **p);
-void modificarVehiculo(lista **p);
-void modificarDatosDelVehiculoAux(lista **p);
-void llenarDatosVehiculo(lista **p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
-void pedirDatosVehiculo(lista **p);
-void muestraVehiculoEspecifico(lista *p);
-void eliminarLista(lista **p);
+void consultarVehiculo(tListaConductores p);
+void eliminarVehiculo(tListaConductores *p);
+void modificarVehiculo(tListaConductores *p);
+void modificarDatosDelVehiculoAux(tListaConductores *p);
+void llenarDatosVehiculo(tListaConductores *p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
+void pedirDatosVehiculo(tListaConductores *p);
+void muestraVehiculoEspecifico(tListaConductores p);
+void eliminartListaConductores(tListaConductores *p);
 
-void cargar_archivo3(lista **p); 
-void cargar_archivo2(lista **p);
-void descargar_archivo3(lista* primero) ;
+void cargar_archivo3(tListaConductores *p); 
+void cargar_archivo2(tListaConductores *p);
+void descargar_archivo3(tListaConductores *primero) ;
 
 
 
