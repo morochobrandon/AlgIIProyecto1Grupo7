@@ -26,9 +26,9 @@ void eliminartListaConductores(tListaConductores **p);
 
 void cargar_archivo3(tListaConductores **p); 
 void cargar_archivo2(tListaConductores **p);
-void descargar_archivo3(tListaConductores **primero) ;
+void descargar_archivo3(tListaConductores *primero) ;
 
 
 
-#include "GestionVehículos.cpp"
+#include "GestionVehiculos.cpp"
 #endif // GestionVehiculos_H
