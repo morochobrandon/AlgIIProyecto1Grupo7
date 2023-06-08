@@ -1,25 +1,8 @@
 #include "GestionVehiculos.h"
 
-
-void agregarVehiculo(tListaConductores *p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho , int velocidad, int mT){
-// inserta x por cabeza de la tListaConductores
-tListaConductores *t = new tListaConductores;
-t->nombreEs = nombreEsp;
-t->nombreEn = nombreEn;
-t->conductor = piloto;
-t->tipoCaucho = tipoCaucho;
-t->tamanoCaucho = tamCaucho;
-t->monsterTruck = mT;
-t->velocidad = velocidad;
-t->prox = p;
-p= t;
-cout <<"\n todo se agrego correctamente \n";
-}
-
-
-void muestra(tListaConductores p){
+void muestra(tListaConductores *p){
 // muestra la tListaConductores por pantalla
-tListaConductores *t = &p;
+tListaConductores *t = p;
 cout<<"\n\n\n\t\t";
     while (t){
     muestraVehiculoEspecifico(t);
@@ -42,6 +25,103 @@ cout << "8. Salir" << endl;
 cout << "9. Mostrar todos los vehiculos" << endl;
 }
 
+
+
+
+void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo ){
+// inserta x por cabeza de la tListaConductores
+tListaConductores *t = new tListaConductores;
+t->nombreEs = nombreEsp;
+t->nombreEn = nombreEn;
+t->conductor = piloto;
+t->tipoCaucho = tipoCaucho;
+t->tamanoCaucho = tamCaucho;
+t->monsterTruck = mT;
+t->velocidad = velocidad;
+t->prox = *p;
+*p= t;
+
+if (comoSeVeElVehiculo == 1){
+    t->vehiculoEnPantalla = "¥";
+}else if ( comoSeVeElVehiculo == 2){
+    t->vehiculoEnPantalla = "@";
+}else if ( comoSeVeElVehiculo == 3){
+    t->vehiculoEnPantalla = "©";
+}else if ( comoSeVeElVehiculo == 4){
+    t->vehiculoEnPantalla = "£";
+}else if ( comoSeVeElVehiculo == 5){
+    t->vehiculoEnPantalla = "Ç";
+}else if ( comoSeVeElVehiculo == 6){
+    t->vehiculoEnPantalla = "$";
+}else if ( comoSeVeElVehiculo == 7){
+    t->vehiculoEnPantalla = "Ø";
+}else if ( comoSeVeElVehiculo == 8){
+    t->vehiculoEnPantalla = "æ";
+}else if ( comoSeVeElVehiculo == 9){
+    t->vehiculoEnPantalla = "þ";
+}else if ( comoSeVeElVehiculo == 10){
+    t->vehiculoEnPantalla = "§";
+}else if ( comoSeVeElVehiculo == 11){
+    t->vehiculoEnPantalla = "®";
+}else if ( comoSeVeElVehiculo == 12){
+    t->vehiculoEnPantalla = "ª";
+}else if ( comoSeVeElVehiculo == 13){
+    t->vehiculoEnPantalla = "º";
+}else if ( comoSeVeElVehiculo == 14){
+    t->vehiculoEnPantalla = "Æ";
+}else if ( comoSeVeElVehiculo == 15){
+    t->vehiculoEnPantalla = "Ð";
+} 
+
+}
+
+
+
+void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro , int comoSeVeElVehiculo ){
+// Modifica los datos de un nodo de la tListaConductores
+tListaConductores *t = *p;
+
+t->nombreEs = nombreEsp;
+t->nombreEn = nombreEn;
+t->conductor = piloto;
+t->tipoCaucho = tipoDeCaucho;
+t->tamanoCaucho = tamanoDeCaucho;
+t->monsterTruck = tamanoMonster;
+t->velocidad = velocidadDelCarro;
+
+
+if (comoSeVeElVehiculo == 1){
+    t->vehiculoEnPantalla = "¥";
+}else if ( comoSeVeElVehiculo == 2){
+    t->vehiculoEnPantalla = "@";
+}else if ( comoSeVeElVehiculo == 3){
+    t->vehiculoEnPantalla = "©";
+}else if ( comoSeVeElVehiculo == 4){
+    t->vehiculoEnPantalla = "£";
+}else if ( comoSeVeElVehiculo == 5){
+    t->vehiculoEnPantalla = "Ç";
+}else if ( comoSeVeElVehiculo == 6){
+    t->vehiculoEnPantalla = "$";
+}else if ( comoSeVeElVehiculo == 7){
+    t->vehiculoEnPantalla = "Ø";
+}else if ( comoSeVeElVehiculo == 8){
+    t->vehiculoEnPantalla = "æ";
+}else if ( comoSeVeElVehiculo == 9){
+    t->vehiculoEnPantalla = "þ";
+}else if ( comoSeVeElVehiculo == 10){
+    t->vehiculoEnPantalla = "§";
+}else if ( comoSeVeElVehiculo == 11){
+    t->vehiculoEnPantalla = "®";
+}else if ( comoSeVeElVehiculo == 12){
+    t->vehiculoEnPantalla = "ª";
+}else if ( comoSeVeElVehiculo == 13){
+    t->vehiculoEnPantalla = "º";
+}else if ( comoSeVeElVehiculo == 14){
+    t->vehiculoEnPantalla = "Æ";
+}else if ( comoSeVeElVehiculo == 15){
+    t->vehiculoEnPantalla = "Ð";
+} 
+}
 
 void consultarVehiculo(tListaConductores *p) {
 string busqueda;
@@ -121,7 +201,7 @@ int contador = 0;
 
 // buscar el primer vehículo que coincida con el nombre dado  , se parara en el ultimo que cumpla las caracteristicas dadas por el usuario
 while (t) {
-    if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
+    if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos){
         encontrado = t;
         contador++;
     }
@@ -206,7 +286,7 @@ system("pause");
 
 
 void modificarVehiculo(tListaConductores **p){
-    string nombreEsp , nombreEn , piloto;
+string nombreEsp , nombreEn , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
 string busqueda;
 
@@ -271,63 +351,23 @@ if (contador == 1) {
 system("pause");
 }
 
-
-void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro , int comoSeVeElVehiculo ){
-// inserta x por cabeza de la tListaConductores
-tListaConductores *t = new tListaConductores;
-t->nombreEs = nombreEsp;
-t->nombreEn = nombreEn;
-t->conductor = piloto;
-t->tipoCaucho = tipoDeCaucho;
-t->tamanoCaucho = tamanoDeCaucho;
-t->monsterTruck = tamanoMonster;
-t->velocidad = velocidadDelCarro;
-
-
-if (comoSeVeElVehiculo == 1){
-    t->vehiculoEnPantalla = "¥";
-}else if ( comoSeVeElVehiculo == 2){
-    t->vehiculoEnPantalla = "@";
-}else if ( comoSeVeElVehiculo == 3){
-    t->vehiculoEnPantalla = "©";
-}else if ( comoSeVeElVehiculo == 4){
-    t->vehiculoEnPantalla = "£";
-}else if ( comoSeVeElVehiculo == 5){
-    t->vehiculoEnPantalla = "Ç";
-}else if ( comoSeVeElVehiculo == 6){
-    t->vehiculoEnPantalla = "$";
-}else if ( comoSeVeElVehiculo == 7){
-    t->vehiculoEnPantalla = "Ø";
-}else if ( comoSeVeElVehiculo == 8){
-    t->vehiculoEnPantalla = "æ";
-}else if ( comoSeVeElVehiculo == 9){
-    t->vehiculoEnPantalla = "þ";
-}else if ( comoSeVeElVehiculo == 10){
-    t->vehiculoEnPantalla = "§";
-}else if ( comoSeVeElVehiculo == 11){
-    t->vehiculoEnPantalla = "®";
-}else if ( comoSeVeElVehiculo == 12){
-    t->vehiculoEnPantalla = "ª";
-}else if ( comoSeVeElVehiculo == 13){
-    t->vehiculoEnPantalla = "º";
-}else if ( comoSeVeElVehiculo == 14){
-    t->vehiculoEnPantalla = "Æ";
-}else if ( comoSeVeElVehiculo == 15){
-    t->vehiculoEnPantalla = "Ð";
-} 
-
-t->prox = *p;
-*p= t;
-//cout <<"\n todo se agrego correctamente \n";
+bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro){
+    if((velocidadDelCarro==1 && (tamanoDeCaucho==1 || tamanoDeCaucho==2) && tipoDeCaucho==1) || (velocidadDelCarro==2 && tamanoDeCaucho==2 && tipoDeCaucho==2) || ((velocidadDelCarro==3 || velocidadDelCarro==4 )&& tamanoDeCaucho==3 && tipoDeCaucho==3) ){
+        return true;
+    }else{
+        return false;
+    }
 }
+
 
 
 void pedirDatosVehiculo(tListaConductores **p){
 
 string nombreEsp , nombreIngles , piloto;
-int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster ,velocidadDelCarro,comoSeVeElVehiculo;
+int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster=0 ,velocidadDelCarro,comoSeVeElVehiculo, opcion;
 
-//zona de trabajo
+//Agrega un vehiculo con datos ingresados por el usuario
+do{
 cout << "\nIngrese el nombre del vehiculo en español: ";
 getline(cin, nombreEsp);
 cout << "\nIngrese el nombre del vehiculo en ingles: ";
@@ -337,11 +377,11 @@ getline(cin, piloto);
 
 do {
     cout << "\n\n Ingrese el tipo de caucho \n\n";
-    cout << "\n 1.Normarles";
-    cout << "\n 2.Anti coleo";
-    cout << "\n 3.Todo terreno";
+    cout << "\n 1.Todo terreno";
+    cout << "\n 2.Normarles";
+    cout << "\n 3.Anti coleo";
     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-    cout << "\n Ingrese la opcion eleginda: ";
+    cout << "\n Ingrese la opcion elegida: ";
     cin>>tipoDeCaucho;
 }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
 
@@ -351,12 +391,11 @@ do {
     cout << "\n 2.Normales";
     cout << "\n 3.Pegado al piso";
     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-    cout << "\n Ingrese la opcion eleginda: ";
+    cout << "\n Ingrese la opcion elegida: ";
     cin>>tamanoDeCaucho;
 
 }while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
-    if (tamanoDeCaucho=1)
-    {
+    if (tamanoDeCaucho=1){
      do{
         cout << "\n\n Ingrese el tipo de Monster Truck: \n\n";
         cout << "\n 1. Monster Truck 1";
@@ -364,11 +403,10 @@ do {
         cout << "\n 3. Monster Truck 3";
         cout << "\n 4. Monster Truck 4";
         cout << "\n 5. Monster Truck 5";
+        cout << "\n Ingrese la opcion elegida: ";
         cin>>tamanoMonster;
      }while(!((tamanoMonster>=1)&&(tamanoMonster<=5)));
-    }
-    else
-    {
+    }else{
         tamanoMonster=0;
     }
         
@@ -381,7 +419,7 @@ do {
     cout << "\n 3.SuperFerrari";
     cout << "\n 4.Delorean";
     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-    cout << "\n Ingrese la opcion eleginda: ";
+    cout << "\n Ingrese la opcion elegida: ";
     cin>>velocidadDelCarro;
 }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
 fflush(stdin);
@@ -403,8 +441,51 @@ do{
 
     cin>>comoSeVeElVehiculo;
 }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
+    fflush(stdin);
+    if (!validarVehiculo(tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro)){
+        cout<<"el vehiculo no es valido para la carrera\n";
+        cout<<"Los datos que ingreso fueron: \n";
+        if (tipoDeCaucho == 1){
+            cout<<"Todo terreno\n";
+        }else if (tipoDeCaucho == 2){
+            cout<<"Normales\n";
+        }else if (tipoDeCaucho == 3){
+            cout<<"Anti coleo\n";
+        }
 
-llenarDatosVehiculo(p, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro ,comoSeVeElVehiculo );
+        if (tamanoDeCaucho == 1){
+            cout<< "Monster truck"<<tamanoMonster<<"\n";
+        }else if (tamanoDeCaucho == 2){
+            cout<< "Normales\n";
+        }else if (tamanoDeCaucho == 3){
+            cout<< "Pegado al piso\n";
+        }
+
+        if (velocidadDelCarro == 1){
+            cout<< "Perezoso\n";
+        }else if (velocidadDelCarro == 2){
+            cout<< "Crucero\n";
+        }else if (velocidadDelCarro == 3){
+            cout<< "Super Ferrari\n";
+        }else if (velocidadDelCarro == 4){
+            cout<< "Delorean\n";
+        }
+        cout<<"Recuerda las reglas para la creacion del vehiculo\n";
+    }
+    
+
+}while(!(validarVehiculo(tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro)));
+agregarVehiculo(p, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro ,comoSeVeElVehiculo );
+cout <<"\n Los datos agregados fueron: \n";
+muestraVehiculoEspecifico(*p);
+cout <<"\n Desea cambiar algo?\n";
+do{
+    cout <<"\n 1. Si 2. No\n";
+    cin>>opcion;
+}while(!((opcion>=1)&&(opcion<=2)));
+if(opcion==1){
+    modificarDatosDelVehiculoAux(p);
+}
 cout <<"\n todo se agrego correctamente \n";
 }
 
@@ -419,7 +500,7 @@ cout<<"nombre del conductor:"<<"["<<t->conductor<<"]\n";
 cout<<"tipo de caucho:"<<"["<<t->aTipoCaucho[t->tipoCaucho]<<"]\n";
 cout<<"tamano de caucho:"<<"["<<t->aTamanoCaucho[t->tamanoCaucho];
 if (t->monsterTruck != 0){
-    cout<<t->monsterTruck;}
+    cout<<" "<<t->monsterTruck;}
 cout<<"]\n";
 cout<<"velocidad del vehiculo:"<<"["<<t->aVelocidad[t->velocidad]<<"]\n";
 cout<<"como se ve el vehiculo:"<<"["<<t->vehiculoEnPantalla<<"]\n";
@@ -431,49 +512,46 @@ cout<<"\n\n\n\t\t";
 void modificarDatosDelVehiculoAux(tListaConductores **p){
 tListaConductores *encontrado = *p;
 
-string nombreEsp , nombreEn , piloto;
-int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro,comoSeVeElVehiculo , datoVehiculoModificar;
-
+string nombreEsp=encontrado->nombreEs , nombreEn=encontrado->nombreEn , piloto=encontrado->conductor;
+int tipoDeCaucho=encontrado->tipoCaucho ,tamanoDeCaucho= encontrado->tamanoCaucho, tamanoMonster=encontrado->monsterTruck, velocidadDelCarro=encontrado->velocidad, comoSeVeElVehiculo=0, datoVehiculoModificar, seguirModificando=0;
+do{
 cout<<"\n\ndatos del vehiculo\n\n";
-cout<<1<<".  nombre en espanol:"<<"["<<encontrado->nombreEs<<"]\n";
-cout<<2<<".  nombre en ingles:"<<"["<<encontrado->nombreEn<<"]\n";
-cout<<3<<".  nombre del conductor:"<<"["<<encontrado->conductor<<"]\n";
-cout<<4<<".  tipo de caucho:"<<"["<<encontrado->aTipoCaucho[encontrado->tipoCaucho]<<"]\n";
-cout<<5<<".  tamano de caucho:"<<"["<<encontrado->aTamanoCaucho[encontrado->tamanoCaucho];
-if (encontrado->monsterTruck != 0){
-    cout<<encontrado->monsterTruck;}
+cout<<1<<".  nombre en espanol:"<<"["<<nombreEsp<<"]\n";
+cout<<2<<".  nombre en ingles:"<<"["<<nombreEn<<"]\n";
+cout<<3<<".  nombre del conductor:"<<"["<<piloto<<"]\n";
+cout<<4<<".  tipo de caucho:"<<"["<<encontrado->aTipoCaucho[tipoDeCaucho]<<"]\n";
+cout<<5<<".  tamano de caucho:"<<"["<<encontrado->aTamanoCaucho[tamanoDeCaucho ];
+if (tamanoMonster != 0){
+    cout<<" "<<tamanoMonster;}
 cout<<"]\n";
-cout<<6<<".  velocidad del vehiculo:"<<"["<<encontrado->aVelocidad[encontrado->velocidad]<<"]\n";
-cout<<"\n\n  ninguno \n\n";
+cout<<6<<".  velocidad del vehiculo:"<<"["<<encontrado->aVelocidad[velocidadDelCarro]<<"]\n";
+cout<<7<<".  como se ve el vehiculo:"<<"["<<encontrado->vehiculoEnPantalla<<"]\n";
+cout<<8<<". ninguno \n\n";
 cout<<"\n\n que elementos deseas modificar\n\n";
 do{
     cout<<"eliga su opcion: ";
     cin>>datoVehiculoModificar;
-} while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=9)));
+} while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=8)));
 
-if (datoVehiculoModificar == 1)
-{
-    cout <<"Nombre en español: " << encontrado->nombreEs << endl;
+if (datoVehiculoModificar == 1){
+    cout <<"Nombre en español: " << nombreEsp << endl;
     cout <<"Escribe nuevo nombre:";
     cin>>nombreEsp;
     fflush(stdin);
-    encontrado->nombreEs = nombreEsp;
 } else if(datoVehiculoModificar == 2){
-    cout <<"Nombre en ingles: " << encontrado->nombreEn << endl;
+    cout <<"Nombre en ingles: " << nombreEn << endl;
     cout <<"Escribe nuevo nombre:";
     cin>>nombreEn;
     fflush(stdin);
-    encontrado->nombreEn = nombreEn;
     } else if(datoVehiculoModificar == 3)
     {
-        cout << "Conductor: " << encontrado->conductor << endl;
+        cout << "Conductor: " << piloto << endl;
         cout<<"escribe nuevo nombre de conductor";
         cin>>piloto;
         fflush(stdin);
-        encontrado->conductor = piloto;
     }else if(datoVehiculoModificar == 4)
     {
-        cout << "tipo de caucho: " << encontrado->aTipoCaucho[encontrado->tipoCaucho] << endl;
+        cout << "tipo de caucho: " << encontrado->aTipoCaucho[tipoDeCaucho] << endl;
         do
         {
             cout << "\n\n escribe nuevo tipo de caucho de estas opciones:\n\n";
@@ -484,23 +562,24 @@ if (datoVehiculoModificar == 1)
             cout << "\n Ingrese la opcion elegida: ";
             cin>>tipoDeCaucho;
         } while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
-        encontrado->tipoCaucho = tipoDeCaucho;
         fflush(stdin);
     } else if(datoVehiculoModificar == 5)
     {
-        cout << "tamano de caucho: " << encontrado->aTamanoCaucho[encontrado->tamanoCaucho] << endl;  
+        cout << "tamano de caucho: " << encontrado->aTamanoCaucho[tamanoDeCaucho];  
+        if (tamanoDeCaucho==1){
+            cout<<" "<<tamanoMonster<<endl;
+        }
         do
         {
             cout << "\n\n Ingrese el tamano de nuevo caucho: \n\n";
-            cout << "\n 1.monster truck";
+            cout << "\n 1.Monster truck";
             cout << "\n 2.Normal";
             cout << "\n 3.Pegados al piso";
             cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-            cout << "\n Ingrese la opcion eleginda: ";
+            cout << "\n Ingrese la opcion elegida: ";
             cin>>tamanoDeCaucho;
         } while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
-        encontrado->tamanoCaucho = tamanoDeCaucho;
-         if (tamanoDeCaucho=1)
+         if (tamanoDeCaucho==1)
         {
             do{
               cout << "\n\n Ingrese el tipo de Monster Truck: \n\n";
@@ -509,6 +588,7 @@ if (datoVehiculoModificar == 1)
             cout << "\n 3. Monster Truck 3";
             cout << "\n 4. Monster Truck 4";
             cout << "\n 5. Monster Truck 5";
+            cout << "\n\n ingrese su opcion: ";
             cin>>tamanoMonster;
             }while(!((tamanoMonster>=1)&&(tamanoMonster<=5)));
         }
@@ -516,11 +596,10 @@ if (datoVehiculoModificar == 1)
         {
             tamanoMonster=0;
         }
-        encontrado->monsterTruck = tamanoMonster;
         fflush(stdin);
     } else if(datoVehiculoModificar == 6)
     {
-    cout << "velocidad del vehiculo: " << encontrado->velocidad << endl;
+    cout << "velocidad del vehiculo: " << velocidadDelCarro << endl;
     do {
         cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
         cout << "\n 1.Perezoso";
@@ -528,12 +607,49 @@ if (datoVehiculoModificar == 1)
         cout << "\n 3.SuperFerrari";
         cout << "\n 4.Delorean";
         cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-        cout << "\n Ingrese la opcion eleginda: ";
+        cout << "\n Ingrese la opcion elegida: ";
         cin>>velocidadDelCarro;
     }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
-    encontrado->velocidad = velocidadDelCarro;
     fflush(stdin);
+    } else if(datoVehiculoModificar== 7)
+    {
+        do{
+            cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
+            cout<<"1  = ¥\n"; 
+            cout<<"2  = @\n";
+            cout<<"3  =  ©\n";
+            cout<<"4  =  £\n";
+            cout<<"5  =  Ç\n";
+            cout<<"6  =  $\n";
+            cout<<"7  =  Ø\n";
+            cout<<"8  =  æ\n";
+            cout<<"9  =  þ\n";
+            cout<<"10 =  §\n";
+            cout<<"15 =  Ð\n";
+            cout<<"opcion : ";
+
+            cin>>comoSeVeElVehiculo;
+        }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
+        llenarDatosVehiculo(p,encontrado->nombreEs,encontrado->nombreEn,encontrado->conductor,encontrado->tipoCaucho,encontrado->tamanoCaucho,encontrado->monsterTruck,encontrado->velocidad,comoSeVeElVehiculo);
+        fflush(stdin);
+    }else if(datoVehiculoModificar == 8){
+        cout<<"\n\nNo se modifico ningun dato \n\n";
     }
+
+    do{
+        cout<<"Desea seguir modificando datos del vehiculo? \n";
+        cout<<"1. Si 2. No \n";
+        cout<<"opcion : \n";
+        cin>>seguirModificando;
+    }while(!((seguirModificando>=1)&&(seguirModificando<=2)));
+    fflush(stdin);
+    if ((!(validarVehiculo(tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro)))&&(seguirModificando==2))
+    {
+        cout<<"El vehiculo no es valido, por favor recuerde las reglas para la creacion de vehiculos\n\n";
+    }
+    
+    }while((!(validarVehiculo(tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro)))||(seguirModificando==1));
+    llenarDatosVehiculo(p, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro, comoSeVeElVehiculo);
     cout<<"\n\n vehiculo modificado con exito \n\n";
 }
 
@@ -590,7 +706,8 @@ void cargar_archivo3(tListaConductores **p) {
         ss >> nuevo->monsterTruck;
         ss.ignore(1, '/');
         ss >> nuevo->velocidad;
-        getline(ss, nuevo->vehiculoEnPantalla, '/');
+        ss.ignore(1, '/');
+        getline(ss, nuevo->vehiculoEnPantalla);
         
         nuevo->prox = NULL;
 
@@ -614,7 +731,7 @@ void descargar_archivo3(tListaConductores* primero) {
     tListaConductores* actual = primero;
 
     while (actual != NULL) {
-        arch << actual->nombreEs << "/" << actual->nombreEn << "/" << actual->conductor << "/" << actual->tipoCaucho << "/" << actual->tamanoCaucho << "/" << actual->velocidad << "/" <<actual->vehiculoEnPantalla<< endl;
+        arch << actual->nombreEs << "/" << actual->nombreEn << "/" << actual->conductor << "/" << actual->tipoCaucho << "/" << actual->tamanoCaucho << "/" << actual->monsterTruck << "/"<< actual->velocidad << "/" <<actual->vehiculoEnPantalla<< endl;
         actual = actual->prox;
     }
 

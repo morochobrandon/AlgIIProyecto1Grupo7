@@ -27,12 +27,12 @@ struct tListaConductores{
     string nombreEn;
     string conductor;
     int tipoCaucho;
-    string aTipoCaucho[3]={ "Anticoleo", "Normal" , "Todoterreno"};
+    string aTipoCaucho[4]={"Error", "Todoterreno", "Normal" , "Anticoleo"};
     int tamanoCaucho;
-    string aTamanoCaucho[3]={ "Pegado al piso", "Normal" , "Monstertruck"};
+    string aTamanoCaucho[4]={ "Error", "Monstertruck", "Normal" , "Pegado al piso"};
     int monsterTruck;
     int velocidad;
-    string aVelocidad[4]={ "Perezoso", "Crucero", "SuperFerrari","Delorean"};
+    string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
     string vehiculoEnPantalla;
     tListaConductores* prox;
 };
