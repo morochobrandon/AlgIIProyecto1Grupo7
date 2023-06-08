@@ -9,17 +9,17 @@
 using namespace std;
 
 struct tVehiculo{
-    string nombre_es;
-    string nombre_en;
+    string nombreEs;
+    string nombreEn;
     string conductor;
-    int tipo_caucho;
-    string Atipo_caucho[3]={ "Anticoleo", "Normal" , "Todoterreno"};
-    int tamano_caucho;
-    string Atamano_caucho[3]={ "Pegado al piso", "Normal" , "Monstertruck"};
-    int Monstertruck;
+    int tipoCaucho;
+    string aTipoCaucho[4]={"Error", "Todoterreno", "Normal" , "Anticoleo"};
+    int tamanoCaucho;
+    string aTamanoCaucho[4]={ "Error", "Monstertruck", "Normal" , "Pegado al piso"};
+    int monsterTruck;
     int velocidad;
-    string Avelocidad[4]={ "Perezoso", "Crucero", "SuperFerrari","Delorean"};
-    string vehiculo_en_pantalla;
+    string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
+    string vehiculoEnPantalla;
 };
 
 struct tListaConductores{
