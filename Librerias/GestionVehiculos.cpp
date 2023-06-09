@@ -12,21 +12,33 @@ cout<<"\n\n\n\t\t";
 printf("NULL\n\n");
 };
 
+void validarLista(tListaConductores *p){
+// muestra la tListaConductores por pantalla
+tListaConductores *t = p;
+bool invalido = false;
+    while (t){
+    if(!validarVehiculo(t->tipoCaucho , t->tamanoCaucho, t->monsterTruck, t->velocidad)){
+        cout << "El vehiculo " << t->nombreEs << " no es valido" << endl;
+        invalido = true;
+    }
+    t = t->prox;
+    };
+if(invalido){
+    cout<< "\n Por favor modificar los vehiculos mencionados \n\n";
+}
+};
 
 void mostrarOpciones(){
 cout << "1. Agregar vehiculo" << endl;
 cout << "2. Modificar vehiculo" << endl;
 cout << "3. Eliminar vehiculo" << endl;
 cout << "4. Consultar vehiculo" << endl;
-cout << "5. Generar carriles de la carrera" << endl;
+cout << "5. Validar Lista" << endl;
 cout << "6. Simular carrera" << endl;
 cout << "7. Mostrar tabla de posiciones" << endl;
 cout << "8. Salir" << endl;
 cout << "9. Mostrar todos los vehiculos" << endl;
 }
-
-
-
 
 void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo ){
 // inserta x por cabeza de la tListaConductores
@@ -74,8 +86,6 @@ if (comoSeVeElVehiculo == 1){
 } 
 
 }
-
-
 
 void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro , int comoSeVeElVehiculo ){
 // Modifica los datos de un nodo de la tListaConductores
@@ -189,7 +199,6 @@ if (contador == 1) {
 system("pause");
 }
 
-
 void eliminarVehiculo(tListaConductores **p){
 string busqueda;
 cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
@@ -284,7 +293,6 @@ if (contador == 1) {
 system("pause");
 }
 
-
 void modificarVehiculo(tListaConductores **p){
 string nombreEsp , nombreEn , piloto;
 int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
@@ -358,8 +366,6 @@ bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, i
         return false;
     }
 }
-
-
 
 void pedirDatosVehiculo(tListaConductores **p){
 
@@ -507,7 +513,6 @@ cout<<"como se ve el vehiculo:"<<"["<<t->vehiculoEnPantalla<<"]\n";
 
 cout<<"\n\n\n\t\t";
 };
-
 
 void modificarDatosDelVehiculoAux(tListaConductores **p){
 tListaConductores *encontrado = *p;
@@ -739,8 +744,6 @@ void descargar_archivo3(tListaConductores* primero) {
 
     cout <<"se guardo en el archivo vehiculo\n";
 }
-
-
 
 void eliminartListaConductores(tListaConductores **p){
 	tListaConductores *t = *p;

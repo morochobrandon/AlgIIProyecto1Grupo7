@@ -53,7 +53,7 @@ if (opcion == 1){
 } else if (opcion == 4){
       consultarVehiculo(p); 
 }else if (opcion == 5){
-//  generarCarriles(vehiculos);
+      validarLista(p);
 }else if (opcion == 6){
       
 //  simularCarrera(vehiculos);
