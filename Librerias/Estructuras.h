@@ -22,7 +22,6 @@ struct tVehiculo{
 };
 
 struct tListaConductores{
-    tVehiculo vehiculo;
     string nombre_es;
     string nombre_en;
     string conductor;
