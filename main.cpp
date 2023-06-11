@@ -1,8 +1,5 @@
 #include "Librerias\GestionVehiculos.h"
 
-
-
-
 int main(){
 tListaConductores *p=nullptr;
 

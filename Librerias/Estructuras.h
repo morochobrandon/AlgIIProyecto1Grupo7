@@ -40,6 +40,7 @@ struct tListaConductores{
 struct tObstaculo
 {
     string sprite;
+    string display[3] = {"¤", "¶", "#"};
     bool bomba;
     bool piedra;
     bool liquido;
@@ -51,7 +52,6 @@ struct tKilometro
     bool vehiculoPresente;
     tObstaculo obstaculo;
     tKilometro *prox;
-    tObstaculo *presentes;
 };
 struct tCarril
 {
@@ -61,7 +61,7 @@ struct tCarril
     int numeroDeKilometros;
     tVehiculo *vehiculo;
     tCarril *prox;
-    tObstaculo presentes;
+    ;
 
 };
 struct tPista

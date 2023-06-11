@@ -11,18 +11,19 @@ tPista *crearPista() {
 void mostrarPista(tPista pista) {
     tCarril *carrilAux = pista.primerCarril;
     while (carrilAux != NULL) {
-        cout << "Carril " << carrilAux->vehiculo->nombreEs << endl;
+        cout << "Carril " << carrilAux->vehiculo->nombreEs;
         tKilometro *kilometro = carrilAux->primerKilometro;
         while (kilometro != NULL) {
-            cout << "Kilometro " << kilometro->ordinalKilometro << endl;
+            cout << "Kilometro " << kilometro->ordinalKilometro;
             if (kilometro->vehiculoPresente) {
-                cout << "Vehiculo " << carrilAux->vehiculo->nombreEs << endl;
+                cout << "Vehiculo " << carrilAux->vehiculo->nombreEs;
             }
             if (kilometro->obstaculoEncontrado) {
-                cout << "Obstaculo " << kilometro->presentes->sprite << endl;
+                cout << "Obstaculo " << kilometro->obstaculo.sprite;
             }
             kilometro = kilometro->prox;
         }
+        cout << endl;
         carrilAux = carrilAux->prox;
     }
 }
@@ -55,43 +56,43 @@ void destruirPista(tPista *pista){
 }
 
 void generarObstaculos(tPista *pista, int cantidadObstaculos){
-    int cantidadCarriles = pista->numeroCarriles;
-    int cantidadKilometros = 10;
-    int cantidadObstaculosPorCarril = cantidadObstaculos / cantidadCarriles;
-    int cantidadObstaculosRestantes = cantidadObstaculos % cantidadCarriles;
+/*    srand(time(NULL));
+    int posicionObstaculo = rand() % 100;
+    int posicionKilometro = rand() % 100;
+    int posicionCarril = rand() % 100;
+    int posicionCarrilAux = 0;
+    int posicionKilometroAux = 0;
+    int posicionObstaculoAux = 0;
     tCarril *carrilAux = pista->primerCarril;
     while (carrilAux != NULL) {
-        tKilometro *kilometroAux = carrilAux->primerKilometro;
-        while (kilometroAux != NULL) {
-            int cantidadObstaculosPorKilometro = cantidadObstaculosPorCarril / cantidadKilometros;
-            int cantidadObstaculosRestantesPorKilometro = cantidadObstaculosPorCarril % cantidadKilometros;
-            for (int i = 0; i < cantidadObstaculosPorKilometro; i++) {
-                int posicionObstaculo = rand() % 10;
-                tObstaculo *obstaculo = new tObstaculo;
-                obstaculo->sprite = "O";
-                obstaculo->posicion = posicionObstaculo;
-                obstaculo->prox = NULL;
-                kilometroAux->presentes = obstaculo;
-                kilometroAux->obstaculoEncontrado = true;
+        if (posicionCarrilAux == posicionCarril) {
+            tKilometro *kilometroAux = carrilAux->primerKilometro;
+            while (kilometroAux != NULL) {
+                if (posicionKilometroAux == posicionKilometro) {
+                    tObstaculo *obstaculoAux = kilometroAux->primerObstaculo;
+                    while (obstaculoAux != NULL) {
+                        if (posicionObstaculoAux == posicionObstaculo) {
+                            obstaculoAux->presentes = new tObstaculo;
+                            obstaculoAux->presentes->sprite = 'O';
+                            obstaculoAux->presentes->prox = NULL;
+                            obstaculoAux->obstaculoEncontrado = true;
+                            break;
+                        }
+                        posicionObstaculoAux++;
+                        obstaculoAux = obstaculoAux->prox;
+                    }
+                    break;
+                }
+                posicionKilometroAux++;
                 kilometroAux = kilometroAux->prox;
             }
-            if (cantidadObstaculosRestantesPorKilometro > 0) {
-                int posicionObstaculo = rand() % 10;
-                tObstaculo *obstaculo = new tObstaculo;
-                obstaculo->sprite = "O";
-                obstaculo->posicion = posicionObstaculo;
-                obstaculo->prox = NULL;
-                kilometroAux->presentes = obstaculo;
-                kilometroAux->obstaculoEncontrado = true;
-                kilometroAux = kilometroAux->prox;
-                cantidadObstaculosRestantesPorKilometro--;
-            }
-            kilometroAux = kilometroAux->prox;
+            break;
         }
-        if (cantidadObstaculosRestantes > 0) {
-            int posicionObstaculo
+        posicionCarrilAux++;
+        carrilAux = carrilAux->prox;
+    }*/
 }
-}
-}
+
+
 
 using namespace std;
