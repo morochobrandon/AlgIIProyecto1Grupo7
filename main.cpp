@@ -1,4 +1,4 @@
-#include "Librerias\GestionVehículos.h"
+#include "Librerias\GestionVehiculos.h"
 
 
 
@@ -13,7 +13,7 @@ int opcion=-1;
 string nombreEsp , nombregringo , piloto;
 int bomba , piedra , liquido;
 /*
-//llenarDatosVehiculo(&p,  nombreEsp       ,  nombregringo        ,  piloto                      ,tipoDeCaucho,tamanoDeCaucho,velocidadDelCarro,bombas,piedras,liquidos,comoSeVeElVehiculo);
+void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo );
 llenarDatosVehiculo(&p, "SuperFerrari"     , "ArmySurplusSpecial" , "SargentoBlast"              , 1          ,     1        , 1               ,   1   ,   3    ,   0     ,        1          );
 llenarDatosVehiculo(&p, "SuperFerrari"     , "ArmySurplusSpecial" , "SoldadoMeekly"              , 2          ,     1        , 1               ,   1   ,   3    ,   1     ,        2          ); 
 llenarDatosVehiculo(&p, "Antiguomovil"     , "BulletproofBomb"    , "HermanosAnticuados"         , 3          ,     1        , 2               ,   1   ,   3    ,   0     ,        3          );
@@ -30,8 +30,8 @@ llenarDatosVehiculo(&p, "AutoConvertible" , "Convert-a-car"       , "profesorLoc
 llenarDatosVehiculo(&p, "StukaRakuda"     , "CrimsonHaybailer"    , "BaronHansFritz"             , 1          ,     3        , 2               ,   3   ,   1    ,   0     ,        14         );
 llenarDatosVehiculo(&p, "CompactPussycat" , "CompactPussycat"     , "PenelopeGlamour"            , 2          ,     3        , 3               ,   3   ,   1    ,   1     ,        15         );
 */
-
 cargar_archivo3(&p);
+//agregarVehiculo(&p, "SuperFerrari"     , "ArmySurplusSpecial" , "SargentoBlast"              , 1          ,     1        , 1               ,   1   ,   3     );
 muestra(p);
 
 primero = p;
@@ -43,7 +43,7 @@ cout<<"\n Opcion  :";
 cin>>opcion;
 cin.ignore();
 system("cls");
-cout<<"\n la opcion fue"<<opcion;
+cout<<"\n la opcion fue: "<<opcion<<endl;
 if (opcion == 1){
       pedirDatosVehiculo(&p);
 } else if (opcion == 2){
@@ -53,7 +53,7 @@ if (opcion == 1){
 } else if (opcion == 4){
       consultarVehiculo(p); 
 }else if (opcion == 5){
-//  generarCarriles(vehiculos);
+      validarLista(p);
 }else if (opcion == 6){
       
 //  simularCarrera(vehiculos);
