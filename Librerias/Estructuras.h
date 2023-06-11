@@ -50,6 +50,7 @@ struct tKilometro
     bool vehiculoPresente;
     tObstaculo obstaculo;
     tKilometro *prox;
+    tObstaculo *presentes;
 };
 struct tCarril
 {
@@ -64,8 +65,8 @@ struct tCarril
 };
 struct tPista
 {
-    tCarril *inicio;
-    tCarril *fin;
+    tCarril *primerCarril;
+    tCarril *ultimoCarril;
     int numeroCarriles;
 };
 
