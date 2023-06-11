@@ -353,8 +353,7 @@ if (contador == 1) {
         cout << "Selección inválida." << endl;
         return;
     }
-            modificarDatosDelVehiculoAux(&encontrado);
-
+    modificarDatosDelVehiculoAux(&encontrado);
 }
 system("pause");
 }
