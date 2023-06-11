@@ -39,6 +39,7 @@ struct tListaConductores{
 
 struct tObstaculo
 {
+    string sprite;
     bool bomba;
     bool piedra;
     bool liquido;

@@ -14,7 +14,6 @@ void mostrarPista(tPista pista);
 void vehiculoEnPista(tPista *pista, tVehiculo vehiculo);
 void cargarPista(tPista *pista, ifstream& archivo);
 void guardarPista(tPista *pista, ofstream& archivo);
-void cargarPista(tPista *pista, ifstream& archivo);
 void destruirPista(tPista *pista);
 
 

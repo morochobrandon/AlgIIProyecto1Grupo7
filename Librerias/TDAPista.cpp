@@ -11,15 +11,15 @@ tPista *crearPista() {
 void mostrarPista(tPista pista) {
     tCarril *carrilAux = pista.primerCarril;
     while (carrilAux != NULL) {
-        cout << "Carril " << carrilAux->vehiculo->nombre_es << endl;
+        cout << "Carril " << carrilAux->vehiculo->nombreEs << endl;
         tKilometro *kilometro = carrilAux->primerKilometro;
         while (kilometro != NULL) {
             cout << "Kilometro " << kilometro->ordinalKilometro << endl;
             if (kilometro->vehiculoPresente) {
-                cout << "Vehiculo " << carrilAux->vehiculo->nombre_es << endl;
+                cout << "Vehiculo " << carrilAux->vehiculo->nombreEs << endl;
             }
             if (kilometro->obstaculoEncontrado) {
-                cout << "Obstaculo " << kilometro->presentes->nombre << endl;
+                cout << "Obstaculo " << kilometro->presentes->sprite << endl;
             }
             kilometro = kilometro->prox;
         }
@@ -30,14 +30,13 @@ void mostrarPista(tPista pista) {
 void vehiculoEnPista(tPista *pista, tVehiculo vehiculo) {
     tCarril *carrilAux = pista->primerCarril;
     while (carrilAux != NULL) {
-        if (carrilAux->vehiculo->nombre_es == vehiculo.nombre_es) {
+        if (carrilAux->vehiculo->nombreEs == vehiculo.nombreEs) {
             carrilAux->vehiculo = &vehiculo;
             break;
         }
         carrilAux = carrilAux->prox;
     }
 }
-
 
 
 using namespace std;
