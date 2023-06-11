@@ -10,14 +10,11 @@
 using namespace std;
 
 void mostrarOpciones(){
-    cout<<"\n 1. Agregar ";
-    cout<<"\n 2. Modificar ";
-    cout<<"\n 3. Eliminar ";
-    cout<<"\n 4. Consultar ";
-    cout<<"\n 5. Generar ";
-    cout<<"\n 6. Simular ";
-    cout<<"\n 7. Mostrar ";
-    cout<<"\n 0. Salir";
+    cout<<"\n 1. Generación de la pista";
+    cout<<"\n 2. Mostrar pista";
+    cout<<"\n 3. Cargar competidores";
+    cout<<"\n 4. iniciar carrera";
+    cout<<"\n 0. regresar";
 }
 
 #include "menu.cpp"

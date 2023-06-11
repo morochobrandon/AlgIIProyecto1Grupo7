@@ -4,19 +4,17 @@
 #include <iostream>
 #include <windows.h>
 #include <fstream>
-#include "GestionVehículos.h"
+#include "GestionVehiculos.h"
 
 using namespace std;
 
 tPista *crearPista();
 void mostrarPista(tPista pista);
-
+void cargarPista(tPista *pista, ifstream& archivo);
+void generarObstaculos(tPista *pista, int cantidadObstaculos);
+void sacarVehiculosDeListaConductores(tPista *pista, int cantidadVehiculos);
 void vehiculoEnPista(tPista *pista, tVehiculo vehiculo);
-void cargarPista(tPista *pista, ifstream& archivo);
-void guardarPista(tPista *pista, ofstream& archivo);
-void cargarPista(tPista *pista, ifstream& archivo);
 void destruirPista(tPista *pista);
-
 
 #include "TDAPista.cpp"
 #endif // TDAPISTA_H

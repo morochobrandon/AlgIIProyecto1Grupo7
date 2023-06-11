@@ -9,47 +9,48 @@
 using namespace std;
 
 struct tVehiculo{
-    string nombre_es;
-    string nombre_en;
+    string nombreEs;
+    string nombreEn;
     string conductor;
-    string tipo_caucho;
-    string tamano_caucho;
-    string velocidad;
-    string vehiculo_en_pantalla;
-    int resistencia_bomba;
-    int resistencia_piedra;
-    int resistencia_liquido;
+    int tipoCaucho;
+    string aTipoCaucho[4]={"Error", "Todoterreno", "Normal" , "Anticoleo"};
+    int tamanoCaucho;
+    string aTamanoCaucho[4]={ "Error", "Monstertruck", "Normal" , "Pegado al piso"};
+    int monsterTruck;
+    int velocidad;
+    string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
+    string vehiculoEnPantalla;
 };
 
 struct tListaConductores{
-    string nombre_es;
-    string nombre_en;
+    string nombreEs;
+    string nombreEn;
     string conductor;
-    string tipo_caucho;
-    string tamano_caucho;
-    string velocidad;
-    string vehiculo_en_pantalla;
-    int resistencia_bomba;
-    int resistencia_piedra;
-    int resistencia_liquido;
+    int tipoCaucho;
+    string aTipoCaucho[4]={"Error", "Todoterreno", "Normal" , "Anticoleo"};
+    int tamanoCaucho;
+    string aTamanoCaucho[4]={ "Error", "Monstertruck", "Normal" , "Pegado al piso"};
+    int monsterTruck;
+    int velocidad;
+    string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
+    string vehiculoEnPantalla;
     tListaConductores* prox;
 };
 
 struct tObstaculo
 {
-    string nombre;
-    int resistencia_bomba;
-    int resistencia_piedra;
-    int resistencia_liquido;
-    string obstaculo_en_pantalla;
-    int tipo;
-    int tiempoDisminucion;
+    string sprite;
+    string display[3] = {"¤", "¶", "#"};
+    bool bomba;
+    bool piedra;
+    bool liquido;
 };
 struct tKilometro
 {
     int ordinalKilometro; // para saber que kilometro es
     bool obstaculoEncontrado;
     bool vehiculoPresente;
+    tObstaculo obstaculo;
     tKilometro *prox;
     tObstaculo *obstaculo; // para saber que obstaculo es
 };
@@ -61,8 +62,8 @@ struct tCarril
     int numeroDeKilometros;
     tVehiculo *vehiculo;
     tCarril *prox;
+    ;
 
-    
 };
 struct tPista
 {

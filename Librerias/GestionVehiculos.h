@@ -10,18 +10,18 @@
 using namespace std;
 
 
-
-
-void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombregringo , string piloto , int bomba , int piedra , int liquido);
 void muestra(tListaConductores *p);
 void mostrarOpciones();
+void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo );
+void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro , int comoSeVeElVehiculo );
 void consultarVehiculo(tListaConductores *p);
 void eliminarVehiculo(tListaConductores **p);
 void modificarVehiculo(tListaConductores **p);
+bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro);
 void modificarDatosDelVehiculoAux(tListaConductores **p);
-void llenarDatosVehiculo(tListaConductores **p, string nombreEsp , string nombregringo , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int velocidadDelCarro , double bombas , double piedras , double liquidos , int comoSeVeElVehiculo );
 void pedirDatosVehiculo(tListaConductores **p);
 void muestraVehiculoEspecifico(tListaConductores *p);
+void modificarDatosDelVehiculoAux(tListaConductores **p);
 void eliminartListaConductores(tListaConductores **p);
 
 void cargar_archivo3(tListaConductores **p); 
@@ -30,5 +30,5 @@ void descargar_archivo3(tListaConductores *primero) ;
 
 
 
-#include "GestionVehículos.cpp"
+#include "GestionVehiculos.cpp"
 #endif // GestionVehiculos_H
