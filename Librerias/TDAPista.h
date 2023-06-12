@@ -8,12 +8,12 @@
 
 using namespace std;
 
-tPista *crearPista();
-void mostrarPista(tPista pista);
+tPista *inicializarPista();
+void mostrarPista(tPista *pista);
 void cargarPista(tPista *pista, ifstream& archivo);
+void pedirDatosPista(tPista *pista);
 void generarObstaculos(tPista *pista, int cantidadObstaculos);
-void sacarVehiculosDeListaConductores(tPista *pista, int cantidadVehiculos);
-void vehiculoEnPista(tPista *pista, tVehiculo vehiculo);
+void sacarVehiculosDeListaVehiculos(tPista *pista, int cantidadVehiculos);
 void destruirPista(tPista *pista);
 
 #include "TDAPista.cpp"

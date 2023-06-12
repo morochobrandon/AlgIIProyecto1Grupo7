@@ -8,7 +8,7 @@
 
 using namespace std;
 
-struct tVehiculo{
+struct tListaVehiculos{
     string nombreEs;
     string nombreEn;
     string conductor;
@@ -20,59 +20,41 @@ struct tVehiculo{
     int velocidad;
     string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
     string vehiculoEnPantalla;
-};
-
-struct tListaConductores{
-    string nombreEs;
-    string nombreEn;
-    string conductor;
-    int tipoCaucho;
-    string aTipoCaucho[4]={"Error", "Todoterreno", "Normal" , "Anticoleo"};
-    int tamanoCaucho;
-    string aTamanoCaucho[4]={ "Error", "Monstertruck", "Normal" , "Pegado al piso"};
-    int monsterTruck;
-    int velocidad;
-    string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
-    string vehiculoEnPantalla;
-    tListaConductores* prox;
+    tListaVehiculos* prox;
 };
 
 struct tObstaculo
 {
     string sprite;
-    string display[3] = {"¤", "¶", "#"};
-    bool bomba;
-    bool piedra;
-    bool liquido;
+    int display;
+    string aDisplay[4] = {"-","¤", "¶", "#"};
 };
 struct tKilometro
 {
     int ordinalKilometro; // para saber que kilometro es
-    bool obstaculoEncontrado;
+    bool obstaculoPresente;
     bool vehiculoPresente;
-    tObstaculo obstaculo;
+    tObstaculo *obstaculo;
     tKilometro *prox;
-    tObstaculo *obstaculo; // para saber que obstaculo es
 };
 struct tCarril
 {
     tKilometro *primerKilometro;
     tKilometro *ultimoKilometro;
     tKilometro *ubicacionVehiculo; // para saber donde esta el vehiculo
-    int numeroDeKilometros;
-    tVehiculo *vehiculo;
+    tListaVehiculos *vehiculo;
     tCarril *prox;
-    ;
-
 };
 struct tPista
 {
+    string nombre;
+    const int longitud = 80;
     tCarril *primerCarril;
     tCarril *ultimoCarril;
     int numeroCarriles;
 };
 
-tListaConductores *primero , *ultimo , *actual , *nuevo;
+tListaVehiculos *primero , *ultimo , *actual , *nuevo;
 //  char display[3] = {'¤', '¶', '#'};
 
 

@@ -1,4 +1,5 @@
 #include "Librerias\GestionVehiculos.h"
+#include "Librerias\TDAPista.h"
 
 int main(){
 tListaConductores *p=nullptr;
