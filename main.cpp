@@ -1,10 +1,11 @@
 #include "Librerias\GestionVehiculos.h"
 #include "Librerias\TDAPista.h"
+#include "Librerias\menus.h"
 
 int main(){
 tListaVehiculos *p=nullptr;
 
-int opcion=-1;
+
 
 //fflush(stdin);  //por si las variables se ponen graciosas jajajajaj
 
@@ -35,34 +36,8 @@ muestra(p);
 primero = p;
 descargar_archivo3(primero);
 
-while (opcion!=0){
-mostrarOpciones();
-cout<<"\n Opcion  :";
-cin>>opcion;
-cin.ignore();
-system("cls");
-cout<<"\n la opcion fue: "<<opcion<<endl;
-if (opcion == 1){
-      pedirDatosVehiculo(&p);
-} else if (opcion == 2){
-      modificarVehiculo(&p);
-} else if (opcion == 3){
-      eliminarVehiculo(&p);
-} else if (opcion == 4){
-      consultarVehiculo(p); 
-}else if (opcion == 5){
-      validarLista(p);
-}else if (opcion == 6){
-      
-//  simularCarrera(vehiculos);
-}else if (opcion == 7){
-//  mostrarTabla(vehiculos);
-}else if (opcion == 9){
-      muestra(p);
-} else {
-cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
-}
-}
+opcionesGestionDeVehiculos(p);
+
 eliminartListaVehiculos(&p);
 cout<<"\n\n";
 if (opcion) system("pause");

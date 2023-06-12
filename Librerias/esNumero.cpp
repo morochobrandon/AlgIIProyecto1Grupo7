@@ -61,3 +61,14 @@ bool cadenaValida(string str){
         else 
             return false;   
 }
+//transformar string a entero
+int pedirDatoInt(string mensajeDePedirDatos) {
+    string auxString;
+    do
+    {
+        cout << mensajeDePedirDatos << endl;
+        getline(cin, auxString);
+    } while (!esEntero(auxString));
+    cout << endl;
+    return (stoi(auxString));
+}

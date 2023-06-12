@@ -7,9 +7,10 @@ void primos(lista **p){
         t= aux->prx;
 				EsPrimo = 1;
 	for(int i = 2; i< t->valor;i++) {if(t->valor %i==0){EsPrimo = 0;}};       
-		if(EsPrimo){
+		if (EsPrimo) {
 		aux->prx= t->prx;
-					delete t; }else{aux = aux->prx;}
+		delete t; 
+		} else aux = aux->prx;
 	}
 }
 
