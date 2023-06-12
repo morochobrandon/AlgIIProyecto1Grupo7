@@ -15,6 +15,7 @@ void OpcionesPista(tPista *pista, tListaVehiculos *p){
         {
             case 1:
                 pedirDatosPista(pista, p);
+                generarObstaculos(pista);
                 break;
             case 2:
                 mostrarPista(pista);

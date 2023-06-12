@@ -41,6 +41,7 @@ void destruirPista(tPista *pista){
     while (auxCarril != NULL) {
         tKilometro *auxKilometro = auxCarril->primerKilometro;
         while (auxKilometro != NULL) {
+            delete auxKilometro->obstaculo;
             tKilometro *auxKilometro2 = auxKilometro->prox;
             delete auxKilometro;
             auxKilometro = auxKilometro2;
@@ -54,7 +55,7 @@ void destruirPista(tPista *pista){
 
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
     string auxS;
-    int vehiculo;
+    int vehiculoABuscar;
     fflush(stdin);
     cout << "Ingrese el nombre de la pista: ";
     cin >> pista->nombre;
@@ -72,8 +73,8 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
             cout << "Selecciona el vehiculo para el carril " << i << "(ingrese el numero a un lado): ";
             getline(cin, auxS);
         } while (!esEntero(auxS));
-        vehiculo=stoi(auxS);
-        convertirVehiculo(vehiculos, vehiculo, &carril->vehiculo);
+        vehiculoABuscar=stoi(auxS);
+        convertirVehiculo(vehiculos, vehiculoABuscar, &carril->vehiculo);
         carril->primerKilometro = NULL;
         carril->ultimoKilometro = NULL;
         carril->ubicacionVehiculo = NULL;
@@ -96,5 +97,39 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
             pista->ultimoCarril->prox = carril;
             pista->ultimoCarril = carril;
         }
+    }
+}
+
+//función que genera los obstáculos en el kilometro tomando en cuenta que: En cada carril puede aparecer de manera aleatoria máximo 3 obstáculos: sin obstáculo, una bomba, una piedra, o líquido resbaladizo, que se muestra en la pista con los caracteres: -, ¤, ¶, ≠, respectivamente.
+void generarObstaculos(tPista *pista) {
+    tCarril *carrilAux = pista->primerCarril;
+    const int maxObstaculos = 3;
+    int obstaculos = 0;
+    while (carrilAux != NULL && obstaculos <= maxObstaculos) {
+        tKilometro *kilometroAux = carrilAux->primerKilometro;
+        while (kilometroAux != NULL) {
+            kilometroAux->obstaculo->display = rand() % 100;
+
+            if (kilometroAux->obstaculo->display <=24) {
+                switch (kilometroAux->obstaculo->display)
+                {
+                case 0 ... 8:
+                    kilometroAux->obstaculo->display = 1;
+                    break;
+                case 9 ... 16:
+                    kilometroAux->obstaculo->display = 2;
+                    break;
+                case 17 ... 24:
+                    kilometroAux->obstaculo->display = 2;
+                    break;
+                
+                default:
+                    kilometroAux->obstaculo->display = 0;
+                    break;
+                }
+            }
+            kilometroAux = kilometroAux->prox;
+        }
+        carrilAux = carrilAux->prox;
     }
 }
