@@ -1,11 +1,9 @@
 #ifndef TDAPISTA_H
 #define TDAPISTA_H
-#include "Estructuras.h"
 #include <iostream>
 #include <windows.h>
 #include <fstream>
 #include "GestionVehiculos.h"
-#include "esNumero.h"
 
 using namespace std;
 

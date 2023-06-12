@@ -6,6 +6,7 @@
 #include <fstream>
 #include <ctime>
 #include "Estructuras.h"
+#include "esNumero.h"
 
 using namespace std;
 
