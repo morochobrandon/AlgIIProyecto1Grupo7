@@ -30,17 +30,7 @@ if(invalido){
 }
 };
 
-void mostrarOpciones(){
-cout << "1. Agregar vehiculo" << endl;
-cout << "2. Modificar vehiculo" << endl;
-cout << "3. Eliminar vehiculo" << endl;
-cout << "4. Consultar vehiculo" << endl;
-cout << "5. Validar Lista" << endl;
-cout << "6. Simular carrera" << endl;
-cout << "7. Mostrar tabla de posiciones" << endl;
-cout << "8. Salir" << endl;
-cout << "9. Mostrar todos los vehiculos" << endl;
-}
+
 
 void agregarVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo ){
 // inserta x por cabeza de la tListaVehiculos
