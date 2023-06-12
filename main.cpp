@@ -38,7 +38,7 @@ opcionesGestionDeVehiculos(pista, p);
 
 eliminartListaVehiculos(&p);
 cout<<"\n\n";
-if (opcion) system("pause");
+system("pause");
 system("cls");
 return 0;
 destruirPista(pista);
