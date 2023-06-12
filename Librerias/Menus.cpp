@@ -14,16 +14,16 @@ void OpcionesPista(tPista *pista, tListaVehiculos *p){
         switch (opcion)
         {
             case 1:
-                pedirDatosVehiculo(&p);
+                pedirDatosPista(pista, p);
                 break;
             case 2:
-                modificarVehiculo(&p);
+                mostrarPista(pista);
                 break;
             case 3:
-                eliminarVehiculo(&p);
+                cout << "aún no." << endl; 
                 break;
             case 4:
-                consultarVehiculo(p); 
+                cout << "aún no." << endl; 
                 break;
             case 0:
                 cout << "Saliendo." << endl;
