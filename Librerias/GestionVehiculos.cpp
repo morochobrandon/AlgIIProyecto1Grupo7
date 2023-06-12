@@ -736,7 +736,7 @@ void cargar_archivo3(tListaVehiculos **p) {
 }
 
 void descargar_archivo3(tListaVehiculos* primero) {
-    ofstream arch("Librerias/archivos/Actualvehiculos.txt");
+    ofstream arch("Librerias/archivos/vehiculos.txt");
 
     tListaVehiculos* actual = primero;
 

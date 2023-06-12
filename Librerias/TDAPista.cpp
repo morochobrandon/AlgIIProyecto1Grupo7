@@ -52,11 +52,7 @@ void destruirPista(tPista *pista){
     }
 }
 
-void pedirDatosPista(tListaVehiculos *vehiculos) {
-    tPista *pista = new tPista;
-    pista->primerCarril = NULL;
-    pista->ultimoCarril = NULL;
-    pista->numeroCarriles = 0;
+void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
     string auxS;
     int vehiculo;
     fflush(stdin);

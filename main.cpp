@@ -4,8 +4,6 @@
 int main(){
 tListaVehiculos *p=nullptr;
 
-
-
 //fflush(stdin);  //por si las variables se ponen graciosas jajajajaj
 
 string nombreEsp , nombregringo , piloto;
@@ -34,13 +32,14 @@ muestra(p);
 
 primero = p;
 descargar_archivo3(primero);
+tPista *pista = inicializarPista();
 
-opcionesGestionDeVehiculos(p);
+opcionesGestionDeVehiculos(pista, p);
 
 eliminartListaVehiculos(&p);
 cout<<"\n\n";
 if (opcion) system("pause");
 system("cls");
 return 0;
-
+destruirPista(pista);
 }
