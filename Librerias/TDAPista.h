@@ -11,7 +11,7 @@ tPista *inicializarPista();
 void mostrarPista(tPista *pista);
 void cargarPista(tPista *pista, ifstream& archivo);
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos);
-void generarObstaculos(tPista *pista, int cantidadObstaculos);
+void generarObstaculos(tPista *pista);
 void sacarVehiculosDeListaVehiculos(tPista *pista, int cantidadVehiculos);
 void destruirPista(tPista *pista);
 

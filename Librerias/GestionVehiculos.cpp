@@ -761,11 +761,10 @@ void eliminartListaVehiculos(tListaVehiculos **p){
 	system("pause");
 }
 
-void convertirVehiculo(tListaVehiculos *p, int cont, tListaVehiculos **vehiculo){
+void convertirVehiculo(tListaVehiculos *p, int cont, tListaVehiculos **vehiculo) {
     tListaVehiculos *aux = p;
-    for (int i = 0; i < cont; i++)
-    {
+    for (int i = 1; i < cont && aux != NULL; i++) {
         aux = aux->prox;
     }
-    *vehiculo=aux;
+    *vehiculo = aux;
 }

@@ -11,16 +11,18 @@ tPista *inicializarPista() {
 void mostrarPista(tPista *pista) {
     tCarril *carrilAux = pista->primerCarril;
     while (carrilAux != NULL) {
-        cout << "Carril " << carrilAux->vehiculo->nombreEs << endl;
-        tKilometro *kilometro = carrilAux->primerKilometro;
-        while (kilometro != NULL) {
-            cout << "Kilometro " << kilometro->ordinalKilometro << endl;
-            if (kilometro->vehiculoPresente) {
-                cout << "Vehiculo " << carrilAux->vehiculo->nombreEs << endl;
+        cout << "Carril " << carrilAux->vehiculo->nombreEs << endl; // vehiculo en el segundo carril no apunta a su respectivo vehículo
+        tKilometro *kilometroAux = carrilAux->primerKilometro;
+        while (kilometroAux != NULL) { // probar que llegue al penultimo
+            cout << "k " << kilometroAux->ordinalKilometro;
+            if (kilometroAux->vehiculoPresente) {
+                cout << "V " << carrilAux->vehiculo->nombreEs;
+            }else {
+                cout << "O " << kilometroAux->obstaculo->aDisplay[kilometroAux->obstaculo->display];
             }
-                cout << "Obstaculo " << kilometro->obstaculo->aDisplay[kilometro->obstaculo->display] << endl;
-            kilometro = kilometro->prox;
+            kilometroAux = kilometroAux->prox;
         }
+        cout<<endl;
         carrilAux = carrilAux->prox;
     }
 }
@@ -81,6 +83,8 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
         for (int i = 0; i < pista->longitud; i++) {
             tKilometro *Kilometroaux = new tKilometro;
             Kilometroaux->ordinalKilometro = i;
+            Kilometroaux->obstaculo= NULL;
+            Kilometroaux->vehiculoPresente=false;
             if (carril->primerKilometro == NULL) {
                 carril->primerKilometro = Kilometroaux;
                 carril->ultimoKilometro = Kilometroaux;
@@ -97,7 +101,7 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
             pista->ultimoCarril->prox = carril;
             pista->ultimoCarril = carril;
         }
-    }
+    }pista->ultimoCarril->prox=NULL;
 }
 
 //función que genera los obstáculos en el kilometro tomando en cuenta que: En cada carril puede aparecer de manera aleatoria máximo 3 obstáculos: sin obstáculo, una bomba, una piedra, o líquido resbaladizo, que se muestra en la pista con los caracteres: -, ¤, ¶, ≠, respectivamente.
@@ -108,6 +112,7 @@ void generarObstaculos(tPista *pista) {
     while (carrilAux != NULL && obstaculos <= maxObstaculos) {
         tKilometro *kilometroAux = carrilAux->primerKilometro;
         while (kilometroAux != NULL) {
+            kilometroAux->obstaculo= new tObstaculo;
             kilometroAux->obstaculo->display = rand() % 100;
 
             if (kilometroAux->obstaculo->display <=24) {
@@ -120,14 +125,14 @@ void generarObstaculos(tPista *pista) {
                     kilometroAux->obstaculo->display = 2;
                     break;
                 case 17 ... 24:
-                    kilometroAux->obstaculo->display = 2;
-                    break;
-                
-                default:
-                    kilometroAux->obstaculo->display = 0;
+                    kilometroAux->obstaculo->display = 3;
                     break;
                 }
+            } else
+            {
+                kilometroAux->obstaculo->display=0;
             }
+            
             kilometroAux = kilometroAux->prox;
         }
         carrilAux = carrilAux->prox;
