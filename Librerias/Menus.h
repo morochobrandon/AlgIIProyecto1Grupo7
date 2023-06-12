@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENUS_H
+#define MENUS_H
 
 #include <iostream>
 #include <string>
@@ -17,5 +17,5 @@ void mostrarOpciones(){
     cout<<"\n 0. regresar";
 }
 
-#include "menu.cpp"
+#include "menus.cpp"
 #endif /* MENU_H */

@@ -1,5 +1,4 @@
 #include "TDAPista.h"
-#include "esNumero.h"
 
 tPista *inicializarPista() {
     tPista *pista = new tPista;

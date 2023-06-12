@@ -2,7 +2,7 @@
 #include "Librerias\TDAPista.h"
 
 int main(){
-tListaConductores *p=nullptr;
+tListaVehiculos *p=nullptr;
 
 int opcion=-1;
 
@@ -11,7 +11,7 @@ int opcion=-1;
 string nombreEsp , nombregringo , piloto;
 int bomba , piedra , liquido;
 /*
-void agregarVehiculo(tListaConductores **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo );
+void agregarVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad, int comoSeVeElVehiculo );
 llenarDatosVehiculo(&p, "SuperFerrari"     , "ArmySurplusSpecial" , "SargentoBlast"              , 1          ,     1        , 1               ,   1   ,   3    ,   0     ,        1          );
 llenarDatosVehiculo(&p, "SuperFerrari"     , "ArmySurplusSpecial" , "SoldadoMeekly"              , 2          ,     1        , 1               ,   1   ,   3    ,   1     ,        2          ); 
 llenarDatosVehiculo(&p, "Antiguomovil"     , "BulletproofBomb"    , "HermanosAnticuados"         , 3          ,     1        , 2               ,   1   ,   3    ,   0     ,        3          );
@@ -63,7 +63,7 @@ if (opcion == 1){
 cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
 }
 }
-eliminartListaConductores(&p);
+eliminartListaVehiculos(&p);
 cout<<"\n\n";
 if (opcion) system("pause");
 system("cls");

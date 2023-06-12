@@ -13,8 +13,6 @@ void primos(lista **p){
 	}
 }
 
-
-
 void burbuja(lista **p){
 	lista *ax=*p, *t=*p;
 	int s;

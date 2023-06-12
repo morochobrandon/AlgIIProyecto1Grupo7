@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <fstream>
 #include "GestionVehiculos.h"
+#include "esNumero.h"
 
 using namespace std;
 

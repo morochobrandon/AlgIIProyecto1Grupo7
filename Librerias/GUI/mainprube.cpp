@@ -1,5 +1,5 @@
 #include "Wgui.h"
-#include "..\Menu.h" 
+#include "..\Menus.h" 
 
 int main()
 {
