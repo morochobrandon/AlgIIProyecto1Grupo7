@@ -1,8 +1,7 @@
 #include "Wgui.h"
 #include "..\Menus.h" 
 
-int main()
-{
+int mo(){
     int a =0;
     mostrarOpciones();
     do

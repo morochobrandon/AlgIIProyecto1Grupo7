@@ -118,13 +118,13 @@ void generarObstaculos(tPista *pista) {
             if (kilometroAux->obstaculo->display <=24) {
                 switch (kilometroAux->obstaculo->display)
                 {
-                case 0 ... 8:
+                case 8:
                     kilometroAux->obstaculo->display = 1;
                     break;
-                case 9 ... 16:
+                case 16:
                     kilometroAux->obstaculo->display = 2;
                     break;
-                case 17 ... 24:
+                case 24:
                     kilometroAux->obstaculo->display = 3;
                     break;
                 }
@@ -137,4 +137,5 @@ void generarObstaculos(tPista *pista) {
         }
         carrilAux = carrilAux->prox;
     }
+
 }

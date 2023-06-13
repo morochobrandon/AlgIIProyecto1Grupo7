@@ -12,6 +12,16 @@ int opcion;
 
 void OpcionesPista();
 void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *p);
+void menuVelocidadVehiculo();
+
+void menuTipoDeMonsterTruck();
+
+void menuComoSeVeElVehiculo();
+
+void menuTipoDeCaucho();
+void menuTamanoDeCaucho();
+
+void menuNuevoVehiculo();
 
 #include "menus.cpp"
 #endif /* MENU_H */

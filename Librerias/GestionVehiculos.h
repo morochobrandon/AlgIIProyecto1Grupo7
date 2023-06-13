@@ -7,6 +7,7 @@
 #include <ctime>
 #include "Estructuras.h"
 #include "esNumero.h"
+#include <iomanip>
 
 using namespace std;
 
