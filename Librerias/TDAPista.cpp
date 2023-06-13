@@ -13,12 +13,12 @@ void mostrarPista(tPista *pista) {
     while (carrilAux != NULL) {
         cout << "Carril " << carrilAux->vehiculo->nombreEs << endl; // vehiculo en el segundo carril no apunta a su respectivo vehículo
         tKilometro *kilometroAux = carrilAux->primerKilometro;
-        while (kilometroAux != NULL) { // probar que llegue al penultimo
-            cout << "k " << kilometroAux->ordinalKilometro;
+        while (kilometroAux != NULL) { 
+           // cout << "" << kilometroAux->ordinalKilometro;
             if (kilometroAux->vehiculoPresente) {
-                cout << "V " << carrilAux->vehiculo->nombreEs;
+                cout << "" << carrilAux->vehiculo->nombreEs;
             }else {
-                cout << "O " << kilometroAux->obstaculo->aDisplay[kilometroAux->obstaculo->display];
+                cout << "" << kilometroAux->obstaculo->aDisplay[kilometroAux->obstaculo->display];
             }
             kilometroAux = kilometroAux->prox;
         }

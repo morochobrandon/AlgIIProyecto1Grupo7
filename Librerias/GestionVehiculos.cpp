@@ -373,34 +373,42 @@ cout << "\nIngrese el nombre del conductor: ";
 getline(cin, piloto);
 
 do {
+    menuTipoDeCaucho();
+    /*
     cout << "\n\n Ingrese el tipo de caucho \n\n";
     cout << "\n 1.Todo terreno";
     cout << "\n 2.Normarles";
     cout << "\n 3.Anti coleo";
     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
     cout << "\n Ingrese la opcion elegida: ";
+    */
     cin>>tipoDeCaucho;
 }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
 
 do {
+    menuTamanoDeCaucho();
+    /*
     cout << "\n\n Ingrese el tamano de caucho: \n\n";
     cout << "\n 1.Monster truck";
     cout << "\n 2.Normales";
     cout << "\n 3.Pegado al piso";
     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
     cout << "\n Ingrese la opcion elegida: ";
+    */
     cin>>tamanoDeCaucho;
 
 }while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
     if (tamanoDeCaucho=1){
     do{
+        menuTipoDeMonsterTruck();
+        /*
         cout << "\n\n Ingrese el tipo de Monster Truck: \n\n";
         cout << "\n 1. Monster Truck 1";
         cout << "\n 2. Monster Truck 2";
         cout << "\n 3. Monster Truck 3";
         cout << "\n 4. Monster Truck 4";
         cout << "\n 5. Monster Truck 5";
-        cout << "\n Ingrese la opcion elegida: ";
+        */
         cin>>tamanoMonster;
     }while(!((tamanoMonster>=1)&&(tamanoMonster<=5)));
     }else{
@@ -410,6 +418,8 @@ do {
 
 fflush(stdin);
 do {
+     menuVelocidadVehiculo();
+    /*
     cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
     cout << "\n 1.Perezoso";
     cout << "\n 2.Crucero";
@@ -417,11 +427,14 @@ do {
     cout << "\n 4.Delorean";
     cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
     cout << "\n Ingrese la opcion elegida: ";
+    */
     cin>>velocidadDelCarro;
 }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
 fflush(stdin);
 
 do{
+    menuComoSeVeElVehiculo();
+    /*
     cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
     cout<<"1  = ¥\n"; 
     cout<<"2  = @\n";
@@ -434,7 +447,7 @@ do{
     cout<<"9  =  þ\n";
     cout<<"10 =  §\n";
     cout<<"15 =  Ð\n";
-    cout<<"opcion : ";
+    */
 
     cin>>comoSeVeElVehiculo;
 }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
@@ -564,12 +577,16 @@ if (datoVehiculoModificar == 1){
         cout << "tipo de caucho: " << encontrado->aTipoCaucho[tipoDeCaucho] << endl;
         do
         {
+            cout << "\n\tnuevo\t\n";
+            menuTipoDeCaucho();
+            /*
             cout << "\n\n escribe nuevo tipo de caucho de estas opciones:\n\n";
             cout << "\n 1.Todo terreno";
             cout << "\n 2.Normales";
             cout << "\n 3.Anti coleo";
             cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
             cout << "\n Ingrese la opcion elegida: ";
+            */
             cin>>tipoDeCaucho;
         } while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
         fflush(stdin);
@@ -581,24 +598,32 @@ if (datoVehiculoModificar == 1){
         }
         do
         {
+            cout << "\n\tnuevo\t\n";
+            menuTamanoDeCaucho();
+            /*
             cout << "\n\n Ingrese el tamano de nuevo caucho: \n\n";
             cout << "\n 1.Monster truck";
             cout << "\n 2.Normal";
             cout << "\n 3.Pegados al piso";
             cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
             cout << "\n Ingrese la opcion elegida: ";
+            */
             cin>>tamanoDeCaucho;
         } while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
         if (tamanoDeCaucho==1)
         {
             do{
+                cout << "\n\tnuevo\t\n";
+                menuTipoDeMonsterTruck();
+                /*
                 cout << "\n\n Ingrese el tipo de Monster Truck: \n\n";
                 cout << "\n 1. Monster Truck 1";
                 cout << "\n 2. Monster Truck 2";
                 cout << "\n 3. Monster Truck 3";
                 cout << "\n 4. Monster Truck 4";
                 cout << "\n 5. Monster Truck 5";
-                cout << "\n\n ingrese su opcion: ";
+                
+                */
                 cin>>tamanoMonster;
             }while(!((tamanoMonster>=1)&&(tamanoMonster<=5)));
         }
@@ -611,19 +636,25 @@ if (datoVehiculoModificar == 1){
     {
     cout << "velocidad del vehiculo: " << velocidadDelCarro << endl;
     do {
+        cout << "\n\tnuevo\t\n";
+        menuVelocidadVehiculo();
+        /*
         cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
         cout << "\n 1.Perezoso";
         cout << "\n 2.Crucero";
         cout << "\n 3.SuperFerrari";
-        cout << "\n 4.Delorean";
-        cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
-        cout << "\n Ingrese la opcion elegida: ";
+        cout << "\n 4.Delorean"; 
+        */
+       
         cin>>velocidadDelCarro;
     }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
     fflush(stdin);
     } else if(datoVehiculoModificar== 7)
     {
         do{
+            cout << "\n\tnuevo\t\n";
+            menuComoSeVeElVehiculo();
+            /*
             cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
             cout<<"1  = ¥\n"; 
             cout<<"2  = @\n";
@@ -636,7 +667,8 @@ if (datoVehiculoModificar == 1){
             cout<<"9  =  þ\n";
             cout<<"10 =  §\n";
             cout<<"15 =  Ð\n";
-            cout<<"opcion : ";
+            */
+            
 
             cin>>comoSeVeElVehiculo;
         }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
@@ -662,7 +694,7 @@ if (datoVehiculoModificar == 1){
     llenarDatosVehiculo(p, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro, comoSeVeElVehiculo);
     cout<<"\n\n vehiculo modificado con exito \n\n";
 }
-
+/*
 void cargar_archivo2(tListaVehiculos **p) {
     string nombreEs, nombreEn, conductor, comoSeVeElVehiculo;
     int tipoCaucho, tamanoCaucho, tamanoMonster, velocidad;
@@ -693,6 +725,7 @@ void cargar_archivo2(tListaVehiculos **p) {
     }  arch.close();
     *p = primero;
 }
+*/
 
 void cargar_archivo3(tListaVehiculos **p) {
     ifstream arch("Librerias/archivos/vehiculos.txt");
@@ -767,4 +800,59 @@ void convertirVehiculo(tListaVehiculos *p, int cont, tListaVehiculos **vehiculo)
         aux = aux->prox;
     }
     *vehiculo = aux;
+}
+
+void menuVelocidadVehiculo(){
+        cout << "\n\n Ingrese la velocidad del vehiculo: \n\n";
+        cout << "\n 1.Perezoso";
+        cout << "\n 2.Crucero";
+        cout << "\n 3.SuperFerrari";
+        cout << "\n 4.Delorean";
+        cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+        cout << "\n Ingrese la opcion elegida: ";
+}
+
+void menuTipoDeMonsterTruck(){
+        cout << "\n\n Ingrese el tipo de Monster Truck: \n\n";
+        cout << "\n 1. Monster Truck 1";
+        cout << "\n 2. Monster Truck 2";
+        cout << "\n 3. Monster Truck 3";
+        cout << "\n 4. Monster Truck 4";
+        cout << "\n 5. Monster Truck 5";
+        cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+        cout << "\n Ingrese la opcion elegida: ";
+}
+
+void menuComoSeVeElVehiculo(){
+        cout<< "Ingrese como se ve el vehiculo en pantalla: \n";
+        cout<<"1  = ¥\n"; 
+        cout<<"2  = @\n";
+        cout<<"3  =  ©\n";
+        cout<<"4  =  £\n";
+        cout<<"5  =  Ç\n";
+        cout<<"6  =  $\n";
+        cout<<"7  =  Ø\n";
+        cout<<"8  =  æ\n";
+        cout<<"9  =  þ\n";
+        cout<<"10 =  §\n";
+        cout<<"15 =  Ð\n";
+        cout<<"opcion : ";
+}
+
+void menuTipoDeCaucho(){
+    cout << "\n\n Ingrese el tipo de caucho \n\n";
+    cout << "\n 1.Todo terreno";
+    cout << "\n 2.Normarles";
+    cout << "\n 3.Anti coleo";
+    cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+    cout << "\n Ingrese la opcion elegida: ";
+}
+
+void menuTamanoDeCaucho(){
+    cout << "\n\n Ingrese el tamano de caucho: \n\n";
+    cout << "\n 1.Monster truck";
+    cout << "\n 2.Normales";
+    cout << "\n 3.Pegado al piso";
+    cout << "\n\n (el numero que esta al lado de su opcion)\n\n";
+    cout << "\n Ingrese la opcion elegida: ";
 }
