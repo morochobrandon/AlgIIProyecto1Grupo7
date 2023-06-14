@@ -32,8 +32,8 @@
     primero = listaCompetidores;
     descargar_archivo3(primero);
     tPista *pista = inicializarPista();
-    menuNuevoVehiculo();
-    opcionesGestionDeVehiculos(pista, listaCompetidores);
+    //menú principal
+    menuPrincipal(pista,listaCompetidores);
 
     eliminartListaVehiculos(&listaCompetidores);
     cout<<"\n\n";

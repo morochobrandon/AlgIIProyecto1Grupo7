@@ -1,5 +1,5 @@
 #include "TDAPista.h"
-bool lleg=true; //variable global para saber si el vehiculo llego a la meta
+bool lleg=false; //variable global para saber si el vehiculo llego a la meta
 tPista *inicializarPista() {
     tPista *pista = new tPista;
     pista->primerCarril = NULL;
@@ -16,7 +16,7 @@ void mostrarPista(tPista *pista) {
         while (kilometroAux != NULL) { 
            // cout << "" << kilometroAux->ordinalKilometro;
             if (kilometroAux->vehiculoPresente) {
-                cout << "" << carrilAux->vehiculo->nombreEs;
+                cout << "" << carrilAux->vehiculo->vehiculoEnPantalla;
             }else {
                 cout << "" << kilometroAux->obstaculo->aDisplay[kilometroAux->obstaculo->display];
             }
@@ -120,13 +120,13 @@ void generarObstaculos(tPista *pista) {
             if (kilometroAux->obstaculo->display <=24) {
                 switch (kilometroAux->obstaculo->display)
                 {
-                case 8:
+                case 1 ... 8:
                     kilometroAux->obstaculo->display = 1;
                     break;
-                case 16:
+                case 9 ... 16:
                     kilometroAux->obstaculo->display = 2;
                     break;
-                case 24:
+                case 17 ... 24:
                     kilometroAux->obstaculo->display = 3;
                     break;
                 }
@@ -160,31 +160,13 @@ bool llegaronTodos(tPista *pista, bool *lleg){
 void simularCarrera(tPista *p){  
     tCarril *carrilAux = p->primerCarril;
     
-    while ((lleg)){
+    while (!lleg){
         system("cls");
         modificarPociciones(p);
-        usleep(16666);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
         mostrarPista(p);
-        /*
-            1.  borrarCarrera
-            if (timeSeCumplio()) modificarposicion();
-            
-            2. modificarposicion (tpista *p,timeVehiculo,velocidad)
-            3. imprimir carrera  
-        */
-    /*
-    paso a paso
-    - vas a pista , y te paras en el carril de esa pista  , y recorres hasta pararte donde esta el vehiculo (no hace falta , tenemos puntero al vehiculo , por tanto es orden 1)
-    - haces la funcion modificar en esa pista X veces sea necesario //modificarPosciciones(carrilAux->ubicacionVehiculo);
-    - vas a la siguiente pista , y te para en el carril de esa pista , y recorres hasta pararte donde esta el vehiculo (no hace falta , tenemos puntero al vehiculo , por tanto es orden 1)
-    - haces la funcion modificar en esa pista X veces sea necesario //modificarPosciciones(carrilAux->ubicacionVehiculo);
+        usleep(500000);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
+       
     
-    -------y este mismo proceso hasta recorrer todos los carriles--------
-    aqui muestas en pantalla la ubicacion de cada vehiculo ,y revisas si algun vehiculo ya llego // imprimirEnPantallaLaPista(); verificarCarrera();
-    vulves a entrar en el ciclo miestras todos los vehiculos no allan llegado  
-
-    // ya vengo...
-    */
     }
     
 }
