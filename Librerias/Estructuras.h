@@ -19,6 +19,7 @@ struct tListaVehiculos{
     int monsterTruck;
     int velocidad;
     string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
+    int velocidadKm;
     string vehiculoEnPantalla;
     tListaVehiculos* prox;
 };

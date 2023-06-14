@@ -1,5 +1,5 @@
 #include "TDAPista.h"
-
+bool lleg=true; //variable global para saber si el vehiculo llego a la meta
 tPista *inicializarPista() {
     tPista *pista = new tPista;
     pista->primerCarril = NULL;
@@ -88,6 +88,8 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
             if (carril->primerKilometro == NULL) {
                 carril->primerKilometro = Kilometroaux;
                 carril->ultimoKilometro = Kilometroaux;
+                carril->ubicacionVehiculo = Kilometroaux;
+                Kilometroaux->vehiculoPresente=true;
             } else {
             carril->ultimoKilometro->prox = Kilometroaux;
             carril->ultimoKilometro = Kilometroaux;
@@ -137,5 +139,52 @@ void generarObstaculos(tPista *pista) {
         }
         carrilAux = carrilAux->prox;
     }
+}
 
+bool llego(tCarril *carril){
+    if (carril->ubicacionVehiculo==carril->ultimoKilometro){
+        return true;}
+    return false;
+}
+
+bool llegaronTodos(tPista *pista, bool &lleg){
+    tCarril *carrilAux = pista->primerCarril;
+    while (carrilAux != NULL) {
+        if (!llego(carrilAux)){ lleg=false; return false;}
+        carrilAux = carrilAux->prox;
+    }
+    lleg=true;
+    return true;
+}
+
+void simularCarrera(tPista *p){  
+    tCarril *carrilAux = p->primerCarril;
+    while ((lleg)){
+        
+        /*
+            1.  borrarCarrera
+            2. modificarposicion (tpista *p,timeVehiculo,velocidad)
+            3. imprimir carrera  
+        */
+        
+    }
+    
+}
+
+void modificarPosicion(tCarril *carrilAux){ // mover uno a la derecha 
+    tKilometro *kilometroAux = carrilAux->ubicacionVehiculo;
+        if (kilometroAux->prox!=NULL){
+            kilometroAux->vehiculoPresente=false;
+            kilometroAux->prox->vehiculoPresente=true;
+            carrilAux->ubicacionVehiculo=kilometroAux->prox;
+        }
+}
+
+void modificarPociciones(tPista *pistaAux){ // pararse en ubicacion del vehiculo 
+    tCarril *carrilAux = pistaAux->primerCarril;
+    for (int i = 0; i < pistaAux->numeroCarriles; i++)
+    {
+        modificarPosicion(carrilAux);
+        carrilAux = carrilAux->prox;
+    }
 }

@@ -1,11 +1,35 @@
 #include "Menus.h"
-
-void OpcionesPista(tPista *pista, tListaVehiculos *p){
+void menuPrincipal(tPista *pista, tListaVehiculos *listaCompetidores){
+    do
+    {
+        cout << "\n\n 1. Gestion de vehiculos" << endl;
+        cout << " 2. Gestion de pistas" << endl;
+        cout << " 0. Salir" << endl;
+        opcion=pedirDatoInt("Ingrese una opcion: ");
+        system("cls");
+        cout<<"\n la opcion fue: "<<opcion<<endl;
+        switch (opcion)
+        {
+        case 1:
+            opcionesGestionDeVehiculos(pista, listaCompetidores);
+            break;
+        case 2:
+            opcionesPista(pista, listaCompetidores);
+            break;
+        
+        default:
+            cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
+            break;
+        }
+    }while (opcion!=0);
+    opcion=-1;
+}
+void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
     do
     {
         cout<<"\n 1. Generación de la pista";
         cout<<"\n 2. Mostrar pista";
-        cout<<"\n 3. Cargar competidores";
+        cout<<"\n 3. ini";
         cout<<"\n 4. iniciar carrera";
         cout<<"\n 0. regresar";
         opcion=pedirDatoInt("Ingrese una opcion: ");
@@ -14,17 +38,17 @@ void OpcionesPista(tPista *pista, tListaVehiculos *p){
         switch (opcion)
         {
             case 1:
-                pedirDatosPista(pista, p);
+                pedirDatosPista(pista, listaCompetidores);
                 generarObstaculos(pista);
                 break;
             case 2:
                 mostrarPista(pista);
                 break;
             case 3:
-                cout << "aún no." << endl; 
+                cout << "aun no." << endl; 
                 break;
             case 4:
-                cout << "aún no." << endl; 
+                cout << "aun no." << endl; 
                 break;
             case 0:
                 cout << "Saliendo." << endl;
@@ -37,7 +61,7 @@ void OpcionesPista(tPista *pista, tListaVehiculos *p){
     } while (opcion!=0);
 }
 
-void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *p) {
+void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidores) {
     do
     {
         cout << "1. Agregar vehiculo" << endl;
@@ -45,9 +69,8 @@ void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *p) {
         cout << "3. Eliminar vehiculo" << endl;
         cout << "4. Consultar vehiculo" << endl;
         cout << "5. Validar Lista" << endl;
-        cout << "6. Simular carrera" << endl;
-        cout << "7. Mostrar tabla de posiciones" << endl;
-        cout << "8. Mostrar todos los vehiculos" << endl;
+        cout << "6. Mostrar tabla de posiciones" << endl;
+        cout << "7. Mostrar todos los vehiculos" << endl;
         cout << "0. Salir" << endl;
         opcion=pedirDatoInt("Ingrese una opcion: ");
         system("cls");
@@ -55,31 +78,30 @@ void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *p) {
         switch (opcion)
         {
             case 1:
-                pedirDatosVehiculo(&p);
+                pedirDatosVehiculo(&listaCompetidores);
                 break;
             case 2:
-                modificarVehiculo(&p);
+                modificarVehiculo(&listaCompetidores);
                 break;
             case 3:
-                eliminarVehiculo(&p);
+                eliminarVehiculo(&listaCompetidores);
                 break;
             case 4:
-                consultarVehiculo(p); 
+                consultarVehiculo(listaCompetidores); 
                 break;
             case 5:
-                validarLista(p);
+                validarLista(listaCompetidores);
                 break;
             case 6:
-                OpcionesPista(pista, p);
-                break;
-            case 7:
                 cout << "aún no." << endl;
                 break;
-            case 8:
-                muestra(p);
+            case 7:
+                muestra(listaCompetidores);
                 break;
             case 0:
+                fflush(stdin);
                 cout << "Saliendo." << endl;
+                system("pause");
                 break;
 
             default:

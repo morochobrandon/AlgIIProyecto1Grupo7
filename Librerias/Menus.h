@@ -10,8 +10,9 @@
 using namespace std;
 int opcion;
 
-void OpcionesPista();
-void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *p);
+void menuPrincipal(tPista *pista, tListaVehiculos *listaCompetidores);
+void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores);
+void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidores);
 void menuVelocidadVehiculo();
 
 void menuTipoDeMonsterTruck();

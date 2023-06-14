@@ -12,8 +12,8 @@ void mostrarPista(tPista *pista);
 void cargarPista(tPista *pista, ifstream& archivo);
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos);
 void generarObstaculos(tPista *pista);
-void sacarVehiculosDeListaVehiculos(tPista *pista, int cantidadVehiculos);
 void destruirPista(tPista *pista);
+void simularCarrera(tPista *pista);
 
 #include "TDAPista.cpp"
 #endif // TDAPISTA_H
