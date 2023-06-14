@@ -108,27 +108,45 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
 
 //función que genera los obstáculos en el kilometro tomando en cuenta que: En cada carril puede aparecer de manera aleatoria máximo 3 obstáculos: sin obstáculo, una bomba, una piedra, o líquido resbaladizo, que se muestra en la pista con los caracteres: -, ¤, ¶, ≠, respectivamente.
 void generarObstaculos(tPista *pista) {
+    srand(time(NULL));
     tCarril *carrilAux = pista->primerCarril;
-    const int maxObstaculos = 3;
-    int obstaculos = 0;
-    while (carrilAux != NULL && obstaculos <= maxObstaculos) {
+    bool obsPiedra=false;
+    bool obsBomba=false;
+    bool obsliquido=false;
+
+    while (carrilAux != NULL) {
+        bool obsPiedra=false;
+        bool obsBomba=false;
+        bool obsliqui=false;
         tKilometro *kilometroAux = carrilAux->primerKilometro;
         while (kilometroAux != NULL) {
             kilometroAux->obstaculo= new tObstaculo;
-            kilometroAux->obstaculo->display = rand() % 100;
+            kilometroAux->obstaculo->display = rand() % 40;
 
-            if (kilometroAux->obstaculo->display <=24) {
+            if (kilometroAux->obstaculo->display <=3) {
                 switch (kilometroAux->obstaculo->display)
                 {
-                case 1 ... 8:
-                    kilometroAux->obstaculo->display = 1;
-                    break;
-                case 9 ... 16:
-                    kilometroAux->obstaculo->display = 2;
-                    break;
-                case 17 ... 24:
-                    kilometroAux->obstaculo->display = 3;
-                    break;
+                case 1:{    //bomba
+                    if (!obsBomba)
+                    {
+                        kilometroAux->obstaculo->display = 1;
+                        obsBomba=true;
+                    }else{kilometroAux->obstaculo->display=0;}
+                    break;}
+                case 2:{
+                    if (!obsPiedra)
+                    {
+                        kilometroAux->obstaculo->display = 2;
+                        obsPiedra=true;
+                    }else{kilometroAux->obstaculo->display=0;}
+                    break;}
+                case 3:{
+                    if (!obsliquido)
+                    {
+                        kilometroAux->obstaculo->display = 3;
+                        obsliquido=true;
+                    }else{kilometroAux->obstaculo->display=0;}
+                    break;}
                 }
             } else
             {

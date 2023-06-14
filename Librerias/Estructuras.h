@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <ctime>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ struct tListaVehiculos{
 struct tObstaculo
 {
     string sprite;
-    int display;
+    int display=0;
     string aDisplay[4] = {"-","¤", "¶", "#"};
 };
 struct tKilometro

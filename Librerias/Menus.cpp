@@ -38,6 +38,7 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
         switch (opcion)
         {
             case 1:
+                destruirPista(pista);
                 pedirDatosPista(pista, listaCompetidores);
                 generarObstaculos(pista);
                 break;
@@ -59,6 +60,7 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
                 break;
         }
     } while (opcion!=0);
+    opcion=-1;
 }
 
 void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidores) {
@@ -109,6 +111,7 @@ void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidore
                 break;
         }
     } while (opcion!=0);
+    opcion=-1;
 }
 
 void menuVelocidadVehiculo(){
