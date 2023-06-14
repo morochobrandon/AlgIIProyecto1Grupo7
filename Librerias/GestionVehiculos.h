@@ -8,6 +8,7 @@
 #include "Estructuras.h"
 #include "esNumero.h"
 #include <iomanip>
+#include "Menus.h"
 
 using namespace std;
 
