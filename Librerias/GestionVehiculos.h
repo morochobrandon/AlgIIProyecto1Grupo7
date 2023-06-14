@@ -28,11 +28,5 @@ void cargar_archivo3(tListaVehiculos **listaCompetidores);
 //void cargar_archivo2(tListaVehiculos **listaCompetidores);
 void descargar_archivo3(tListaVehiculos *primero) ;
 
-void menuVelocidadVehiculo();
-void menuTipoDeMonsterTruck();
-void menuComoSeVeElVehiculo();
-void menuTipoDeCaucho();
-void menuTamanoDeCaucho();
-
 #include "GestionVehiculos.cpp"
 #endif // GestionVehiculos_H
