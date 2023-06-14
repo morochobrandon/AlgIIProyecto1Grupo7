@@ -29,8 +29,8 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
     {
         cout<<"\n 1. Generación de la pista";
         cout<<"\n 2. Mostrar pista";
-        cout<<"\n 3. ini";
-        cout<<"\n 4. iniciar carrera";
+        cout<<"\n 3. iniciar carrera";
+        cout<<"\n 4. en progreso";
         cout<<"\n 0. regresar";
         opcion=pedirDatoInt("Ingrese una opcion: ");
         system("cls");
@@ -45,7 +45,7 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
                 mostrarPista(pista);
                 break;
             case 3:
-                cout << "aun no." << endl; 
+                simularCarrera(pista);
                 break;
             case 4:
                 cout << "aun no." << endl; 

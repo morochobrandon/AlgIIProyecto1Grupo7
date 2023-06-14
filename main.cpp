@@ -1,4 +1,3 @@
-#include "Librerias\TDAPista.h"
 #include "Librerias\menus.h"
 
     int main(){

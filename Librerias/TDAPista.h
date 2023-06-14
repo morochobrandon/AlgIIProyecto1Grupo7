@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <fstream>
 #include "GestionVehiculos.h"
+#include <unistd.h>
 
 using namespace std;
 
@@ -13,7 +14,11 @@ void cargarPista(tPista *pista, ifstream& archivo);
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos);
 void generarObstaculos(tPista *pista);
 void destruirPista(tPista *pista);
-void simularCarrera(tPista *pista);
+bool llego(tCarril *carril);
+bool llegaronTodos(tPista *pista, bool *lleg);
+void modificarUnaPosicion(tCarril *carrilAux, tPista *pista);
+void modificarPociciones(tPista *pistaAux);
+void simularCarrera(tPista *p);
 
 #include "TDAPista.cpp"
 #endif // TDAPISTA_H

@@ -1,23 +1,23 @@
 #include "GestionVehiculos.h"
 #include "Menus.h"
 
-void muestra(tListaVehiculos *p){
+void muestra(tListaVehiculos *listaCompetidores){
     // muestra la tListaVehiculos por pantalla
-    tListaVehiculos *t = p;
+    tListaVehiculos *t = listaCompetidores;
     cout<<"\n\n\n";
         while (t){
         muestraVehiculoEspecifico(t);
         cout<<"\n\n\n";
         t = t->prox;
         };
-    if (p == NULL){
+    if (listaCompetidores == NULL){
     printf("NULL\n\n");
     }
 };
 
-void validarLista(tListaVehiculos *p){
+void validarLista(tListaVehiculos *listaCompetidores){
     // muestra la tListaVehiculos por pantalla
-    tListaVehiculos *t = p;
+    tListaVehiculos *t = listaCompetidores;
     bool invalido = false;
         while (t){
         if(!validarVehiculo(t->tipoCaucho , t->tamanoCaucho, t->monsterTruck, t->velocidad)){
@@ -31,7 +31,7 @@ void validarLista(tListaVehiculos *p){
     }
 };
 
-void agregarVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad,int velocidadKm , int comoSeVeElVehiculo ){
+void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad,int velocidadKm , int comoSeVeElVehiculo ){
     // inserta x por cabeza de la tListaVehiculos
     tListaVehiculos *t = new tListaVehiculos;
     t->nombreEs = nombreEsp;
@@ -42,8 +42,8 @@ void agregarVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn , s
     t->monsterTruck = mT;
     t->velocidad = velocidad;
     t->velocidadKm = velocidadKm;
-    t->prox = *p;
-    *p= t;
+    t->prox = *listaCompetidores;
+    *listaCompetidores= t;
 
     if (comoSeVeElVehiculo == 1){
         t->vehiculoEnPantalla = "¥";
@@ -79,9 +79,9 @@ void agregarVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn , s
 
 }
 
-void llenarDatosVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro ,int velocidadDelCarroKm  , int comoSeVeElVehiculo ){
+void llenarDatosVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro ,int velocidadDelCarroKm  , int comoSeVeElVehiculo ){
     // Modifica los datos de un nodo de la tListaVehiculos
-    tListaVehiculos *t = *p;
+    tListaVehiculos *t = *listaCompetidores;
 
     t->nombreEs = nombreEsp;
     t->nombreEn = nombreEn;
@@ -126,14 +126,14 @@ void llenarDatosVehiculo(tListaVehiculos **p, string nombreEsp , string nombreEn
     } 
 }
 
-void consultarVehiculo(tListaVehiculos *p) {
+void consultarVehiculo(tListaVehiculos *listaCompetidores) {
     string busqueda;
     cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
     getline(cin, busqueda);
     cin.ignore();
 
     tListaVehiculos *encontrado = nullptr;
-    tListaVehiculos *t = p;
+    tListaVehiculos *t = listaCompetidores;
     int contador = 0;
 
     // buscar el primer vehículo que coincida con el nombre dado
@@ -156,7 +156,7 @@ void consultarVehiculo(tListaVehiculos *p) {
     } else {
         // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
         cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
-        t = p;
+        t = listaCompetidores;
         contador = 0;
         while (t) {
             if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
@@ -169,7 +169,7 @@ void consultarVehiculo(tListaVehiculos *p) {
         cout << "opcion: ";
         int seleccion;
         cin >> seleccion;
-        t = p;
+        t = listaCompetidores;
         contador = 0;
         while (t) {
             if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
@@ -192,13 +192,13 @@ void consultarVehiculo(tListaVehiculos *p) {
     system("pause");
 }
 
-void eliminarVehiculo(tListaVehiculos **p){
+void eliminarVehiculo(tListaVehiculos **listaCompetidores){
     string busqueda;
     cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
     getline(cin, busqueda);
 
     tListaVehiculos *encontrado = nullptr;
-    tListaVehiculos *t = *p ;
+    tListaVehiculos *t = *listaCompetidores ;
     int contador = 0;
 
     // buscar el primer vehículo que coincida con el nombre dado  , se parara en el ultimo que cumpla las caracteristicas dadas por el usuario
@@ -216,14 +216,14 @@ void eliminarVehiculo(tListaVehiculos **p){
     }
 
     if (contador == 1) {
-            if(*p == encontrado){ // lo que hace es eliminar el nodo con la estructura a eliminar si esta en la cabeza
-            *p = (*p)->prox;
+            if(*listaCompetidores == encontrado){ // lo que hace es eliminar el nodo con la estructura a eliminar si esta en la cabeza
+            *listaCompetidores = (*listaCompetidores)->prox;
                 delete encontrado;
-                encontrado = *p; 
+                encontrado = *listaCompetidores; 
                 cout<<"el elemento a eliminar estaba en la primera casilla\n";
                 cout<<"el elemento fue eliminado exitosamente\n";   
             }else{
-                t = *p;
+                t = *listaCompetidores;
                 while (t->prox != encontrado) t = t->prox;
                 t->prox = encontrado->prox;
                 delete encontrado;
@@ -233,7 +233,7 @@ void eliminarVehiculo(tListaVehiculos **p){
     } else {
         // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
         cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
-        t = *p;
+        t = *listaCompetidores;
         contador = 0;
         while (t) {
             if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
@@ -246,7 +246,7 @@ void eliminarVehiculo(tListaVehiculos **p){
         cout << "opcion: ";
         int seleccion;
         cin >> seleccion;
-        t = *p;
+        t = *listaCompetidores;
         contador = 0;
         while (t) {
             if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
@@ -266,14 +266,14 @@ void eliminarVehiculo(tListaVehiculos **p){
 
     // donde se elimina el nodo
 
-    if(*p == encontrado){ // lo que hace es eliminar el nodo con la estructura a eliminar si esta en la cabeza
-            *p = (*p)->prox;
+    if(*listaCompetidores == encontrado){ // lo que hace es eliminar el nodo con la estructura a eliminar si esta en la cabeza
+            *listaCompetidores = (*listaCompetidores)->prox;
                 delete encontrado;
-                encontrado = *p; 
+                encontrado = *listaCompetidores; 
                 cout<<"el elemento a eliminar estaba en la primera casilla\n";
                 cout<<"el elemento fue eliminado exitosamente\n";   
             }else{
-                t = *p;
+                t = *listaCompetidores;
                 while (t->prox != encontrado) t = t->prox;
                 t->prox = encontrado->prox;
                 delete encontrado;
@@ -286,7 +286,7 @@ void eliminarVehiculo(tListaVehiculos **p){
     system("pause");
 }
 
-void modificarVehiculo(tListaVehiculos **p){
+void modificarVehiculo(tListaVehiculos **listaCompetidores){
     string nombreEsp , nombreEn , piloto;
     int bomba, piedra, liquido,tipoDeCaucho ,tamanoDeCaucho, velocidadDelCarro,comoSeVeElVehiculo;
     string busqueda;
@@ -294,7 +294,7 @@ void modificarVehiculo(tListaVehiculos **p){
     cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
     getline(cin, busqueda);
     tListaVehiculos *encontrado = nullptr;
-    tListaVehiculos *t = *p;
+    tListaVehiculos *t = *listaCompetidores;
     int contador = 0 , datoVehiculoModificar =0;
 
     // buscar el primer vehículo que coincida con el nombre dado
@@ -316,7 +316,7 @@ void modificarVehiculo(tListaVehiculos **p){
     } else {
         // si hay varios vehículos encontrados, pedir al usuario que seleccione uno por conductor
         cout << "Se encontraron varios vehículos con ese nombre. Por favor seleccione el conductor del vehículo que desea buscar:" << endl;
-        t = *p;
+        t = *listaCompetidores;
         contador = 0;
         while (t) {
             if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
@@ -329,7 +329,7 @@ void modificarVehiculo(tListaVehiculos **p){
         cout << "opcion: ";
         int seleccion;
         cin >> seleccion;
-        t = *p;
+        t = *listaCompetidores;
         contador = 0;
         while (t) {
             if (t->nombreEs.find(busqueda) != string::npos || t->nombreEn.find(busqueda) != string::npos) {
@@ -359,7 +359,7 @@ bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, i
     }
 }
 
-void pedirDatosVehiculo(tListaVehiculos **p){
+void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
 
     string nombreEsp , nombreIngles , piloto;
     int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster=0 ,velocidadDelCarro,comoSeVeElVehiculo, opcion;
@@ -438,24 +438,24 @@ void pedirDatosVehiculo(tListaVehiculos **p){
         
 
     }while(!(validarVehiculo(tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro)));
-    agregarVehiculo(p, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro ,comoSeVeElVehiculo );
+    agregarVehiculo(listaCompetidores, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro ,comoSeVeElVehiculo );
    // cout <<"\n Su opcion ue la "<< <<"\n";
     cout <<"\n Los datos agregados fueron: \n";
-    muestraVehiculoEspecifico(*p);
+    muestraVehiculoEspecifico(*listaCompetidores);
     cout <<"\n Desea cambiar algo?\n";
     do{
         cout <<"\n 1. Si 2. No\n";
         cin>>opcion;
     }while(!((opcion>=1)&&(opcion<=2)));
     if(opcion==1){
-        modificarDatosDelVehiculoAux(p);
+        modificarDatosDelVehiculoAux(listaCompetidores);
     }
     cout <<"\n todo se agrego correctamente \n";
 }
 
-void muestraVehiculoEspecifico(tListaVehiculos *p){
+void muestraVehiculoEspecifico(tListaVehiculos *listaCompetidores){
     // muestra la tListaVehiculos por pantalla
-    tListaVehiculos *t = p;
+    tListaVehiculos *t = listaCompetidores;
     cout<<"\n\n\n";
 
     cout<<"nombre en espanol:"<<"["<<t->nombreEs<<"]\n";
@@ -472,8 +472,8 @@ void muestraVehiculoEspecifico(tListaVehiculos *p){
     cout<<"\n\n\n";
 };
 
-void muestraVehiculoSimple(tListaVehiculos *p){
-    tListaVehiculos *t = p;
+void muestraVehiculoSimple(tListaVehiculos *listaCompetidores){
+    tListaVehiculos *t = listaCompetidores;
     int i=0;
         cout<<"\n\n\n\t\t";
             while (t){
@@ -482,13 +482,13 @@ void muestraVehiculoSimple(tListaVehiculos *p){
             cout<<"\n\n\t";
             t = t->prox;
             };
-        if (p == NULL){
+        if (listaCompetidores == NULL){
         printf("NULL\n\n");
         }
 }
 
-void modificarDatosDelVehiculoAux(tListaVehiculos **p){
-    tListaVehiculos *encontrado = *p;
+void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
+    tListaVehiculos *encontrado = *listaCompetidores;
 
     string nombreEsp=encontrado->nombreEs , nombreEn=encontrado->nombreEn , piloto=encontrado->conductor;
     int tipoDeCaucho=encontrado->tipoCaucho ,tamanoDeCaucho= encontrado->tamanoCaucho, tamanoMonster=encontrado->monsterTruck, velocidadDelCarro=encontrado->velocidad, comoSeVeElVehiculo=0, datoVehiculoModificar, seguirModificando=0;
@@ -578,7 +578,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **p){
                 menuComoSeVeElVehiculo();
                 cin>>comoSeVeElVehiculo;
             }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
-            llenarDatosVehiculo(p,encontrado->nombreEs,encontrado->nombreEn,encontrado->conductor,encontrado->tipoCaucho,encontrado->tamanoCaucho,encontrado->monsterTruck,encontrado->velocidad,comoSeVeElVehiculo);
+            llenarDatosVehiculo(listaCompetidores,encontrado->nombreEs,encontrado->nombreEn,encontrado->conductor,encontrado->tipoCaucho,encontrado->tamanoCaucho,encontrado->monsterTruck,encontrado->velocidad,comoSeVeElVehiculo);
             fflush(stdin);
         }else if(datoVehiculoModificar == 8){
             cout<<"\n\nNo se modifico ningun dato \n\n";
@@ -597,11 +597,11 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **p){
         }
         
         }while((!(validarVehiculo(tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro)))||(seguirModificando==1));
-        llenarDatosVehiculo(p, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro, comoSeVeElVehiculo);
+        llenarDatosVehiculo(listaCompetidores, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro, comoSeVeElVehiculo);
         cout<<"\n\n vehiculo modificado con exito \n\n";
 }
 /*
-void cargar_archivo2(tListaVehiculos **p) {
+void cargar_archivo2(tListaVehiculos **listaCompetidores) {
     string nombreEs, nombreEn, conductor, comoSeVeElVehiculo;
     int tipoCaucho, tamanoCaucho, tamanoMonster, velocidad;
 
@@ -629,11 +629,11 @@ void cargar_archivo2(tListaVehiculos **p) {
             }
         }
     }  arch.close();
-    *p = primero;
+    *listaCompetidores = primero;
 }
 */
 
-void cargar_archivo3(tListaVehiculos **p) {
+void cargar_archivo3(tListaVehiculos **listaCompetidores) {
     ifstream arch("Librerias/archivos/vehiculos.txt");
 
     tListaVehiculos* primero = NULL;
@@ -671,7 +671,7 @@ void cargar_archivo3(tListaVehiculos **p) {
 
     arch.close();
 
-    *p = primero;
+    *listaCompetidores = primero;
 }
 
 void descargar_archivo3(tListaVehiculos* primero) {
@@ -687,19 +687,19 @@ void descargar_archivo3(tListaVehiculos* primero) {
     arch.close();
 }
 
-void eliminartListaVehiculos(tListaVehiculos **p){
-	tListaVehiculos *t = *p;
+void eliminartListaVehiculos(tListaVehiculos **listaCompetidores){
+	tListaVehiculos *t = *listaCompetidores;
 	while (t) {
-		*p = (*p)->prox;
+		*listaCompetidores = (*listaCompetidores)->prox;
 		delete t;
-		t = *p;
+		t = *listaCompetidores;
 	}
 	cout<<"la tListaVehiculos fue eliminada exitosamente\n";
 	system("pause");
 }
 
-void convertirVehiculo(tListaVehiculos *p, int cont, tListaVehiculos **vehiculo) {
-    tListaVehiculos *aux = p;
+void convertirVehiculo(tListaVehiculos *listaCompetidores, int cont, tListaVehiculos **vehiculo) {
+    tListaVehiculos *aux = listaCompetidores;
     for (int i = 1; i < cont && aux != NULL; i++) {
         aux = aux->prox;
     }

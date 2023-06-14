@@ -147,44 +147,66 @@ bool llego(tCarril *carril){
     return false;
 }
 
-bool llegaronTodos(tPista *pista, bool &lleg){
+bool llegaronTodos(tPista *pista, bool *lleg){
     tCarril *carrilAux = pista->primerCarril;
     while (carrilAux != NULL) {
-        if (!llego(carrilAux)){ lleg=false; return false;}
+        if (!llego(carrilAux)){ *lleg=false; return false;}
         carrilAux = carrilAux->prox;
     }
-    lleg=true;
+    *lleg=true;
     return true;
 }
 
 void simularCarrera(tPista *p){  
     tCarril *carrilAux = p->primerCarril;
+    
     while ((lleg)){
-        
+        system("cls");
+        modificarPociciones(p);
+        usleep(16666);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
+        mostrarPista(p);
         /*
             1.  borrarCarrera
+            if (timeSeCumplio()) modificarposicion();
+            
             2. modificarposicion (tpista *p,timeVehiculo,velocidad)
             3. imprimir carrera  
         */
-        
+    /*
+    paso a paso
+    - vas a pista , y te paras en el carril de esa pista  , y recorres hasta pararte donde esta el vehiculo (no hace falta , tenemos puntero al vehiculo , por tanto es orden 1)
+    - haces la funcion modificar en esa pista X veces sea necesario //modificarPosciciones(carrilAux->ubicacionVehiculo);
+    - vas a la siguiente pista , y te para en el carril de esa pista , y recorres hasta pararte donde esta el vehiculo (no hace falta , tenemos puntero al vehiculo , por tanto es orden 1)
+    - haces la funcion modificar en esa pista X veces sea necesario //modificarPosciciones(carrilAux->ubicacionVehiculo);
+    
+    -------y este mismo proceso hasta recorrer todos los carriles--------
+    aqui muestas en pantalla la ubicacion de cada vehiculo ,y revisas si algun vehiculo ya llego // imprimirEnPantallaLaPista(); verificarCarrera();
+    vulves a entrar en el ciclo miestras todos los vehiculos no allan llegado  
+
+    // ya vengo...
+    */
     }
     
 }
 
-void modificarPosicion(tCarril *carrilAux){ // mover uno a la derecha 
+void modificarUnaPosicion(tCarril *carrilAux, tPista *pista){ // mover uno a la derecha 
     tKilometro *kilometroAux = carrilAux->ubicacionVehiculo;
-        if (kilometroAux->prox!=NULL){
-            kilometroAux->vehiculoPresente=false;
-            kilometroAux->prox->vehiculoPresente=true;
-            carrilAux->ubicacionVehiculo=kilometroAux->prox;
-        }
+    if (kilometroAux->prox!=NULL){
+        kilometroAux->vehiculoPresente=false;
+        kilometroAux->prox->vehiculoPresente=true;
+        carrilAux->ubicacionVehiculo=kilometroAux->prox;
+    }else
+    {
+        llegaronTodos(pista, &lleg);
+    }
 }
 
 void modificarPociciones(tPista *pistaAux){ // pararse en ubicacion del vehiculo 
     tCarril *carrilAux = pistaAux->primerCarril;
     for (int i = 0; i < pistaAux->numeroCarriles; i++)
     {
-        modificarPosicion(carrilAux);
+        //aquí
+        modificarUnaPosicion(carrilAux, pistaAux);
         carrilAux = carrilAux->prox;
     }
 }
