@@ -6,7 +6,6 @@
 #include <fstream>
 #include <iomanip>
 #include "GestionVehiculos.h"
-#include "TDAPista.h"
 
 
 using namespace std;
@@ -22,6 +21,7 @@ void menuPrincipal(tPista *pista, tListaVehiculos *listaCompetidores);
 void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores);
 void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidores);
 
+#include "TDAPista.h"
 
 #include "menus.cpp"
 #endif /* MENU_H */
