@@ -74,10 +74,15 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
         muestraVehiculoSimple(vehiculos);
         do
         {
-            cout << "Selecciona el vehiculo para el carril " << i << "(ingrese el numero a un lado): ";
-            getline(cin, auxS);
-        } while (!esEntero(auxS));
-        vehiculoABuscar=stoi(auxS);
+            do
+            {
+                cout << "Selecciona el vehiculo para el carril " << i << "(ingrese el numero a un lado): ";
+                getline(cin, auxS);
+            } while (!esEntero(auxS));
+            vehiculoABuscar=stoi(auxS);
+        } while (vehiculoABuscar < contadorVehiculos);
+        
+    
         convertirVehiculo(vehiculos, vehiculoABuscar, &carril->vehiculo);
         carril->primerKilometro = NULL;
         carril->ultimoKilometro = NULL;
