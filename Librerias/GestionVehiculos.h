@@ -12,9 +12,12 @@
 
 using namespace std;
 
+
+bool validarResistencias1(int tamanoMonster, int resBomba, int resPiedra, int resLiquido, int velocidadkm);
+bool validarResistencias2(int velocidadDelCarro,int tamanoMonster, int resBomba, int resPiedra, int resLiquido, int velocidadkm);
 void muestra(tListaVehiculos *listaCompetidores);
-void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad,int velocidadKm , int comoSeVeElVehiculo );
-void llenarDatosVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro ,int velocidadDelCarroKm  , int comoSeVeElVehiculo );
+void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad,int velocidadKm , int comoSeVeElVehiculo, int resistenciaBomba, int resistenciaPiedra, int resistenciaLiquido );
+void llenarDatosVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro ,int velocidadDelCarroKm  , int comoSeVeElVehiculo, int resistenciaBomba, int resistenciaPiedra, int resistenciaLiquido);
 void consultarVehiculo(tListaVehiculos *listaCompetidores);
 void eliminarVehiculo(tListaVehiculos **listaCompetidores);
 void modificarVehiculo(tListaVehiculos **listaCompetidores);

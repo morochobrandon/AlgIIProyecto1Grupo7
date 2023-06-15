@@ -44,11 +44,13 @@ void destruirPista(tPista *pista){
         tKilometro *auxKilometro = auxCarril->primerKilometro;
         while (auxKilometro != NULL) {
             delete auxKilometro->obstaculo;
+            auxKilometro->obstaculo = NULL;
             tKilometro *auxKilometro2 = auxKilometro->prox;
             delete auxKilometro;
             auxKilometro = auxKilometro2;
         }
         delete auxCarril->vehiculo;
+        auxCarril->vehiculo = NULL;
         tCarril *auxCarril2 = auxCarril->prox;
         delete auxCarril;
         auxCarril = auxCarril2;
@@ -157,16 +159,54 @@ void generarObstaculos(tPista *pista) {
         carrilAux = carrilAux->prox;
     }
 }
-/*
-tListaVehiculos *tablaDePosiciones(tPista *pista){
-    tlistavehiculos *tablaPosiciones=new tListaVehiculos;
-    tlistaveihuclos *auxTablaPosiciones=tablaPosiciones;
+//función que ordena la lista de vehículos de menor a mayor según el tiempo que tardaron en llegar a la meta.
+void ordenarListaVehiculos(tListaVehiculos **head){
+    if (*head == NULL || (*head)->prox == NULL) {
+        return;
+    }
+    tListaVehiculos *actual = *head;
+    tListaVehiculos *proximo = actual->prox;
+    tListaVehiculos *prev = NULL;
+    while (proximo != NULL) {
+        if (proximo->duracionEnPista < actual->duracionEnPista) {
+            if (prev != NULL) {
+                prev->prox = proximo;
+            } else {
+                *head = proximo;
+            }
+            actual->prox = proximo->prox;
+            proximo->prox = actual;
+            prev = proximo;
+            proximo = actual->prox;
+        } else {
+            prev = actual;
+            actual = proximo;
+            proximo = proximo->prox;
+        }
+    }
+}
+
+//función que guarda los vehiculos de cada carril en una lista de vehiculos ordenados por el tiempo que tardaron en llegar a la meta.
+tListaVehiculos *tablaDePosiciones(tPista *pista) {
     tCarril *carrilAux = pista->primerCarril;
+    tListaVehiculos *tablaVehiculos =new tListaVehiculos;
+    tListaVehiculos *vehiculoAux = tablaVehiculos;
     while (carrilAux != NULL) {
-        
+        vehiculoAux->nombreEs = carrilAux->vehiculo->nombreEs;
+        vehiculoAux->nombreEn = carrilAux->vehiculo->nombreEn;
+        vehiculoAux->conductor = carrilAux->vehiculo->conductor;
+        vehiculoAux->tipoCaucho = carrilAux->vehiculo->tipoCaucho;
+        vehiculoAux->tamanoCaucho = carrilAux->vehiculo->tamanoCaucho;
+        vehiculoAux->velocidadKm = carrilAux->vehiculo->velocidadKm;
+        vehiculoAux->vehiculoEnPantalla = carrilAux->vehiculo->vehiculoEnPantalla;
+        vehiculoAux->duracionEnPista = carrilAux->vehiculo->duracionEnPista;
+        vehiculoAux = vehiculoAux->prox;
         carrilAux = carrilAux->prox;
     }
-}*/
+    vehiculoAux=NULL;
+    ordenarListaVehiculos(&tablaVehiculos);
+    return tablaVehiculos;
+}
 
 bool llego(tCarril *carril){
     if (carril->ubicacionVehiculo==carril->ultimoKilometro){
@@ -187,14 +227,32 @@ bool llegaronTodos(tPista *pista, bool *lleg){
 void simularCarrera(tPista *p){  
     tCarril *carrilAux = p->primerCarril;
     p->tiempoInicio = std::chrono::system_clock::now();
-    while (!lleg){
         system("cls");
-        modificarPociciones(p);
+    while (!lleg){
         mostrarPista(p);
-        usleep(500000);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
+        modificarPociciones(p);
+        usleep(250000);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
+        system("cls");
     }
 }
 
+//función que muestra la tabla de ganadores de la carrera.
+void mostrarTablaDePosiciones(tListaVehiculos *tablaVehiculos) {
+    tListaVehiculos *vehiculoAux = tablaVehiculos;
+    while (vehiculoAux != NULL) {
+        cout << "Nombre: " << vehiculoAux->nombreEs << endl;
+        cout << "Nombre en ingles: " << vehiculoAux->nombreEn << endl;
+        cout << "Conductor: " << vehiculoAux->conductor << endl;
+        cout << "Tipo de caucho: " << vehiculoAux->tipoCaucho << endl;
+        cout << "Tamano de caucho: " << vehiculoAux->tamanoCaucho << endl;
+        cout << "Velocidad: " << vehiculoAux->velocidadKm << endl;
+        cout << "Vehiculo en pantalla: " << vehiculoAux->vehiculoEnPantalla << endl;
+        cout << "Duracion en pista: " << vehiculoAux->duracionEnPista << endl<<endl;
+        vehiculoAux = vehiculoAux->prox;
+    }
+}
+
+//función que modifica la posición de un vehiculo en la pista.
 void modificarUnVehiculo(tCarril *carrilAux, tPista *pista){ // mover uno a la derecha 
     tKilometro *kilometroAux = carrilAux->ubicacionVehiculo;
     carrilAux->vehiculo->contadorAux++; // contador debe empezar en 0 , se hace en gestion de vehiculo

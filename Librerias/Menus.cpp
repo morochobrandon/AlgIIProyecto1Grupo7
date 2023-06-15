@@ -6,7 +6,7 @@ void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
         cout<<"\n 1. Generación de la pista";
         cout<<"\n 2. Mostrar pista";
         cout<<"\n 3. iniciar carrera";
-        cout<<"\n 4. en progreso";
+        cout<<"\n 4. Mostrar tabla de posiciones";
         cout<<"\n 0. regresar";
         opcion=pedirDatoInt("Ingrese una opcion: ");
         system("cls");
@@ -15,6 +15,7 @@ void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
         {
             case 1:
                 destruirPista(pista);
+                pista=inicializarPista();
                 pedirDatosPista(pista, *listaCompetidores);
                 generarObstaculos(pista);
                 break;
@@ -23,9 +24,12 @@ void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
                 break;
             case 3:
                 simularCarrera(pista);
+                tListaVehiculos *tabla;
+                tabla = tablaDePosiciones(pista);
+                destruirPista(pista);
                 break;
             case 4:
-                cout << "aun no." << endl; 
+                mostrarTablaDePosiciones(tabla);
                 break;
             case 0:
                 cout << "Saliendo." << endl;
