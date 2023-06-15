@@ -360,19 +360,104 @@ bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, i
 
 void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
 
-    string nombreEsp , nombreIngles , piloto;
-    int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster=0 ,velocidadDelCarro , velocidadDelCarroPorKilometro,comoSeVeElVehiculo, opcion;
+    string nombreEsp , nombreIngles , piloto, auxS;
+    int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster=0 ,velocidadDelCarro , velocidadDelCarroPorKilometro,comoSeVeElVehiculo, opcion, opcion2;
 
     //Agrega un vehiculo con datos ingresados por el usuario
-    do{
     cout << "\nIngrese el nombre del vehiculo en español: ";
     getline(cin, nombreEsp);
     cout << "\nIngrese el nombre del vehiculo en ingles: ";
     getline(cin, nombreIngles);
     cout << "\nIngrese el nombre del conductor: ";
     getline(cin, piloto);
+    do{
+        menuComoSeVeElVehiculo();
+        do{
+            getline(cin, auxS);
+        } while (!esEntero(auxS));
+        comoSeVeElVehiculo = stoi(auxS);
+    }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
 
-    do {
+    do{
+        menuNuevoVehiculo();
+         do{
+            cout << "\n Elija como quiere su vehiculo:";
+            getline(cin, auxS);
+        } while (!esEntero(auxS));
+        opcion = stoi(auxS);
+        fflush(stdin);
+        if (!((opcion>=1)&&(opcion<=9)))
+            cout << "\nOpcion invalida, intente de nuevo\n";
+        cout << "Opcion: " << opcion << endl;
+    } while (!((opcion>=1)&&(opcion<=9)));
+    
+    switch (opcion){
+        case 1:
+            tipoDeCaucho=1;
+            tamanoDeCaucho=1;
+            tamanoMonster=1;
+            velocidadDelCarro=1;
+            velocidadDelCarroPorKilometro=140;
+            break;
+        case 2:
+            tipoDeCaucho=1;
+            tamanoDeCaucho=1;
+            tamanoMonster=2;
+            velocidadDelCarro=1;
+            velocidadDelCarroPorKilometro=120;
+            break;
+        case 3:
+            tipoDeCaucho=1;
+            tamanoDeCaucho=1;
+            tamanoMonster=3;
+            velocidadDelCarro=1;
+            velocidadDelCarroPorKilometro=110;
+            break;
+        case 4:
+            tipoDeCaucho=1;
+            tamanoDeCaucho=1;
+            tamanoMonster=4;
+            velocidadDelCarro=1;
+            velocidadDelCarroPorKilometro=100;
+            break;
+        case 5:
+            tipoDeCaucho=1;
+            tamanoDeCaucho=1;
+            tamanoMonster=5;
+            velocidadDelCarro=1;
+            velocidadDelCarroPorKilometro=80;
+            break;
+        case 6:
+            tipoDeCaucho=2;
+            tamanoDeCaucho=2;
+            tamanoMonster=0;
+            velocidadDelCarro=1;
+            velocidadDelCarroPorKilometro=120;
+            break;
+        case 7:
+            tipoDeCaucho=2;
+            tamanoDeCaucho=2;
+            tamanoMonster=0;
+            velocidadDelCarro=2;
+            velocidadDelCarroPorKilometro=140;
+            break;
+        case 8:
+            tipoDeCaucho=3;
+            tamanoDeCaucho=3;
+            tamanoMonster=0;
+            velocidadDelCarro=3;
+            velocidadDelCarroPorKilometro=160;
+            break;
+        case 9:
+            tipoDeCaucho=3;
+            tamanoDeCaucho=3;
+            tamanoMonster=0;
+            velocidadDelCarro=4;
+            velocidadDelCarroPorKilometro=180;
+            break;
+    }
+
+    /*do {
         menuTipoDeCaucho();
         cin>>tipoDeCaucho;
     }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
@@ -399,10 +484,7 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
     }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
     fflush(stdin);
 
-    do{
-        menuComoSeVeElVehiculo();
-        cin>>comoSeVeElVehiculo;
-    }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
+    
         fflush(stdin);
         if (!validarVehiculo(tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro)){
             cout<<"el vehiculo no es valido para la carrera\n";
@@ -433,24 +515,17 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
                 cout<< "Delorean\n";
             }
             cout<<"Recuerda las reglas para la creacion del vehiculo\n";
-        }
-
-    }while(!(validarVehiculo(tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro)));
-
-
-/*     es algo temporal */
-    velocidadDelCarroPorKilometro = 50;
+        }*/
     
     agregarVehiculo(listaCompetidores, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro,velocidadDelCarroPorKilometro ,comoSeVeElVehiculo );
-   // cout <<"\n Su opcion ue la "<< <<"\n";
     cout <<"\n Los datos agregados fueron: \n";
     muestraVehiculoEspecifico(*listaCompetidores);
     cout <<"\n Desea cambiar algo?\n";
     do{
         cout <<"\n 1. Si 2. No\n";
-        cin>>opcion;
-    }while(!((opcion>=1)&&(opcion<=2)));
-    if(opcion==1){
+        cin>>opcion2;
+    }while(!((opcion2>=1)&&(opcion2<=2)));
+    if(opcion2==1){
         modificarDatosDelVehiculoAux(listaCompetidores);
     }
     cout <<"\n todo se agrego correctamente \n";
@@ -493,27 +568,36 @@ void muestraVehiculoSimple(tListaVehiculos *listaCompetidores){
 void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
     tListaVehiculos *encontrado = *listaCompetidores;
 
-    string nombreEsp=encontrado->nombreEs , nombreEn=encontrado->nombreEn , piloto=encontrado->conductor;
-    int tipoDeCaucho=encontrado->tipoCaucho ,tamanoDeCaucho= encontrado->tamanoCaucho, tamanoMonster=encontrado->monsterTruck, velocidadDelCarro=encontrado->velocidad , velocidadDelCarroPorKilometro = encontrado->velocidadKm, comoSeVeElVehiculo=0, datoVehiculoModificar, seguirModificando=0;
+    string nombreEsp=encontrado->nombreEs , nombreEn=encontrado->nombreEn , piloto=encontrado->conductor, auxS;
+    int tipoDeCaucho=encontrado->tipoCaucho ,tamanoDeCaucho= encontrado->tamanoCaucho, tamanoMonster=encontrado->monsterTruck, velocidadDelCarro=encontrado->velocidad , velocidadDelCarroPorKilometro = encontrado->velocidadKm, comoSeVeElVehiculo=0, datoVehiculoModificar, seguirModificando=0, opcion;
     do{
     cout<<"\n\ndatos del vehiculo\n\n";
     cout<<1<<".  nombre en espanol:"<<"["<<nombreEsp<<"]\n";
     cout<<2<<".  nombre en ingles:"<<"["<<nombreEn<<"]\n";
     cout<<3<<".  nombre del conductor:"<<"["<<piloto<<"]\n";
-    cout<<4<<".  tipo de caucho:"<<"["<<encontrado->aTipoCaucho[tipoDeCaucho]<<"]\n";
-    cout<<5<<".  tamano de caucho:"<<"["<<encontrado->aTamanoCaucho[tamanoDeCaucho ];
-    if (tamanoMonster != 0){
-        cout<<" "<<tamanoMonster;}
-    cout<<"]\n";
-    cout<<6<<".  velocidad del vehiculo:"<<"["<<encontrado->aVelocidad[velocidadDelCarro]<<"]\n";
-    cout<<6<<".  velocidad del vehiculo por kilometro:"<<"["<<encontrado->velocidadKm<<"]\n";
-    cout<<7<<".  como se ve el vehiculo:"<<"["<<encontrado->vehiculoEnPantalla<<"]\n";
-    cout<<8<<". ninguno \n\n";
+    cout<<4<<".  como se ve el vehiculo:"<<"["<<encontrado->vehiculoEnPantalla<<"]\n";
+    cout<<5<<".  Datos del vehiculo:\n";
+    cout<<"\t\t tipo de caucho:"<<"["<<encontrado->aTipoCaucho[tipoDeCaucho]<<"]\n";
+    cout<<"\t\t tamano de caucho:"<<"["<<encontrado->aTamanoCaucho[tamanoDeCaucho ];
+             if (tamanoMonster != 0){
+                 cout<<" "<<tamanoMonster;}
+            cout<<"]\n";
+    cout<<"\t\t velocidad del vehiculo:"<<"["<<encontrado->aVelocidad[velocidadDelCarro]<<"]\n";
+    cout<<"\t\t velocidad del vehiculo por kilometro:"<<"["<<encontrado->velocidadKm<<"]\n";
+    cout<<6<<". ninguno \n\n";
     cout<<"\n\n que elementos deseas modificar?\n\n";
     do{
-        cout<<"eliga su opcion: ";
+        
+         do{
+            cout<<"elija su opcion: ";
+            getline(cin, auxS);
+        } while (!esEntero(auxS));
+        datoVehiculoModificar = stoi(auxS);
+        if (!((datoVehiculoModificar>=1)&&(datoVehiculoModificar<=6)))
+            cout << "\nOpcion invalida, intente de nuevo\n";
+        cout << "Opcion: " << opcion << endl;
         cin>>datoVehiculoModificar;
-    } while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=8)));
+    } while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=6)));
 
     if (datoVehiculoModificar == 1){
         cout <<"Nombre en español: " << nombreEsp << endl;
@@ -531,60 +615,99 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
             cout<<"escribe nuevo nombre de conductor";
             cin>>piloto;
             fflush(stdin);
-        }else if(datoVehiculoModificar == 4)
-        {
-            cout << "tipo de caucho: " << encontrado->aTipoCaucho[tipoDeCaucho] << endl;
-            do
-            {
-                cout << "\n\tnuevo\t\n";
-                menuTipoDeCaucho();
-                cin>>tipoDeCaucho;
-            } while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
-            fflush(stdin);
-        } else if(datoVehiculoModificar == 5)
-        {
-            cout << "tamano de caucho: " << encontrado->aTamanoCaucho[tamanoDeCaucho];  
-            if (tamanoDeCaucho==1){
-                cout<<" "<<tamanoMonster<<endl;
-            }
-            do
-            {
-                cout << "\n\tnuevo\t\n";
-                menuTamanoDeCaucho();
-                cin>>tamanoDeCaucho;
-            } while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
-            if (tamanoDeCaucho==1)
-            {
-                do{
-                    cout << "\n\tnuevo\t\n";
-                    menuTipoDeMonsterTruck();
-                    cin>>tamanoMonster;
-                }while(!((tamanoMonster>=1)&&(tamanoMonster<=5)));
-            }
-            else
-            {
-                tamanoMonster=0;
-            }
-            fflush(stdin);
-        } else if(datoVehiculoModificar == 6)
-        {
-        cout << "velocidad del vehiculo: " << velocidadDelCarro << endl;
-        do {
-            cout << "\n\tnuevo\t\n";
-            menuVelocidadVehiculo();
-            cin>>velocidadDelCarro;
-        }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
-        fflush(stdin);
-        } else if(datoVehiculoModificar== 7)
+        }else if(datoVehiculoModificar== 4)
         {
             do{
                 cout << "\n\tnuevo\t\n";
                 menuComoSeVeElVehiculo();
-                cin>>comoSeVeElVehiculo;
+                do{
+                    getline(cin, auxS);
+                } while (!esEntero(auxS));
+                comoSeVeElVehiculo= stoi(auxS);
             }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
             llenarDatosVehiculo(listaCompetidores,encontrado->nombreEs,encontrado->nombreEn,encontrado->conductor,encontrado->tipoCaucho,encontrado->tamanoCaucho,encontrado->monsterTruck,encontrado->velocidad , encontrado->velocidadKm ,comoSeVeElVehiculo);
             fflush(stdin);
-        }else if(datoVehiculoModificar == 8){
+        }else if(datoVehiculoModificar == 5)
+        {
+            do{
+                menuNuevoVehiculo();
+                do{
+                    cout << "\n Elija como quiere su vehiculo:";
+                    getline(cin, auxS);
+                } while (!esEntero(auxS));
+                opcion = stoi(auxS);
+                fflush(stdin); 
+                if (!((opcion>=1)&&(opcion<=9)))
+                    cout << "\nOpcion invalida, intente de nuevo\n";
+                cout << "Opcion: " << opcion << endl;
+            } while (!((opcion>=1)&&(opcion<=9)));
+
+            switch (opcion){
+            case 1:
+                tipoDeCaucho=1;
+                tamanoDeCaucho=1;
+                tamanoMonster=1;
+                velocidadDelCarro=1;
+                velocidadDelCarroPorKilometro=140;
+                break;
+            case 2:
+                tipoDeCaucho=1;
+                tamanoDeCaucho=1;
+                tamanoMonster=2;
+                velocidadDelCarro=1;
+                velocidadDelCarroPorKilometro=120;
+                break;
+            case 3:
+                tipoDeCaucho=1;
+                tamanoDeCaucho=1;
+                tamanoMonster=3;
+                velocidadDelCarro=1;
+                velocidadDelCarroPorKilometro=110;
+                break;
+            case 4:
+                tipoDeCaucho=1;
+                tamanoDeCaucho=1;
+                tamanoMonster=4;
+                velocidadDelCarro=1;
+                velocidadDelCarroPorKilometro=100;
+                break;
+            case 5:
+                tipoDeCaucho=1;
+                tamanoDeCaucho=1;
+                tamanoMonster=5;
+                velocidadDelCarro=1;
+                velocidadDelCarroPorKilometro=80;
+                break;
+            case 6:
+                tipoDeCaucho=2;
+                tamanoDeCaucho=2;
+                tamanoMonster=0;
+                velocidadDelCarro=1;
+                velocidadDelCarroPorKilometro=120;
+                break;
+            case 7:
+                tipoDeCaucho=2;
+                tamanoDeCaucho=2;
+                tamanoMonster=0;
+                velocidadDelCarro=2;
+                velocidadDelCarroPorKilometro=140;
+                break;
+            case 8:
+                tipoDeCaucho=3;
+                tamanoDeCaucho=3;
+                tamanoMonster=0;
+                velocidadDelCarro=3;
+                velocidadDelCarroPorKilometro=160;
+                break;
+            case 9:
+                tipoDeCaucho=3;
+                tamanoDeCaucho=3;
+                tamanoMonster=0;
+                velocidadDelCarro=4;
+                velocidadDelCarroPorKilometro=180;
+                break;
+            }
+        }else if(datoVehiculoModificar == 6){
             cout<<"\n\nNo se modifico ningun dato \n\n";
         }
 
@@ -595,12 +718,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
             cin>>seguirModificando;
         }while(!((seguirModificando>=1)&&(seguirModificando<=2)));
         fflush(stdin);
-        if ((!(validarVehiculo(tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro)))&&(seguirModificando==2))
-        {
-            cout<<"El vehiculo no es valido, por favor recuerde las reglas para la creacion de vehiculos\n\n";
-        }
-        
-        }while((!(validarVehiculo(tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro)))||(seguirModificando==1));
+        }while((seguirModificando==1));
         llenarDatosVehiculo(listaCompetidores, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro , velocidadDelCarroPorKilometro, comoSeVeElVehiculo);
         cout<<"\n\n vehiculo modificado con exito \n\n";
 }
