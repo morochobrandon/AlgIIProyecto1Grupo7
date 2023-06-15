@@ -10,10 +10,10 @@ using namespace std;
 
 tPista *inicializarPista();
 void mostrarPista(tPista *pista);
-void cargarPista(tPista *pista, ifstream& archivo);
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos);
 void generarObstaculos(tPista *pista);
 void destruirPista(tPista *pista);
+void tablaDePosiciones(tPista *pista, tListaVehiculos *vehiculos);
 bool llego(tCarril *carril);
 bool llegaronTodos(tPista *pista, bool *lleg);
 void modificarUnVehiculo(tCarril *carrilAux, tPista *pista);

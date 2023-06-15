@@ -1,2 +1,2 @@
-Mach 5/Mach 5/Mr. X/3/1/0/4/&
-Mach 6/Mach 6/Meteoro Racer/3/3/0/4/t
+Mach 5/Mach 5/Mr. X/3/3/0/3/160/25/30/20/&
+Mach 6/Mach 6/Meteoro Racer/3/3/0/4/180/45/40/15/t

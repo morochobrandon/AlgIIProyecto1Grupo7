@@ -1,33 +1,6 @@
 #include "Menus.h"
-void menuPrincipal(tPista *pista, tListaVehiculos *listaCompetidores){
-    do
-    {
-        cout << "\n\n 1. Gestion de vehiculos" << endl;
-        cout << " 2. Gestion de pistas" << endl;
-        cout << " 0. Salir" << endl;
-        opcion=pedirDatoInt("Ingrese una opcion: ");
-        system("cls");
-        cout<<"\n la opcion fue: "<<opcion<<endl;
-        switch (opcion)
-        {
-        case 1:
-            opcionesGestionDeVehiculos(pista, listaCompetidores);
-            break;
-        case 2:
-            opcionesPista(pista, listaCompetidores);
-            break;
-        case 0:
-            cout<<"Saliendo."<<endl;
-            break;
-        
-        default:
-            cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
-            break;
-        }
-    }while (opcion!=0);
-    opcion=-1;
-}
-void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
+
+void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
     do
     {
         cout<<"\n 1. Generación de la pista";
@@ -42,7 +15,7 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
         {
             case 1:
                 destruirPista(pista);
-                pedirDatosPista(pista, listaCompetidores);
+                pedirDatosPista(pista, *listaCompetidores);
                 generarObstaculos(pista);
                 break;
             case 2:
@@ -66,7 +39,7 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
     opcion=-1;
 }
 
-void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidores) {
+void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos **listaCompetidores) {
     do
     {
         cout << "1. Agregar vehiculo" << endl;
@@ -83,25 +56,28 @@ void opcionesGestionDeVehiculos(tPista *pista, tListaVehiculos *listaCompetidore
         switch (opcion)
         {
             case 1:
-                pedirDatosVehiculo(&listaCompetidores);
+                pedirDatosVehiculo(listaCompetidores);
+                descargar_archivo3(*listaCompetidores);
                 break;
             case 2:
-                modificarVehiculo(&listaCompetidores);
+                modificarVehiculo(listaCompetidores);
+                descargar_archivo3(*listaCompetidores);
                 break;
             case 3:
-                eliminarVehiculo(&listaCompetidores);
+                eliminarVehiculo(listaCompetidores);
+                descargar_archivo3(*listaCompetidores);
                 break;
             case 4:
-                consultarVehiculo(listaCompetidores); 
+                consultarVehiculo(*listaCompetidores); 
                 break;
             case 5:
-                validarLista(listaCompetidores);
+                validarLista(*listaCompetidores);
                 break;
             case 6:
                 cout << "aún no." << endl;
                 break;
             case 7:
-                muestra(listaCompetidores);
+                muestra(*listaCompetidores);
                 break;
             case 0:
                 fflush(stdin);
@@ -183,4 +159,33 @@ void menuNuevoVehiculo(){
     cout<<left<<setw(17)<<"7. Crucero "      <<setw(13)<<"Normales "    <<setw(16)<<"Normales "       <<setw(5)<<"140"<<endl;
     cout<<left<<setw(17)<<"8. super ferrari "<<setw(13)<<"Anti Coleo "  <<setw(16)<<"Pegado al piso " <<setw(5)<<"160"<<endl;
     cout<<left<<setw(17)<<"9. Delorean "     <<setw(13)<<"Anti Coleo "  <<setw(16)<<"Pegado al piso " <<setw(5)<<"180\n\n";
+}
+
+void menuPrincipal(tPista *pista, tListaVehiculos **listaCompetidores){
+    do
+    {
+        cout << "\n\n 1. Gestion de vehiculos" << endl;
+        cout << " 2. Gestion de pistas" << endl;
+        cout << " 0. Salir" << endl;
+        opcion=pedirDatoInt("Ingrese una opcion: ");
+        system("cls");
+        cout<<"\n la opcion fue: "<<opcion<<endl;
+        switch (opcion)
+        {
+        case 1:
+            opcionesGestionDeVehiculos(pista, listaCompetidores);
+            break;
+        case 2:
+            opcionesPista(pista, listaCompetidores);
+            break;
+        case 0:
+            cout<<"Saliendo."<<endl;
+            break;
+        
+        default:
+            cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;
+            break;
+        }
+    }while (opcion!=0);
+    opcion=-1;
 }

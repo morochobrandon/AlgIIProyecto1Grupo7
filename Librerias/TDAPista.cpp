@@ -157,6 +157,16 @@ void generarObstaculos(tPista *pista) {
         carrilAux = carrilAux->prox;
     }
 }
+/*
+tListaVehiculos *tablaDePosiciones(tPista *pista){
+    tlistavehiculos *tablaPosiciones=new tListaVehiculos;
+    tlistaveihuclos *auxTablaPosiciones=tablaPosiciones;
+    tCarril *carrilAux = pista->primerCarril;
+    while (carrilAux != NULL) {
+        
+        carrilAux = carrilAux->prox;
+    }
+}*/
 
 bool llego(tCarril *carril){
     if (carril->ubicacionVehiculo==carril->ultimoKilometro){
@@ -176,6 +186,7 @@ bool llegaronTodos(tPista *pista, bool *lleg){
 
 void simularCarrera(tPista *p){  
     tCarril *carrilAux = p->primerCarril;
+    p->tiempoInicio = std::chrono::system_clock::now();
     while (!lleg){
         system("cls");
         modificarPociciones(p);
@@ -196,8 +207,13 @@ void modificarUnVehiculo(tCarril *carrilAux, tPista *pista){ // mover uno a la d
             carrilAux->ubicacionVehiculo=kilometroAux->prox;
         }
        // } fin if validar
-        else
-        {
+        else if (carrilAux->terminoCarrera==false){
+            carrilAux->terminoCarrera=true;
+            auto end = std::chrono::system_clock::now();
+            auto elipsetime = std::chrono::duration_cast<std::chrono::seconds>(end - pista->tiempoInicio).count();
+            carrilAux->vehiculo->duracionEnPista = elipsetime;
+        }
+        else if (carrilAux->terminoCarrera==true) {
             llegaronTodos(pista, &lleg);
         }
     //  }  // while fin

@@ -19,8 +19,8 @@ void validarLista(tListaVehiculos *listaCompetidores){
     tListaVehiculos *t = listaCompetidores;
     bool invalido = false;
         while (t){
-        if(!validarVehiculo(t->tipoCaucho , t->tamanoCaucho, t->monsterTruck, t->velocidad)){
-            cout << "El vehiculo " << t->nombreEs << " no es valido" << endl;
+        if(!(validarVehiculo(t->tipoCaucho , t->tamanoCaucho, t->monsterTruck, t->velocidad)&&(validarResistencias1(t->monsterTruck, t->resBomba, t->resPiedra, t->resLiquido, t->velocidadKm)||validarResistencias2(t->velocidad,t->monsterTruck, t->resBomba, t->resPiedra, t->resLiquido, t->velocidadKm)))){
+            cout << "El vehiculo: " << t->nombreEs << " no es valido" << endl;
             invalido = true;
         }
         t = t->prox;
@@ -30,7 +30,7 @@ void validarLista(tListaVehiculos *listaCompetidores){
     }
 };
 
-void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad,int velocidadKm , int comoSeVeElVehiculo ){
+void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto , int tipoCaucho , int tamCaucho,  int mT , int velocidad,int velocidadKm , int comoSeVeElVehiculo, int resistenciaBomba, int resistenciaPiedra, int resistenciaLiquido ){
     // inserta x por cabeza de la tListaVehiculos
     tListaVehiculos *t = new tListaVehiculos;
     t->nombreEs = nombreEsp;
@@ -40,7 +40,10 @@ void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , str
     t->tamanoCaucho = tamCaucho;
     t->monsterTruck = mT;
     t->velocidad = velocidad;
-    t->velocidadKm = velocidadKm; // para que 
+    t->velocidadKm = velocidadKm;
+    t->resBomba = resistenciaBomba;
+    t->resPiedra = resistenciaPiedra;
+    t->resLiquido = resistenciaLiquido;
     t->prox = *listaCompetidores;
     *listaCompetidores= t;
 
@@ -78,7 +81,7 @@ void agregarVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , str
 
 }
 
-void llenarDatosVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro ,int velocidadDelCarroKm  , int comoSeVeElVehiculo ){
+void llenarDatosVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp , string nombreEn , string piloto ,int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro ,int velocidadDelCarroKm  , int comoSeVeElVehiculo, int resistenciaBomba, int resistenciaPiedra, int resistenciaLiquido){
     // Modifica los datos de un nodo de la tListaVehiculos
     tListaVehiculos *t = *listaCompetidores;
 
@@ -90,6 +93,9 @@ void llenarDatosVehiculo(tListaVehiculos **listaCompetidores, string nombreEsp ,
     t->monsterTruck = tamanoMonster;
     t->velocidad = velocidadDelCarro;
     t->velocidadKm = velocidadDelCarroKm;
+    t->resBomba = resistenciaBomba;
+    t->resPiedra = resistenciaPiedra;
+    t->resLiquido = resistenciaLiquido;
 
 
     if (comoSeVeElVehiculo == 1){
@@ -349,7 +355,23 @@ void modificarVehiculo(tListaVehiculos **listaCompetidores){
 }
 
 bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, int velocidadDelCarro){
-    if((velocidadDelCarro==1 && (tamanoDeCaucho==1 || tamanoDeCaucho==2) && tipoDeCaucho==1) || (velocidadDelCarro==2 && tamanoDeCaucho==2 && tipoDeCaucho==2) || ((velocidadDelCarro==3 || velocidadDelCarro==4 )&& tamanoDeCaucho==3 && tipoDeCaucho==3) ){
+    if((velocidadDelCarro==1 && tamanoDeCaucho==1 && tipoDeCaucho==1 && (tamanoMonster<6 && tamanoMonster>0)) ||  ((velocidadDelCarro==2 || velocidadDelCarro==1)&& tamanoDeCaucho==2 && tipoDeCaucho==2 && tamanoMonster==0) || ((velocidadDelCarro==3 || velocidadDelCarro==4 )&& tamanoDeCaucho==3 && tipoDeCaucho==3 && tamanoMonster==0) ){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool validarResistencias1(int tamanoMonster, int resBomba, int resPiedra, int resLiquido, int velocidadkm){
+    if((tamanoMonster==1 && resBomba==15 && resPiedra==20 && resLiquido==30 && velocidadkm==140)|| (velocidadkm==120 && tamanoMonster==2 && resBomba==12 && resPiedra==17 && resLiquido==25) ||(tamanoMonster==3 && resBomba==10 && resPiedra==15 && resLiquido==20 && velocidadkm==110)||(tamanoMonster==4 && resBomba==7 && resPiedra==10 && resLiquido==15 && velocidadkm==100)||(tamanoMonster==5 && resBomba==5 && resPiedra==5 && resLiquido==10 && velocidadkm==80)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool validarResistencias2(int velocidadDelCarro,int tamanoMonster, int resBomba, int resPiedra, int resLiquido, int velocidadkm){
+    if((velocidadDelCarro==1 && tamanoMonster==0 && resBomba==15 && resPiedra==20 && resLiquido==30 && velocidadkm==120)||(velocidadDelCarro==2 && tamanoMonster==0 && resBomba==20 && resPiedra==25 && resLiquido==35 && velocidadkm==140)||(velocidadDelCarro==3 && tamanoMonster==0 && resBomba==25 && resPiedra==30 && resLiquido==20 && velocidadkm==160)||(velocidadDelCarro==4 && tamanoMonster==0 && resBomba==35 && resPiedra==40 && resLiquido==15 && velocidadkm==180)){
         return true;
     }else{
         return false;
@@ -359,7 +381,7 @@ bool validarVehiculo(int tipoDeCaucho , int tamanoDeCaucho, int tamanoMonster, i
 void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
 
     string nombreEsp , nombreIngles , piloto, auxS;
-    int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster=0 ,velocidadDelCarro , velocidadDelCarroPorKilometro,comoSeVeElVehiculo, opcion, opcion2;
+    int tipoDeCaucho ,tamanoDeCaucho, tamanoMonster=0 ,velocidadDelCarro , velocidadDelCarroPorKilometro,comoSeVeElVehiculo, resistenciaBomba, resistenciaPiedra, resistenciaLiquido, opcion, opcion2;
 
     //Agrega un vehiculo con datos ingresados por el usuario
     cout << "\nIngrese el nombre del vehiculo en español: ";
@@ -396,6 +418,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=1;
             velocidadDelCarro=1;
             velocidadDelCarroPorKilometro=140;
+            resistenciaBomba=15;
+            resistenciaPiedra=20;
+            resistenciaLiquido=30;
             break;
         case 2:
             tipoDeCaucho=1;
@@ -403,6 +428,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=2;
             velocidadDelCarro=1;
             velocidadDelCarroPorKilometro=120;
+            resistenciaBomba=12;
+            resistenciaPiedra=17;
+            resistenciaLiquido=25;
             break;
         case 3:
             tipoDeCaucho=1;
@@ -410,6 +438,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=3;
             velocidadDelCarro=1;
             velocidadDelCarroPorKilometro=110;
+            resistenciaBomba=10;
+            resistenciaPiedra=15;
+            resistenciaLiquido=20;
             break;
         case 4:
             tipoDeCaucho=1;
@@ -417,6 +448,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=4;
             velocidadDelCarro=1;
             velocidadDelCarroPorKilometro=100;
+            resistenciaBomba=7;
+            resistenciaPiedra=10;
+            resistenciaLiquido=15;
             break;
         case 5:
             tipoDeCaucho=1;
@@ -424,6 +458,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=5;
             velocidadDelCarro=1;
             velocidadDelCarroPorKilometro=80;
+            resistenciaBomba=5;
+            resistenciaPiedra=5;
+            resistenciaLiquido=10;
             break;
         case 6:
             tipoDeCaucho=2;
@@ -431,6 +468,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=0;
             velocidadDelCarro=1;
             velocidadDelCarroPorKilometro=120;
+            resistenciaBomba=15;
+            resistenciaPiedra=20;
+            resistenciaLiquido=30;
             break;
         case 7:
             tipoDeCaucho=2;
@@ -438,6 +478,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=0;
             velocidadDelCarro=2;
             velocidadDelCarroPorKilometro=140;
+            resistenciaBomba=20;
+            resistenciaPiedra=25;
+            resistenciaLiquido=35;
             break;
         case 8:
             tipoDeCaucho=3;
@@ -445,6 +488,9 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=0;
             velocidadDelCarro=3;
             velocidadDelCarroPorKilometro=160;
+            resistenciaBomba=25;
+            resistenciaPiedra=30;
+            resistenciaLiquido=20;
             break;
         case 9:
             tipoDeCaucho=3;
@@ -452,70 +498,13 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
             tamanoMonster=0;
             velocidadDelCarro=4;
             velocidadDelCarroPorKilometro=180;
+            resistenciaBomba=35;
+            resistenciaPiedra=40;
+            resistenciaLiquido=15;
             break;
     }
-
-    /*do {
-        menuTipoDeCaucho();
-        cin>>tipoDeCaucho;
-    }while(!((tipoDeCaucho>=1)&&(tipoDeCaucho<=3)));
-
-    do {
-        menuTamanoDeCaucho();
-        cin>>tamanoDeCaucho;
-
-    }while(!((tamanoDeCaucho>=1)&&(tamanoDeCaucho<=3)));
-        if (tamanoDeCaucho=1){
-        do{
-            menuTipoDeMonsterTruck();
-            cin>>tamanoMonster;
-        }while(!((tamanoMonster>=1)&&(tamanoMonster<=5)));
-        }else{
-            tamanoMonster=0;
-        }
-            
-
-    fflush(stdin);
-    do {
-        menuVelocidadVehiculo();
-        cin>>velocidadDelCarro;
-    }while(!((velocidadDelCarro>=1)&&(velocidadDelCarro<=4)));
-    fflush(stdin);
-
     
-        fflush(stdin);
-        if (!validarVehiculo(tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro)){
-            cout<<"el vehiculo no es valido para la carrera\n";
-            cout<<"Los datos que ingreso fueron: \n";
-            if (tipoDeCaucho == 1){
-                cout<<"Todo terreno\n";
-            }else if (tipoDeCaucho == 2){
-                cout<<"Normales\n";
-            }else if (tipoDeCaucho == 3){
-                cout<<"Anti coleo\n";
-            }
-
-            if (tamanoDeCaucho == 1){
-                cout<< "Monster truck"<<tamanoMonster<<"\n";
-            }else if (tamanoDeCaucho == 2){
-                cout<< "Normales\n";
-            }else if (tamanoDeCaucho == 3){
-                cout<< "Pegado al piso\n";
-            }
-
-            if (velocidadDelCarro == 1){
-                cout<< "Perezoso\n";
-            }else if (velocidadDelCarro == 2){
-                cout<< "Crucero\n";
-            }else if (velocidadDelCarro == 3){
-                cout<< "Super Ferrari\n";
-            }else if (velocidadDelCarro == 4){
-                cout<< "Delorean\n";
-            }
-            cout<<"Recuerda las reglas para la creacion del vehiculo\n";
-        }*/
-    
-    agregarVehiculo(listaCompetidores, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro,velocidadDelCarroPorKilometro ,comoSeVeElVehiculo );
+    agregarVehiculo(listaCompetidores, nombreEsp , nombreIngles , piloto ,tipoDeCaucho ,tamanoDeCaucho, tamanoMonster, velocidadDelCarro,velocidadDelCarroPorKilometro, comoSeVeElVehiculo, resistenciaBomba, resistenciaPiedra, resistenciaLiquido);
     cout <<"\n Los datos agregados fueron: \n";
     muestraVehiculoEspecifico(*listaCompetidores);
     cout <<"\n Desea cambiar algo?\n";
@@ -567,7 +556,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
     tListaVehiculos *encontrado = *listaCompetidores;
 
     string nombreEsp=encontrado->nombreEs , nombreEn=encontrado->nombreEn , piloto=encontrado->conductor, auxS;
-    int tipoDeCaucho=encontrado->tipoCaucho ,tamanoDeCaucho= encontrado->tamanoCaucho, tamanoMonster=encontrado->monsterTruck, velocidadDelCarro=encontrado->velocidad , velocidadDelCarroPorKilometro = encontrado->velocidadKm, comoSeVeElVehiculo=0, datoVehiculoModificar, seguirModificando=0, opcion;
+    int tipoDeCaucho=encontrado->tipoCaucho ,tamanoDeCaucho= encontrado->tamanoCaucho, tamanoMonster=encontrado->monsterTruck, velocidadDelCarro=encontrado->velocidad , velocidadDelCarroPorKilometro = encontrado->velocidadKm, comoSeVeElVehiculo=0, datoVehiculoModificar, seguirModificando=0,resistenciaBomba=encontrado->resBomba, resistenciaPiedra=encontrado->resPiedra, resistenciaLiquido=encontrado->resLiquido, opcion;
     do{
     cout<<"\n\ndatos del vehiculo\n\n";
     cout<<1<<".  nombre en espanol:"<<"["<<nombreEsp<<"]\n";
@@ -623,7 +612,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
                 } while (!esEntero(auxS));
                 comoSeVeElVehiculo= stoi(auxS);
             }while(!((comoSeVeElVehiculo>=1)&&(comoSeVeElVehiculo<=15)));
-            llenarDatosVehiculo(listaCompetidores,encontrado->nombreEs,encontrado->nombreEn,encontrado->conductor,encontrado->tipoCaucho,encontrado->tamanoCaucho,encontrado->monsterTruck,encontrado->velocidad , encontrado->velocidadKm ,comoSeVeElVehiculo);
+            llenarDatosVehiculo(listaCompetidores,encontrado->nombreEs,encontrado->nombreEn,encontrado->conductor,encontrado->tipoCaucho,encontrado->tamanoCaucho,encontrado->monsterTruck,encontrado->velocidad , encontrado->velocidadKm ,comoSeVeElVehiculo, encontrado->resBomba, encontrado->resPiedra, encontrado->resLiquido);
             fflush(stdin);
         }else if(datoVehiculoModificar == 5)
         {
@@ -641,69 +630,96 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
             } while (!((opcion>=1)&&(opcion<=9)));
 
             switch (opcion){
-            case 1:
-                tipoDeCaucho=1;
-                tamanoDeCaucho=1;
-                tamanoMonster=1;
-                velocidadDelCarro=1;
-                velocidadDelCarroPorKilometro=140;
-                break;
-            case 2:
-                tipoDeCaucho=1;
-                tamanoDeCaucho=1;
-                tamanoMonster=2;
-                velocidadDelCarro=1;
-                velocidadDelCarroPorKilometro=120;
-                break;
-            case 3:
-                tipoDeCaucho=1;
-                tamanoDeCaucho=1;
-                tamanoMonster=3;
-                velocidadDelCarro=1;
-                velocidadDelCarroPorKilometro=110;
-                break;
-            case 4:
-                tipoDeCaucho=1;
-                tamanoDeCaucho=1;
-                tamanoMonster=4;
-                velocidadDelCarro=1;
-                velocidadDelCarroPorKilometro=100;
-                break;
-            case 5:
-                tipoDeCaucho=1;
-                tamanoDeCaucho=1;
-                tamanoMonster=5;
-                velocidadDelCarro=1;
-                velocidadDelCarroPorKilometro=80;
-                break;
-            case 6:
-                tipoDeCaucho=2;
-                tamanoDeCaucho=2;
-                tamanoMonster=0;
-                velocidadDelCarro=1;
-                velocidadDelCarroPorKilometro=120;
-                break;
-            case 7:
-                tipoDeCaucho=2;
-                tamanoDeCaucho=2;
-                tamanoMonster=0;
-                velocidadDelCarro=2;
-                velocidadDelCarroPorKilometro=140;
-                break;
-            case 8:
-                tipoDeCaucho=3;
-                tamanoDeCaucho=3;
-                tamanoMonster=0;
-                velocidadDelCarro=3;
-                velocidadDelCarroPorKilometro=160;
-                break;
-            case 9:
-                tipoDeCaucho=3;
-                tamanoDeCaucho=3;
-                tamanoMonster=0;
-                velocidadDelCarro=4;
-                velocidadDelCarroPorKilometro=180;
-                break;
+                case 1:
+                    tipoDeCaucho=1;
+                    tamanoDeCaucho=1;
+                    tamanoMonster=1;
+                    velocidadDelCarro=1;
+                    velocidadDelCarroPorKilometro=140;
+                    resistenciaBomba=15;
+                    resistenciaPiedra=20;
+                    resistenciaLiquido=30;
+                    break;
+                case 2:
+                    tipoDeCaucho=1;
+                    tamanoDeCaucho=1;
+                    tamanoMonster=2;
+                    velocidadDelCarro=1;
+                    velocidadDelCarroPorKilometro=120;
+                    resistenciaBomba=12;
+                    resistenciaPiedra=17;
+                    resistenciaLiquido=25;
+                    break;
+                case 3:
+                    tipoDeCaucho=1;
+                    tamanoDeCaucho=1;
+                    tamanoMonster=3;
+                    velocidadDelCarro=1;
+                    velocidadDelCarroPorKilometro=110;
+                    resistenciaBomba=10;
+                    resistenciaPiedra=15;
+                    resistenciaLiquido=20;
+                    break;
+                case 4:
+                    tipoDeCaucho=1;
+                    tamanoDeCaucho=1;
+                    tamanoMonster=4;
+                    velocidadDelCarro=1;
+                    velocidadDelCarroPorKilometro=100;
+                    resistenciaBomba=7;
+                    resistenciaPiedra=10;
+                    resistenciaLiquido=15;
+                    break;
+                case 5:
+                    tipoDeCaucho=1;
+                    tamanoDeCaucho=1;
+                    tamanoMonster=5;
+                    velocidadDelCarro=1;
+                    velocidadDelCarroPorKilometro=80;
+                    resistenciaBomba=5;
+                    resistenciaPiedra=5;
+                    resistenciaLiquido=10;
+                    break;
+                case 6:
+                    tipoDeCaucho=2;
+                    tamanoDeCaucho=2;
+                    tamanoMonster=0;
+                    velocidadDelCarro=1;
+                    velocidadDelCarroPorKilometro=120;
+                    resistenciaBomba=15;
+                    resistenciaPiedra=20;
+                    resistenciaLiquido=30;
+                    break;
+                case 7:
+                    tipoDeCaucho=2;
+                    tamanoDeCaucho=2;
+                    tamanoMonster=0;
+                    velocidadDelCarro=2;
+                    velocidadDelCarroPorKilometro=140;
+                    resistenciaBomba=20;
+                    resistenciaPiedra=25;
+                    resistenciaLiquido=35;
+                    break;
+                case 8:
+                    tipoDeCaucho=3;
+                    tamanoDeCaucho=3;
+                    tamanoMonster=0;
+                    velocidadDelCarro=3;
+                    velocidadDelCarroPorKilometro=160;
+                    resistenciaBomba=25;
+                    resistenciaPiedra=30;
+                    resistenciaLiquido=20;
+                    break;
+                case 9:
+                    tipoDeCaucho=3;
+                    tamanoDeCaucho=3;
+                    tamanoMonster=0;
+                    velocidadDelCarro=4;
+                    velocidadDelCarroPorKilometro=180;
+                    resistenciaBomba=35;
+                    resistenciaPiedra=40;
+                    resistenciaLiquido=15;
+                    break;
             }
         }else if(datoVehiculoModificar == 6){
             cout<<"\n\nNo se modifico ningun dato \n\n";
@@ -717,7 +733,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
         }while(!((seguirModificando>=1)&&(seguirModificando<=2)));
         fflush(stdin);
         }while((seguirModificando==1));
-        llenarDatosVehiculo(listaCompetidores, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro , velocidadDelCarroPorKilometro, comoSeVeElVehiculo);
+        llenarDatosVehiculo(listaCompetidores, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro , velocidadDelCarroPorKilometro, comoSeVeElVehiculo, resistenciaBomba, resistenciaPiedra, resistenciaLiquido);
         cout<<"\n\n vehiculo modificado con exito \n\n";
 }
 /*
@@ -776,6 +792,14 @@ void cargar_archivo3(tListaVehiculos **listaCompetidores) {
         ss.ignore(1, '/');
         ss >> nuevo->velocidad;
         ss.ignore(1, '/');
+        ss >> nuevo->velocidadKm;
+        ss.ignore(1, '/');
+        ss >> nuevo->resBomba;
+        ss.ignore(1, '/');
+        ss >> nuevo->resPiedra;
+        ss.ignore(1, '/');
+        ss >> nuevo->resLiquido;
+        ss.ignore(1, '/');
         getline(ss, nuevo->vehiculoEnPantalla);
         
         nuevo->prox = NULL;
@@ -800,7 +824,7 @@ void descargar_archivo3(tListaVehiculos* primero) {
     tListaVehiculos* actual = primero;
 
     while (actual != NULL) {
-        arch << actual->nombreEs << "/" << actual->nombreEn << "/" << actual->conductor << "/" << actual->tipoCaucho << "/" << actual->tamanoCaucho << "/" << actual->monsterTruck << "/"<< actual->velocidad << "/" <<actual->vehiculoEnPantalla<< endl;
+        arch << actual->nombreEs << "/" << actual->nombreEn << "/" << actual->conductor << "/" << actual->tipoCaucho << "/" << actual->tamanoCaucho << "/" << actual->monsterTruck << "/"<< actual->velocidad << "/" << actual->velocidadKm << "/" << actual->resBomba << "/" << actual->resPiedra << "/" << actual->resLiquido << "/" << actual->vehiculoEnPantalla << endl;
         actual = actual->prox;
     }
 

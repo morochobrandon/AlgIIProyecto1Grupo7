@@ -20,14 +20,15 @@ struct tListaVehiculos{
     int monsterTruck;
     int velocidad;
     string aVelocidad[5]={ "Error", "Perezoso", "Crucero", "SuperFerrari","Delorean"};
-    int velocidadKm;  // velocidad del carro
-    //double resistenciaBomba;        agregar castellano a gestion de vehiculo
-    //double resistenciaPiedra;   agregar castellano a gestion de vehiculo
-    //double resistenciaLiquido;   agregar castellano a gestion de vehiculo
+    int velocidadKm;
+    int resBomba;
+    int resPiedra;
+    int resLiquido;
     double contadorAux{0}; // contador que se le suma a la velocidad
     int velocidadAux; // velocidad que se le suma al carro
     int tiempoAux; // tiempo que se le suma a la velocidad
     string vehiculoEnPantalla;
+    std::chrono::seconds::rep duracionEnPista;
     tListaVehiculos *prox;
 };
 
@@ -51,7 +52,7 @@ struct tCarril
     tKilometro *ultimoKilometro;
     tKilometro *ubicacionVehiculo; // para saber donde esta el vehiculo
     tListaVehiculos *vehiculo;
-    
+    bool terminoCarrera=false;
     tCarril *prox;
 };
 struct tPista
@@ -61,6 +62,7 @@ struct tPista
     tCarril *primerCarril;
     tCarril *ultimoCarril;
     int numeroCarriles;
+    std::chrono::system_clock::time_point tiempoInicio;
 };
 
 tListaVehiculos *primero , *ultimo , *actual , *nuevo;

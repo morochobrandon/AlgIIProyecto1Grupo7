@@ -33,7 +33,7 @@
     descargar_archivo3(primero);
     tPista *pista = inicializarPista();
     //menú principal
-    menuPrincipal(pista,listaCompetidores);
+    menuPrincipal(pista,&listaCompetidores);
 
     eliminartListaVehiculos(&listaCompetidores);
     destruirPista(pista);
