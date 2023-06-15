@@ -9,8 +9,6 @@
     tPista *pista = inicializarPista();
     //menú principal
     menuPrincipal(pista,&listaCompetidores);
-
-    eliminartListaVehiculos(listaCompetidores);
     cout<<"\n\n";
     system("pause");
     system("cls");

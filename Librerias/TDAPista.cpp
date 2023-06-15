@@ -49,7 +49,6 @@ void destruirPista(tPista *pista){
             delete auxKilometro;
             auxKilometro = auxKilometro2;
         }
-        delete auxCarril->vehiculo;
         auxCarril->vehiculo = NULL;
         tCarril *auxCarril2 = auxCarril->prox;
         delete auxCarril;

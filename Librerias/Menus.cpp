@@ -29,6 +29,7 @@ void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
                 tListaVehiculos *tabla;
                 tabla = tablaDePosiciones(pista);
                 mostrarTablaDePosiciones(tabla);
+                eliminartListaVehiculos(&tabla);
                 break;
             case 0:
                 destruirPista(pista);
@@ -184,6 +185,7 @@ void menuPrincipal(tPista *pista, tListaVehiculos **listaCompetidores){
             break;
         case 0:
             cout<<"Saliendo."<<endl;
+            eliminartListaVehiculos(listaCompetidores);
             break;
         
         default:
