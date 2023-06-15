@@ -190,8 +190,8 @@ void ordenarListaVehiculos(tListaVehiculos **head){
 tListaVehiculos *tablaDePosiciones(tPista *pista) {
     tCarril *carrilAux = pista->primerCarril;
     tListaVehiculos *tablaVehiculos =new tListaVehiculos;
-    tListaVehiculos *vehiculoAux = tablaVehiculos;
-    while (carrilAux != NULL) {
+    tListaVehiculos *vehiculoAux=tablaVehiculos;
+    while (carrilAux->prox != NULL) {
         vehiculoAux->nombreEs = carrilAux->vehiculo->nombreEs;
         vehiculoAux->nombreEn = carrilAux->vehiculo->nombreEn;
         vehiculoAux->conductor = carrilAux->vehiculo->conductor;
@@ -201,9 +201,18 @@ tListaVehiculos *tablaDePosiciones(tPista *pista) {
         vehiculoAux->vehiculoEnPantalla = carrilAux->vehiculo->vehiculoEnPantalla;
         vehiculoAux->duracionEnPista = carrilAux->vehiculo->duracionEnPista;
         vehiculoAux = vehiculoAux->prox;
+        vehiculoAux =new tListaVehiculos;
         carrilAux = carrilAux->prox;
     }
-    vehiculoAux=NULL;
+    vehiculoAux->nombreEs = carrilAux->vehiculo->nombreEs;
+    vehiculoAux->nombreEn = carrilAux->vehiculo->nombreEn;
+    vehiculoAux->conductor = carrilAux->vehiculo->conductor;
+    vehiculoAux->tipoCaucho = carrilAux->vehiculo->tipoCaucho;
+    vehiculoAux->tamanoCaucho = carrilAux->vehiculo->tamanoCaucho;
+    vehiculoAux->velocidadKm = carrilAux->vehiculo->velocidadKm;
+    vehiculoAux->vehiculoEnPantalla = carrilAux->vehiculo->vehiculoEnPantalla;
+    vehiculoAux->duracionEnPista = carrilAux->vehiculo->duracionEnPista;
+    vehiculoAux->prox=NULL;
     ordenarListaVehiculos(&tablaVehiculos);
     return tablaVehiculos;
 }
