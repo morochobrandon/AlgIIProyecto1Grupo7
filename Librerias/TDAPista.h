@@ -13,7 +13,7 @@ void mostrarPista(tPista *pista);
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos);
 void generarObstaculos(tPista *pista);
 void destruirPista(tPista *pista);
-void ordenarListaVehiculos(tListaVehiculos *lista);
+void ordenarListaVehiculos(tListaVehiculos **head);
 tListaVehiculos *tablaDePosiciones(tPista *pista);
 bool llego(tCarril *carril);
 bool llegaronTodos(tPista *pista, bool *lleg);

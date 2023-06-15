@@ -26,7 +26,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores);
 void pedirDatosVehiculo(tListaVehiculos **listaCompetidores);
 void muestraVehiculoEspecifico(tListaVehiculos *listaCompetidores);
 void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores);
-void eliminartListaVehiculos(tListaVehiculos **listaCompetidores);
+void eliminartListaVehiculos(tListaVehiculos *listaCompetidores);
 
 void cargar_archivo3(tListaVehiculos **listaCompetidores); 
 //void cargar_archivo2(tListaVehiculos **listaCompetidores);

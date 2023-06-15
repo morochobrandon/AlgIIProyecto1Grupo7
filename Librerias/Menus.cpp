@@ -1,13 +1,13 @@
 #include "Menus.h"
 
-void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
+void opcionesPista(tPista *pista, tListaVehiculos *listaCompetidores){
     do
     {
         cout<<"\n 1. Generación de la pista";
         cout<<"\n 2. Mostrar pista";
         cout<<"\n 3. iniciar carrera";
         cout<<"\n 4. Mostrar tabla de posiciones";
-        cout<<"\n 0. regresar";
+        cout<<"\n 0. regresar\n";
         opcion=pedirDatoInt("Ingrese una opcion: ");
         system("cls");
         cout<<"\n la opcion fue: "<<opcion<<endl;
@@ -16,7 +16,7 @@ void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
             case 1:
                 destruirPista(pista);
                 pista=inicializarPista();
-                pedirDatosPista(pista, *listaCompetidores);
+                pedirDatosPista(pista, listaCompetidores);
                 generarObstaculos(pista);
                 break;
             case 2:
@@ -180,7 +180,7 @@ void menuPrincipal(tPista *pista, tListaVehiculos **listaCompetidores){
             opcionesGestionDeVehiculos(pista, listaCompetidores);
             break;
         case 2:
-            opcionesPista(pista, listaCompetidores);
+            opcionesPista(pista, *listaCompetidores);
             break;
         case 0:
             cout<<"Saliendo."<<endl;

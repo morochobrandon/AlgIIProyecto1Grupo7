@@ -772,9 +772,9 @@ void cargar_archivo2(tListaVehiculos **listaCompetidores) {
 void cargar_archivo3(tListaVehiculos **listaCompetidores) {
     ifstream arch("Librerias/archivos/vehiculos.txt");
 
-    tListaVehiculos* primero = NULL;
-    tListaVehiculos* ultimo = NULL;
-    tListaVehiculos* nuevo;
+    tListaVehiculos *primero = NULL;
+    tListaVehiculos *ultimo = NULL;
+    tListaVehiculos *nuevo;
 
     string linea;
     while (getline(arch, linea)) {
@@ -803,7 +803,6 @@ void cargar_archivo3(tListaVehiculos **listaCompetidores) {
         getline(ss, nuevo->vehiculoEnPantalla);
         
         nuevo->prox = NULL;
-
         if (primero == NULL) {
             primero = nuevo;
             ultimo = nuevo;
@@ -831,12 +830,12 @@ void descargar_archivo3(tListaVehiculos* primero) {
     arch.close();
 }
 
-void eliminartListaVehiculos(tListaVehiculos **listaCompetidores){
-	tListaVehiculos *t = *listaCompetidores;
-	while (t) {
-		*listaCompetidores = (*listaCompetidores)->prox;
+void eliminartListaVehiculos(tListaVehiculos *listaCompetidores){
+	tListaVehiculos *t = listaCompetidores;
+	while (listaCompetidores != NULL) {
+		listaCompetidores = listaCompetidores->prox;
 		delete t;
-		t = *listaCompetidores;
+		t = listaCompetidores;
 	}
 	cout<<"la tListaVehiculos fue eliminada exitosamente\n";
 }
