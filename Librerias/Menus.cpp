@@ -24,14 +24,14 @@ void opcionesPista(tPista *pista, tListaVehiculos **listaCompetidores){
                 break;
             case 3:
                 simularCarrera(pista);
-                tListaVehiculos *tabla;
-                tabla = tablaDePosiciones(pista);
-                destruirPista(pista);
                 break;
             case 4:
+                tListaVehiculos *tabla;
+                tabla = tablaDePosiciones(pista);
                 mostrarTablaDePosiciones(tabla);
                 break;
             case 0:
+                destruirPista(pista);
                 cout << "Saliendo." << endl;
                 break;
 
