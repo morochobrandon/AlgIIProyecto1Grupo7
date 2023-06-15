@@ -16,6 +16,9 @@ void menuPrincipal(tPista *pista, tListaVehiculos *listaCompetidores){
         case 2:
             opcionesPista(pista, listaCompetidores);
             break;
+        case 0:
+            cout<<"Saliendo."<<endl;
+            break;
         
         default:
             cout << "Opcion invalida. Por favor, seleccione una opcion valida." << endl;

@@ -129,8 +129,6 @@ void consultarVehiculo(tListaVehiculos *listaCompetidores) {
     string busqueda;
     cout << "Ingrese el nombre del vehiculo en español o en ingles: ";
     getline(cin, busqueda);
-    cin.ignore();
-
     tListaVehiculos *encontrado = nullptr;
     tListaVehiculos *t = listaCompetidores;
     int contador = 0;
@@ -380,7 +378,7 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
 
     do{
         menuNuevoVehiculo();
-         do{
+        do{
             cout << "\n Elija como quiere su vehiculo:";
             getline(cin, auxS);
         } while (!esEntero(auxS));
@@ -579,8 +577,8 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
     cout<<5<<".  Datos del vehiculo:\n";
     cout<<"\t\t tipo de caucho:"<<"["<<encontrado->aTipoCaucho[tipoDeCaucho]<<"]\n";
     cout<<"\t\t tamano de caucho:"<<"["<<encontrado->aTamanoCaucho[tamanoDeCaucho ];
-             if (tamanoMonster != 0){
-                 cout<<" "<<tamanoMonster;}
+            if (tamanoMonster != 0){
+                cout<<" "<<tamanoMonster;}
             cout<<"]\n";
     cout<<"\t\t velocidad del vehiculo:"<<"["<<encontrado->aVelocidad[velocidadDelCarro]<<"]\n";
     cout<<"\t\t velocidad del vehiculo por kilometro:"<<"["<<encontrado->velocidadKm<<"]\n";
@@ -588,7 +586,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
     cout<<"\n\n que elementos deseas modificar?\n\n";
     do{
         
-         do{
+        do{
             cout<<"elija su opcion: ";
             getline(cin, auxS);
         } while (!esEntero(auxS));
@@ -817,7 +815,6 @@ void eliminartListaVehiculos(tListaVehiculos **listaCompetidores){
 		t = *listaCompetidores;
 	}
 	cout<<"la tListaVehiculos fue eliminada exitosamente\n";
-	system("pause");
 }
 
 void convertirVehiculo(tListaVehiculos *listaCompetidores, int cont, tListaVehiculos **vehiculo) {
