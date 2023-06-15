@@ -732,8 +732,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
                     cout<<"\n opcion :";
                     getline(cin, auxS);
                 } while (!esEntero(auxS));
-                opcion = stoi(auxS);
-            cin>>seguirModificando;
+                seguirModificando = stoi(auxS);
         }while(!((seguirModificando>=1)&&(seguirModificando<=2)));
         fflush(stdin);
         }while((seguirModificando==1));
@@ -852,4 +851,14 @@ void convertirVehiculo(tListaVehiculos *listaCompetidores, int cont, tListaVehic
         aux = aux->prox;
     }
     *vehiculo = aux;
+}
+
+int cantidadVehiculos(tListaVehiculos *listaCompetidores) {
+    int cont = 0;
+    tListaVehiculos *aux = listaCompetidores;
+    while (aux != NULL) {
+        cont++;
+        aux = aux->prox;
+    }
+    return cont;
 }

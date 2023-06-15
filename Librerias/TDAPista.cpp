@@ -59,6 +59,7 @@ void destruirPista(tPista *pista){
 void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
     string auxS;
     int vehiculoABuscar;
+    int contadorVehiculos = cantidadVehiculos(vehiculos);
     fflush(stdin);
     cout << "Ingrese el nombre de la pista: ";
     cin >> pista->nombre;
