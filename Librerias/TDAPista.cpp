@@ -200,8 +200,8 @@ tListaVehiculos *tablaDePosiciones(tPista *pista) {
         vehiculoAux->velocidadKm = carrilAux->vehiculo->velocidadKm;
         vehiculoAux->vehiculoEnPantalla = carrilAux->vehiculo->vehiculoEnPantalla;
         vehiculoAux->duracionEnPista = carrilAux->vehiculo->duracionEnPista;
+        vehiculoAux->prox =new tListaVehiculos;
         vehiculoAux = vehiculoAux->prox;
-        vehiculoAux =new tListaVehiculos;
         carrilAux = carrilAux->prox;
     }
     vehiculoAux->nombreEs = carrilAux->vehiculo->nombreEs;
