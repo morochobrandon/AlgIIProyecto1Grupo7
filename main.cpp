@@ -36,7 +36,6 @@
     menuPrincipal(pista,&listaCompetidores);
 
     eliminartListaVehiculos(&listaCompetidores);
-    destruirPista(pista);
     cout<<"\n\n";
     system("pause");
     system("cls");
