@@ -16,7 +16,7 @@ void generarObstaculos(tPista *pista);
 void destruirPista(tPista *pista);
 bool llego(tCarril *carril);
 bool llegaronTodos(tPista *pista, bool *lleg);
-void modificarUnaPosicion(tCarril *carrilAux, tPista *pista);
+void modificarUnVehiculo(tCarril *carrilAux, tPista *pista);
 void modificarPociciones(tPista *pistaAux);
 void simularCarrera(tPista *p);
 

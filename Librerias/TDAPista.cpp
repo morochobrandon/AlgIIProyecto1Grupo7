@@ -122,7 +122,6 @@ void generarObstaculos(tPista *pista) {
         while (kilometroAux != NULL) {
             kilometroAux->obstaculo= new tObstaculo;
             kilometroAux->obstaculo->display = rand() % 40;
-
             if (kilometroAux->obstaculo->display <=3) {
                 switch (kilometroAux->obstaculo->display)
                 {
@@ -177,28 +176,31 @@ bool llegaronTodos(tPista *pista, bool *lleg){
 
 void simularCarrera(tPista *p){  
     tCarril *carrilAux = p->primerCarril;
-    
     while (!lleg){
         system("cls");
         modificarPociciones(p);
         mostrarPista(p);
         usleep(500000);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
-       
-    
     }
-    
 }
 
-void modificarUnaPosicion(tCarril *carrilAux, tPista *pista){ // mover uno a la derecha 
+void modificarUnVehiculo(tCarril *carrilAux, tPista *pista){ // mover uno a la derecha 
     tKilometro *kilometroAux = carrilAux->ubicacionVehiculo;
-    if (kilometroAux->prox!=NULL){
-        kilometroAux->vehiculoPresente=false;
-        kilometroAux->prox->vehiculoPresente=true;
-        carrilAux->ubicacionVehiculo=kilometroAux->prox;
-    }else
-    {
-        llegaronTodos(pista, &lleg);
-    }
+    carrilAux->vehiculo->contadorAux++; // contador debe empezar en 0 , se hace en gestion de vehiculo
+    
+    //   while(carrilAux->vehiculo->contadorAux >= 1){
+        if (kilometroAux->prox!=NULL){
+        //     if (validarSiPuedeMover(carrilAux,pista,carrilAux->vehiculo->contadorAux)){
+            kilometroAux->vehiculoPresente=false;
+            kilometroAux->prox->vehiculoPresente=true;
+            carrilAux->ubicacionVehiculo=kilometroAux->prox;
+        }
+       // } fin if validar
+        else
+        {
+            llegaronTodos(pista, &lleg);
+        }
+    //  }  // while fin
 }
 
 void modificarPociciones(tPista *pistaAux){ // pararse en ubicacion del vehiculo 
@@ -206,7 +208,33 @@ void modificarPociciones(tPista *pistaAux){ // pararse en ubicacion del vehiculo
     for (int i = 0; i < pistaAux->numeroCarriles; i++)
     {
         //aquí
-        modificarUnaPosicion(carrilAux, pistaAux);
+        modificarUnVehiculo(carrilAux, pistaAux);
         carrilAux = carrilAux->prox;
     }
 }
+
+/*
+int validarSiPuedeMover(tCarril *carrilAux, tPista *pista ,double contador ){
+    double tiempoEnNodo ;
+    // 1 = bomba
+    // 2 = piedra
+    // 3 = liquido
+    if (carrilAux->ubicacionVehiculo->obstaculoPresente){
+
+        if (carrilAux->ubicacionVehiculo->obstaculo->display==1){ tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm)*((carrilAux->vehiculo->resistenciaBomba / 100) + 1);
+        }else if (carrilAux->ubicacionVehiculo->obstaculo->display==2){ tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm)*((carrilAux->vehiculo->resistenciaPiedra / 100) + 1);
+            }else if (carrilAux->ubicacionVehiculo->obstaculo->display==3){ tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm)*((carrilAux->vehiculo->resistenciaLiquido / 100) + 1);}   
+        if (contador >= tiempoEnNodo ) {
+                contador = contador - tiempoEnNodo;
+            return 1;
+        }
+    }else {
+            tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm); // 80 , 120  = 0,66
+            if (contador >= tiempoEnNodo ) { 
+                contador = contador - tiempoEnNodo; // 1.02 - 0.66 = 0.36
+            return 1;
+        }
+    }
+    return 0;
+}
+*/
