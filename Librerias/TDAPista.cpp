@@ -80,7 +80,7 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
                 getline(cin, auxS);
             } while (!esEntero(auxS));
             vehiculoABuscar=stoi(auxS);
-        } while (vehiculoABuscar < contadorVehiculos);
+        } while ((vehiculoABuscar<1)||(vehiculoABuscar > contadorVehiculos));
         
     
         convertirVehiculo(vehiculos, vehiculoABuscar, &carril->vehiculo);
