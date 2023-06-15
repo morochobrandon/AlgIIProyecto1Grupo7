@@ -727,8 +727,12 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
 
         do{
             cout<<"Desea seguir modificando datos del vehiculo? \n";
-            cout<<"1. Si 2. No \n";
-            cout<<"opcion : \n";
+            cout<<"1. Si 2. No";
+            do{
+                    cout<<"\n opcion :";
+                    getline(cin, auxS);
+                } while (!esEntero(auxS));
+                opcion = stoi(auxS);
             cin>>seguirModificando;
         }while(!((seguirModificando>=1)&&(seguirModificando<=2)));
         fflush(stdin);
@@ -830,13 +834,15 @@ void descargar_archivo3(tListaVehiculos* primero) {
     arch.close();
 }
 
-void eliminartListaVehiculos(tListaVehiculos *listaCompetidores){
-	tListaVehiculos *t = listaCompetidores;
-	while (listaCompetidores != NULL) {
-		listaCompetidores = listaCompetidores->prox;
+void eliminartListaVehiculos(tListaVehiculos **listaCompetidores){
+	tListaVehiculos *t = *listaCompetidores;
+    tListaVehiculos *aux = *listaCompetidores;
+	while (aux != NULL) {
+		aux = aux->prox;
 		delete t;
-		t = listaCompetidores;
+		t = aux;
 	}
+    *listaCompetidores = NULL;
 	cout<<"la tListaVehiculos fue eliminada exitosamente\n";
 }
 
