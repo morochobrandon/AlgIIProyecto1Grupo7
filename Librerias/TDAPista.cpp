@@ -59,6 +59,7 @@ void generarPista(tPista *pista, tListaVehiculos *vehiculos, bool random) {
     
     do
     {
+        fflush(stdin); //
         cout << "Ingrese la cantidad de carriles: ";
         getline(cin, auxS);
     } while (!esEntero(auxS));
