@@ -14,7 +14,7 @@ void generarPista(tPista *pista, tListaVehiculos *vehiculos, bool random);
 void generarObstaculos(tPista *pista);
 void destruirPista(tPista *pista);
 bool validarSiPuedeMover(tCarril *carrilAux, tPista *pista);
-void selectionSort(struct tListaVehiculos **p);
+void insercion(tListaVehiculos **p);
 tListaVehiculos *tablaDePosiciones(tPista *pista);
 bool llego(tCarril *carril);
 bool llegaronTodos(tPista *pista, bool *lleg);

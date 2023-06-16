@@ -58,7 +58,7 @@ struct tCarril
 struct tPista
 {
     string nombre;
-    const int longitud = 160;
+    const int longitud = 80;
     tCarril *primerCarril=NULL;
     tCarril *ultimoCarril=NULL;
     int numeroCarriles;
