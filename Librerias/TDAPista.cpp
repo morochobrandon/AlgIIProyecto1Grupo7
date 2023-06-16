@@ -26,17 +26,7 @@ void mostrarPista(tPista *pista) {
         carrilAux = carrilAux->prox;
     }
 }
-/*
-void vehiculoEnPista(tPista *pista, tVehiculo vehiculo) {
-    tCarril *carrilAux = pista->primerCarril;
-    while (carrilAux != NULL) {
-        if (carrilAux->vehiculo->nombreEs == vehiculo.nombreEs) {
-            carrilAux->vehiculo = &vehiculo;
-            break;
-        }
-        carrilAux = carrilAux->prox;
-    }
-}*/
+
 
 void destruirPista(tPista *pista){
     tCarril *auxCarril = pista->primerCarril;
@@ -56,13 +46,17 @@ void destruirPista(tPista *pista){
     }
 }
 
-void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
+
+void generarPista(tPista *pista, tListaVehiculos *vehiculos, bool random) {
+    srand(time(NULL));
+    bool lleg=false;
     string auxS;
     int vehiculoABuscar;
     int contadorVehiculos = cantidadVehiculos(vehiculos);
     fflush(stdin);
     cout << "Ingrese el nombre de la pista: ";
     cin >> pista->nombre;
+    
     do
     {
         cout << "Ingrese la cantidad de carriles: ";
@@ -71,17 +65,20 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
         pista->numeroCarriles = stoi(auxS);
     for (int i = 0; i < pista->numeroCarriles; i++) {
         tCarril *carril = new tCarril;
-        muestraVehiculoSimple(vehiculos);
-        do
-        {
+        if(!random){
+            muestraVehiculoSimple(vehiculos);
             do
             {
-                cout << "Selecciona el vehiculo para el carril " << i << "(ingrese el numero a un lado): ";
-                getline(cin, auxS);
-            } while (!esEntero(auxS));
-            vehiculoABuscar=stoi(auxS);
-        } while ((vehiculoABuscar<1)||(vehiculoABuscar > contadorVehiculos));
-        
+                do
+                {
+                    cout << "Selecciona el vehiculo para el carril " << i << "(ingrese el numero a un lado): ";
+                    getline(cin, auxS);
+                } while (!esEntero(auxS));
+                vehiculoABuscar=stoi(auxS);
+            } while ((vehiculoABuscar<1)||(vehiculoABuscar > contadorVehiculos));
+        }else{
+            vehiculoABuscar=rand() % contadorVehiculos + 1;
+        }
     
         convertirVehiculo(vehiculos, vehiculoABuscar, &carril->vehiculo);
         carril->primerKilometro = NULL;
@@ -111,6 +108,7 @@ void pedirDatosPista(tPista *pista, tListaVehiculos *vehiculos) {
             pista->ultimoCarril = carril;
         }
     }pista->ultimoCarril->prox=NULL;
+    generarObstaculos(pista);
 }
 
 //función que genera los obstáculos en el kilometro tomando en cuenta que: En cada carril puede aparecer de manera aleatoria máximo 3 obstáculos: sin obstáculo, una bomba, una piedra, o líquido resbaladizo, que se muestra en la pista con los caracteres: -, ¤, ¶, ≠, respectivamente.
@@ -137,26 +135,30 @@ void generarObstaculos(tPista *pista) {
                     {
                         kilometroAux->obstaculo->display = 1;
                         obsBomba=true;
-                    }else{kilometroAux->obstaculo->display=0;}
+                        kilometroAux->obstaculoPresente=true;
+                        
+                    }else{kilometroAux->obstaculo->display=0; kilometroAux->obstaculoPresente=false;}
                     break;}
                 case 2:{
                     if (!obsPiedra)
                     {
                         kilometroAux->obstaculo->display = 2;
                         obsPiedra=true;
-                    }else{kilometroAux->obstaculo->display=0;}
+                        kilometroAux->obstaculoPresente=true;
+                    }else{kilometroAux->obstaculo->display=0; kilometroAux->obstaculoPresente=false;}
                     break;}
                 case 3:{
                     if (!obsliquido)
                     {
                         kilometroAux->obstaculo->display = 3;
                         obsliquido=true;
-                    }else{kilometroAux->obstaculo->display=0;}
+                        kilometroAux->obstaculoPresente=true;
+                    }else{kilometroAux->obstaculo->display=0; kilometroAux->obstaculoPresente=false;}
                     break;}
                 }
             } else
             {
-                kilometroAux->obstaculo->display=0;
+                kilometroAux->obstaculo->display=0; kilometroAux->obstaculoPresente=false;
             }
             
             kilometroAux = kilometroAux->prox;
@@ -164,30 +166,38 @@ void generarObstaculos(tPista *pista) {
         carrilAux = carrilAux->prox;
     }
 }
-//función que ordena la lista de vehículos de menor a mayor según el tiempo que tardaron en llegar a la meta.
-void ordenarListaVehiculos(tListaVehiculos **head){
-    if (*head == NULL || (*head)->prox == NULL) {
-        return;
-    }
-    tListaVehiculos *actual = *head;
-    tListaVehiculos *proximo = actual->prox;
-    tListaVehiculos *prev = NULL;
-    while (proximo != NULL) {
-        if (proximo->duracionEnPista < actual->duracionEnPista) {
-            if (prev != NULL) {
-                prev->prox = proximo;
-            } else {
-                *head = proximo;
-            }
-            actual->prox = proximo->prox;
-            proximo->prox = actual;
-            prev = proximo;
-            proximo = actual->prox;
-        } else {
-            prev = actual;
-            actual = proximo;
-            proximo = proximo->prox;
-        }
+
+
+void insercion(tListaVehiculos **p){
+	tListaVehiculos *ax=*p, *t=*p; 
+	int temp;
+	while (ax->prox!=NULL){
+		t=ax->prox;		
+		while (t!=NULL){							
+			if(ax->duracionEnPista > t->duracionEnPista){ // "< de Mayor a menor" y "> de menor a mayor"
+				temp = ax->duracionEnPista;
+				ax->duracionEnPista=t->duracionEnPista;
+				t->duracionEnPista=temp;
+			}
+			t=t->prox;
+		}
+	ax=ax->prox;	
+	}
+}
+
+//función que muestra la tabla de ganadores de la carrera.
+void mostrarTablaDePosiciones(tListaVehiculos *tablaVehiculos) {
+    tListaVehiculos *vehiculoAux = tablaVehiculos;
+    while (vehiculoAux != NULL) {
+        cout << "Nombre: " << vehiculoAux->nombreEs << endl;
+        cout << "Nombre en ingles: " << vehiculoAux->nombreEn << endl;
+        cout << "Conductor: " << vehiculoAux->conductor << endl;
+        cout << "Tipo de caucho: " << vehiculoAux->tipoCaucho << endl;
+        cout << "Tamano de caucho: " << vehiculoAux->tamanoCaucho << endl;
+        cout << "Velocidad: " << vehiculoAux->velocidadKm << endl;
+        cout << "Vehiculo en pantalla: " << vehiculoAux->vehiculoEnPantalla << endl;
+        cout << "Duracion en pista: " << vehiculoAux->duracionEnPista << endl<<endl;
+        vehiculoAux = vehiculoAux->prox;
     }
 }
 
@@ -218,7 +228,7 @@ tListaVehiculos *tablaDePosiciones(tPista *pista) {
     vehiculoAux->vehiculoEnPantalla = carrilAux->vehiculo->vehiculoEnPantalla;
     vehiculoAux->duracionEnPista = carrilAux->vehiculo->duracionEnPista;
     vehiculoAux->prox=NULL;
-    ordenarListaVehiculos(&tablaVehiculos);
+    insercion(&tablaVehiculos);
     return tablaVehiculos;
 }
 
@@ -241,54 +251,35 @@ bool llegaronTodos(tPista *pista, bool *lleg){
 void simularCarrera(tPista *p){  
     tCarril *carrilAux = p->primerCarril;
     p->tiempoInicio = std::chrono::system_clock::now();
-        system("cls");
     while (!lleg){
+        system("cls");
         mostrarPista(p);
         modificarPociciones(p);
         usleep(250000);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
-        system("cls");
     }
 }
 
-//función que muestra la tabla de ganadores de la carrera.
-void mostrarTablaDePosiciones(tListaVehiculos *tablaVehiculos) {
-    tListaVehiculos *vehiculoAux = tablaVehiculos;
-    while (vehiculoAux != NULL) {
-        cout << "Nombre: " << vehiculoAux->nombreEs << endl;
-        cout << "Nombre en ingles: " << vehiculoAux->nombreEn << endl;
-        cout << "Conductor: " << vehiculoAux->conductor << endl;
-        cout << "Tipo de caucho: " << vehiculoAux->tipoCaucho << endl;
-        cout << "Tamano de caucho: " << vehiculoAux->tamanoCaucho << endl;
-        cout << "Velocidad: " << vehiculoAux->velocidadKm << endl;
-        cout << "Vehiculo en pantalla: " << vehiculoAux->vehiculoEnPantalla << endl;
-        cout << "Duracion en pista: " << vehiculoAux->duracionEnPista << endl<<endl;
-        vehiculoAux = vehiculoAux->prox;
-    }
-}
 
 //función que modifica la posición de un vehiculo en la pista.
 void modificarUnVehiculo(tCarril *carrilAux, tPista *pista){ // mover uno a la derecha 
     tKilometro *kilometroAux = carrilAux->ubicacionVehiculo;
     carrilAux->vehiculo->contadorAux++; // contador debe empezar en 0 , se hace en gestion de vehiculo
     
-    //   while(carrilAux->vehiculo->contadorAux >= 1){
-        if (kilometroAux->prox!=NULL){
-        //     if (validarSiPuedeMover(carrilAux,pista,carrilAux->vehiculo->contadorAux)){
-            kilometroAux->vehiculoPresente=false;
-            kilometroAux->prox->vehiculoPresente=true;
-            carrilAux->ubicacionVehiculo=kilometroAux->prox;
-        }
-       // } fin if validar
-        else if (carrilAux->terminoCarrera==false){
-            carrilAux->terminoCarrera=true;
-            auto end = std::chrono::system_clock::now();
-            auto elipsetime = std::chrono::duration_cast<std::chrono::seconds>(end - pista->tiempoInicio).count();
-            carrilAux->vehiculo->duracionEnPista = elipsetime;
-        }
-        else if (carrilAux->terminoCarrera==true) {
-            llegaronTodos(pista, &lleg);
-        }
-    //  }  // while fin
+    while(carrilAux->vehiculo->contadorAux >= 1 && !carrilAux->terminoCarrera){
+    if (kilometroAux->prox!=NULL){
+        if (validarSiPuedeMover(carrilAux,pista)){
+        kilometroAux->vehiculoPresente=false;
+        kilometroAux->prox->vehiculoPresente=true;
+        carrilAux->ubicacionVehiculo=kilometroAux->prox;
+        }else{break;}
+    }else if (carrilAux->terminoCarrera==false){
+        carrilAux->terminoCarrera=true;
+        auto end = std::chrono::system_clock::now();
+        auto elipsetime = std::chrono::duration_cast<std::chrono::milliseconds>(end - pista->tiempoInicio).count();
+        carrilAux->vehiculo->duracionEnPista = elipsetime;
+        llegaronTodos(pista, &lleg);
+    } 
+    } // while fin
 }
 
 void modificarPociciones(tPista *pistaAux){ // pararse en ubicacion del vehiculo 
@@ -301,28 +292,57 @@ void modificarPociciones(tPista *pistaAux){ // pararse en ubicacion del vehiculo
     }
 }
 
-/*
-int validarSiPuedeMover(tCarril *carrilAux, tPista *pista ,double contador ){
+
+bool validarSiPuedeMover(tCarril *carrilAux, tPista *pista){
     double tiempoEnNodo ;
+    double longitud = pista->longitud;
+    double velocidadKm = carrilAux->vehiculo->velocidadKm;
+    double resBomba = carrilAux->vehiculo->resBomba;
+    double resPiedra = carrilAux->vehiculo->resPiedra;
+    double resLiquido = carrilAux->vehiculo->resLiquido;
     // 1 = bomba
     // 2 = piedra
     // 3 = liquido
     if (carrilAux->ubicacionVehiculo->obstaculoPresente){
 
-        if (carrilAux->ubicacionVehiculo->obstaculo->display==1){ tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm)*((carrilAux->vehiculo->resistenciaBomba / 100) + 1);
-        }else if (carrilAux->ubicacionVehiculo->obstaculo->display==2){ tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm)*((carrilAux->vehiculo->resistenciaPiedra / 100) + 1);
-            }else if (carrilAux->ubicacionVehiculo->obstaculo->display==3){ tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm)*((carrilAux->vehiculo->resistenciaLiquido / 100) + 1);}   
-        if (contador >= tiempoEnNodo ) {
-                contador = contador - tiempoEnNodo;
-            return 1;
+        if (carrilAux->ubicacionVehiculo->obstaculo->display==1)
+        {
+            tiempoEnNodo = (longitud/velocidadKm)+((velocidadKm*resBomba)/1000);
+        }else if (carrilAux->ubicacionVehiculo->obstaculo->display==2)
+            {
+                tiempoEnNodo = (longitud/velocidadKm)+((velocidadKm*resPiedra)/1000);
+            }
+            else if (carrilAux->ubicacionVehiculo->obstaculo->display==3)
+                { 
+                    tiempoEnNodo = (longitud/velocidadKm)+((velocidadKm*resLiquido)/1000); // 1 + 80*10  / 1000 
+                }
+        if (carrilAux->vehiculo->contadorAux < tiempoEnNodo ){
+            return false;
+        }else {
+            carrilAux->vehiculo->contadorAux = (carrilAux->vehiculo->contadorAux - tiempoEnNodo);
+            return true;
         }
+    //    if (carrilAux->vehiculo->contadorAux >= tiempoEnNodo ) { // condicones de arriba  }
     }else {
-            tiempoEnNodo = (pista->longitud/carrilAux->vehiculo->velocidadKm); // 80 , 120  = 0,66
-            if (contador >= tiempoEnNodo ) { 
-                contador = contador - tiempoEnNodo; // 1.02 - 0.66 = 0.36
-            return 1;
+        tiempoEnNodo = (longitud/velocidadKm); // 80 , 80  = 1,00
+        if (carrilAux->vehiculo->contadorAux < tiempoEnNodo ){
+            return false;
+        }else {
+            carrilAux->vehiculo->contadorAux = (carrilAux->vehiculo->contadorAux - tiempoEnNodo);
+            return true;
         }
     }
-    return 0;
 }
-*/
+
+void descargarArchivoPista(tListaVehiculos *tabla) {
+    ofstream arch("Librerias/Archivos/tablaDePosiciones.txt");
+
+    tListaVehiculos* actual = tabla;
+    int cont=0;
+    while (actual != NULL) {
+        arch <<++cont << ". "<< actual->nombreEs<< "/" << actual->nombreEn << "/" << actual->conductor << "/" <<actual->duracionEnPista<< endl;
+        actual = actual->prox;
+    }
+
+    arch.close();
+}
