@@ -28,7 +28,7 @@ struct tListaVehiculos{
     int velocidadAux; // velocidad que se le suma al carro
     int tiempoAux; // tiempo que se le suma a la velocidad
     string vehiculoEnPantalla;
-    std::chrono::seconds::rep duracionEnPista;
+    std::chrono::milliseconds::rep duracionEnPista;
     tListaVehiculos *prox;
 };
 
@@ -42,15 +42,15 @@ struct tKilometro
 {
     int ordinalKilometro; // para saber que kilometro es
     bool obstaculoPresente;
-    bool vehiculoPresente;
+    bool vehiculoPresente=0;
     tObstaculo *obstaculo;
     tKilometro *prox;
 };
 struct tCarril
 {
-    tKilometro *primerKilometro;
-    tKilometro *ultimoKilometro;
-    tKilometro *ubicacionVehiculo; // para saber donde esta el vehiculo
+    tKilometro *primerKilometro=NULL;
+    tKilometro *ultimoKilometro=NULL;
+    tKilometro *ubicacionVehiculo=NULL; // para saber donde esta el vehiculo
     tListaVehiculos *vehiculo;
     bool terminoCarrera=false;
     tCarril *prox;
@@ -58,9 +58,9 @@ struct tCarril
 struct tPista
 {
     string nombre;
-    const int longitud = 80;
-    tCarril *primerCarril;
-    tCarril *ultimoCarril;
+    const int longitud = 160;
+    tCarril *primerCarril=NULL;
+    tCarril *ultimoCarril=NULL;
     int numeroCarriles;
     std::chrono::system_clock::time_point tiempoInicio;
 };

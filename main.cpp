@@ -2,8 +2,7 @@
 
     int main(){
     tListaVehiculos *listaCompetidores=nullptr;
-    cargar_archivo3(&listaCompetidores);
-    muestra(listaCompetidores);
+    cargarArchivoDefault(&listaCompetidores);
     primero = listaCompetidores;
     descargar_archivo3(primero);
     tPista *pista = inicializarPista();

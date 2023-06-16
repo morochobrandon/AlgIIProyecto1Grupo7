@@ -510,7 +510,11 @@ void pedirDatosVehiculo(tListaVehiculos **listaCompetidores){
     cout <<"\n Desea cambiar algo?\n";
     do{
         cout <<"\n 1. Si 2. No\n";
-        cin>>opcion2;
+        do{
+            cout<<"\n opcion :";
+            getline(cin, auxS);
+        } while (!esEntero(auxS));
+        opcion2 = stoi(auxS);
     }while(!((opcion2>=1)&&(opcion2<=2)));
     if(opcion2==1){
         modificarDatosDelVehiculoAux(listaCompetidores);
@@ -582,8 +586,7 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
         datoVehiculoModificar = stoi(auxS);
         if (!((datoVehiculoModificar>=1)&&(datoVehiculoModificar<=6)))
             cout << "\nOpcion invalida, intente de nuevo\n";
-        cout << "Opcion: " << opcion << endl;
-        cin>>datoVehiculoModificar;
+        cout << "Opcion: " << datoVehiculoModificar << endl;
     } while( !( (datoVehiculoModificar >= 1)&& (datoVehiculoModificar <=6)));
 
     if (datoVehiculoModificar == 1){
@@ -739,41 +742,9 @@ void modificarDatosDelVehiculoAux(tListaVehiculos **listaCompetidores){
         llenarDatosVehiculo(listaCompetidores, nombreEsp, nombreEn, piloto, tipoDeCaucho, tamanoDeCaucho, tamanoMonster, velocidadDelCarro , velocidadDelCarroPorKilometro, comoSeVeElVehiculo, resistenciaBomba, resistenciaPiedra, resistenciaLiquido);
         cout<<"\n\n vehiculo modificado con exito \n\n";
 }
-/*
-void cargar_archivo2(tListaVehiculos **listaCompetidores) {
-    string nombreEs, nombreEn, conductor, comoSeVeElVehiculo;
-    int tipoCaucho, tamanoCaucho, tamanoMonster, velocidad;
 
-    ifstream arch;
-    arch.open("Librerias/archivos/vehiculos.txt", ios::in);
-    while(!arch.eof()){
-        arch >> nombreEs >> nombreEn >> conductor >> tipoCaucho >> tamanoCaucho >> tamanoMonster >> velocidad >>comoSeVeElVehiculo;
-        if (!arch.eof()){
-            nuevo = new tListaVehiculos;
-            nuevo->nombreEs = nombreEs;
-            nuevo->nombreEn = nombreEn;
-            nuevo->conductor = conductor;
-            nuevo->tipoCaucho = tipoCaucho;
-            nuevo->tamanoCaucho = tamanoCaucho;
-            nuevo->velocidad = velocidad;
-            nuevo->vehiculoEnPantalla = comoSeVeElVehiculo;
-            if (primero == NULL) {
-            primero = nuevo;
-            primero->prox = NULL;
-            ultimo = primero;
-            } else {
-            ultimo->prox = nuevo;
-            nuevo->prox = NULL;
-            ultimo = nuevo;
-            }
-        }
-    }  arch.close();
-    *listaCompetidores = primero;
-}
-*/
-
-void cargar_archivo3(tListaVehiculos **listaCompetidores) {
-    ifstream arch("Librerias/archivos/vehiculos.txt");
+void cargarArchivoDefault(tListaVehiculos **listaCompetidores) {
+    ifstream arch("Librerias/archivos/VehiculosDefault.txt");
 
     tListaVehiculos *primero = NULL;
     tListaVehiculos *ultimo = NULL;
