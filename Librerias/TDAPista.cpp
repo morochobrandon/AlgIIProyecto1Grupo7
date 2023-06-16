@@ -170,14 +170,28 @@ void generarObstaculos(tPista *pista) {
 
 void insercion(tListaVehiculos **p){
 	tListaVehiculos *ax=*p, *t=*p; 
-	int temp;
+	int velocidades;
+    string nombreEsp , nombreEng, pilotos;
+
 	while (ax->prox!=NULL){
 		t=ax->prox;		
 		while (t!=NULL){							
 			if(ax->duracionEnPista > t->duracionEnPista){ // "< de Mayor a menor" y "> de menor a mayor"
-				temp = ax->duracionEnPista;
+				nombreEsp = ax->nombreEs;
+                ax->nombreEs = t->nombreEs;
+                t->nombreEs = nombreEsp;
+
+                nombreEng = ax->nombreEn;
+                ax->nombreEn = t->nombreEn;
+                t->nombreEn = nombreEng;
+
+                pilotos = ax->conductor;
+                ax->conductor = t->conductor;
+                t->conductor = pilotos;
+                
+                velocidades = ax->duracionEnPista;
 				ax->duracionEnPista=t->duracionEnPista;
-				t->duracionEnPista=temp;
+				t->duracionEnPista=velocidades;
 			}
 			t=t->prox;
 		}
@@ -255,7 +269,7 @@ void simularCarrera(tPista *p){
         system("cls");
         mostrarPista(p);
         modificarPociciones(p);
-        usleep(250000);  // 1 * 10^(-6) la carrera sera entre 1-8 seg
+        if (1) {usleep(100000);  } // 1 * 10^(-6) la carrera sera entre 1-8 seg
     }
 }
 
@@ -263,15 +277,17 @@ void simularCarrera(tPista *p){
 //función que modifica la posición de un vehiculo en la pista.
 void modificarUnVehiculo(tCarril *carrilAux, tPista *pista){ // mover uno a la derecha 
     tKilometro *kilometroAux = carrilAux->ubicacionVehiculo;
-    carrilAux->vehiculo->contadorAux++; // contador debe empezar en 0 , se hace en gestion de vehiculo
+    carrilAux->vehiculo->contadorAux = carrilAux->vehiculo->contadorAux + 0.2 ; // contador debe empezar en 0 , se hace en gestion de vehiculo
     
-    while(carrilAux->vehiculo->contadorAux >= 1 && !carrilAux->terminoCarrera){
+    while(carrilAux->vehiculo->contadorAux >= 0.3 && !carrilAux->terminoCarrera){ // 0.3 dato minimo que coloque para entrar a la condicion
     if (kilometroAux->prox!=NULL){
         if (validarSiPuedeMover(carrilAux,pista)){
         kilometroAux->vehiculoPresente=false;
         kilometroAux->prox->vehiculoPresente=true;
         carrilAux->ubicacionVehiculo=kilometroAux->prox;
-        }else{break;}
+        }else{
+            break;
+            }
     }else if (carrilAux->terminoCarrera==false){
         carrilAux->terminoCarrera=true;
         auto end = std::chrono::system_clock::now();
@@ -303,6 +319,7 @@ bool validarSiPuedeMover(tCarril *carrilAux, tPista *pista){
     // 1 = bomba
     // 2 = piedra
     // 3 = liquido
+
     if (carrilAux->ubicacionVehiculo->obstaculoPresente){
 
         if (carrilAux->ubicacionVehiculo->obstaculo->display==1)
@@ -314,7 +331,7 @@ bool validarSiPuedeMover(tCarril *carrilAux, tPista *pista){
             }
             else if (carrilAux->ubicacionVehiculo->obstaculo->display==3)
                 { 
-                    tiempoEnNodo = (longitud/velocidadKm)+((velocidadKm*resLiquido)/1000); // 1 + 80*10  / 1000 
+                    tiempoEnNodo = (longitud/velocidadKm)+((velocidadKm*resLiquido)/1000); 
                 }
         if (carrilAux->vehiculo->contadorAux < tiempoEnNodo ){
             return false;
@@ -322,9 +339,9 @@ bool validarSiPuedeMover(tCarril *carrilAux, tPista *pista){
             carrilAux->vehiculo->contadorAux = (carrilAux->vehiculo->contadorAux - tiempoEnNodo);
             return true;
         }
-    //    if (carrilAux->vehiculo->contadorAux >= tiempoEnNodo ) { // condicones de arriba  }
-    }else {
-        tiempoEnNodo = (longitud/velocidadKm); // 80 , 80  = 1,00
+      
+    }else{
+        tiempoEnNodo = (longitud/velocidadKm); 
         if (carrilAux->vehiculo->contadorAux < tiempoEnNodo ){
             return false;
         }else {
