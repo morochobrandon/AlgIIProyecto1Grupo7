@@ -267,10 +267,10 @@ void simularCarrera(tPista *p){
     tCarril *carrilAux = p->primerCarril;
     p->tiempoInicio = std::chrono::system_clock::now();
     while (!lleg){
-        system("cls");
         mostrarPista(p);
+        {usleep(100000);  } // 1 * 10^(-6) la carrera sera entre 1-8 seg
         modificarPociciones(p);
-        if (1) {usleep(100000);  } // 1 * 10^(-6) la carrera sera entre 1-8 seg
+        system("cls");
     }
 }
 
