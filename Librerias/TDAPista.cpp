@@ -340,7 +340,6 @@ bool validarSiPuedeMover(tCarril *carrilAux, tPista *pista){
             carrilAux->vehiculo->contadorAux = (carrilAux->vehiculo->contadorAux - tiempoEnNodo);
             return true;
         }
-      
     }else{
         tiempoEnNodo = (longitud/velocidadKm); 
         if (carrilAux->vehiculo->contadorAux < tiempoEnNodo ){
