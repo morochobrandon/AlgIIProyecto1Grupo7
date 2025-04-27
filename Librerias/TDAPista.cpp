@@ -16,9 +16,9 @@ void mostrarPista(tPista *pista) {
         while (kilometroAux != NULL) { 
            // cout << "" << kilometroAux->ordinalKilometro;
             if (kilometroAux->vehiculoPresente) {
-                cout << "" << carrilAux->vehiculo->vehiculoEnPantalla;
+                print("{}" ,carrilAux->vehiculo->vehiculoEnPantalla);
             }else {
-                cout << "" << kilometroAux->obstaculo->aDisplay[kilometroAux->obstaculo->display];
+                print( "{}",kilometroAux->obstaculo->aDisplay[kilometroAux->obstaculo->display]);
             }
             kilometroAux = kilometroAux->prox;
         }
@@ -210,7 +210,7 @@ void mostrarTablaDePosiciones(tListaVehiculos *tablaVehiculos) {
         cout << "Tipo de caucho: " << vehiculoAux->tipoCaucho << endl;
         cout << "Tamano de caucho: " << vehiculoAux->tamanoCaucho << endl;
         cout << "Velocidad: " << vehiculoAux->velocidadKm << endl;
-        cout << "Vehiculo en pantalla: " << vehiculoAux->vehiculoEnPantalla << endl;
+        println( "Vehiculo en pantalla: {}" , vehiculoAux->vehiculoEnPantalla);
         cout << "Duracion en pista: " << vehiculoAux->duracionEnPista << endl<<endl;
         vehiculoAux = vehiculoAux->prox;
     }

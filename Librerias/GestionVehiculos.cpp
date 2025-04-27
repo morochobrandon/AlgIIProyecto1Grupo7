@@ -536,7 +536,7 @@ void muestraVehiculoEspecifico(tListaVehiculos *listaCompetidores){
         cout<<" "<<t->monsterTruck;}
     cout<<"]\n";
     cout<<"velocidad del vehiculo:"<<"["<<t->aVelocidad[t->velocidad]<<"]\n";
-    cout<<"como se ve el vehiculo:"<<"["<<t->vehiculoEnPantalla<<"]\n";
+    println("como se ve el vehiculo: [{}]",t->vehiculoEnPantalla);
 
     cout<<"\n\n\n";
 };
